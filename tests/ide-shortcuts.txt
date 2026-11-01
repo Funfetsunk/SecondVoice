@@ -1,0 +1,16 @@
+# The Inform TEST shortcuts in TESTING-GUIDE.md reach where the guide says.
+> test toact4
++ Hold position
+> xact
++ act-four
+> eta
++ RETRIEVAL SHIP ETA
+> s
+> d
+> w
+> n
++ Dr Vale is here
+> e
+> connect
++ INTEGRATION EVENT
++ recovered alive

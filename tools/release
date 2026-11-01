@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Build the release: story file, website and web interpreter.
+# Output: Second Voice.materials/Release/
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+project="$root/Second Voice.inform"
+inform="${INFORM_HOME:-/c/Program Files/Inform}"
+
+"$root/tools/build" --release
+
+export MSYS2_ARG_CONV_EXCL='*'
+"$inform/Compilers/inblorb.exe" \
+    "$(cygpath -w "$project/Release.blurb")" \
+    "$(cygpath -w "$project/Build/output.gblorb")" > "$project/Build/inblorb.log" 2>&1 || {
+  cat "$project/Build/inblorb.log"
+  echo "tools/release: inblorb failed." >&2
+  exit 1
+}
+tail -3 "$project/Build/inblorb.log"
+echo "tools/release: ok. Second Voice.materials/Release/"

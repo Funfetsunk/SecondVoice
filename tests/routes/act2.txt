@@ -32,11 +32,11 @@
 + LISTENED
 > xact
 + late-act-two
-+ QUIET //
++ // QUIET
 > up
 > west
 > xact
-+ LISTENING //
++ // LISTENING
 > north
 + Fore Corridor
 > up

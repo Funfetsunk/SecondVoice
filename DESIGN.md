@@ -3,7 +3,7 @@
 *An Inform 7 interactive fiction by Thomas Evans.*
 *Rewrite of "Silent Cargo" (v0.5, archived on branch `archive/silent-cargo-v0.5`).*
 
-Status: **design agreed, implementation in progress; see the build order in section 12.** Sections marked **DRAFT** are proposals for Tom to tear apart; everything else was decided in the design sessions and should be treated as settled unless Tom changes it.
+Status: **first full build complete; waiting on human playtests and Tom's prose and decisions. See sections 12 and 13.** Sections marked **DRAFT** are proposals for Tom to tear apart; everything else was decided in the design sessions and should be treated as settled unless Tom changes it.
 
 ---
 
@@ -459,7 +459,8 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] Out-of-order and softlock pass across the whole game. See `TESTING-GUIDE.md` for what a person still needs to try.
 - [ ] **Tom:** settle remaining open questions (AI designation, clock length) and rewrite any remaining drafts; clock tuned in playtesting.
 - [ ] Human playtests: timing against the 1.5–2 hour target, then fixes.
-- [ ] Release build: cover art, website, web interpreter, tested in the browser.
+- [x] Release build: website and web interpreter (`tools/release`), played through in a browser to the Deliver ending, with RETRY tried.
+- [ ] **Tom:** cover art (`Second Voice.materials/Cover.jpg` or `.png`).
 
 ---
 

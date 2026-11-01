@@ -2,6 +2,12 @@
 
 Use no scoring.
 
+Include Basic Screen Effects by Emily Short.
+
+The story headline is "An interactive fiction". The story description is "A transport ship has gone silent. Your sister's last message called you something she never called you. Helios Systems would like you to go and find out why." The release number is 1.
+
+Release along with a website and an interpreter.
+
 The story genre is "Science Fiction".
 
 Volume 1 - Framework
@@ -107,14 +113,16 @@ To say clock (T - a time):
 
 When play begins:
 	now the time of day is 2:00 PM;
-	now the right alignment depth is 22;
-	now the right hand status line is "[status reading]".
+	now the left hand status line is "[the player's surroundings][hearing status]";
+	now the right hand status line is "[status clock]".
 
 The quiet rule is a truth state that varies.
 
-To say status reading:
+To say hearing status:
 	if the quiet rule is true:
-		say "[if the location is quiet]QUIET[otherwise]LISTENING[end if] // ";
+		say " // [if the location is quiet]QUIET[otherwise]LISTENING[end if]".
+
+To say status clock:
 	if the current act is act-four:
 		say "[clock 1 minute after the time of day]";
 	otherwise:
@@ -779,19 +787,21 @@ final question wording	only if victorious	topic	final response rule	final respon
 
 This is the retry set piece rule:
 	increase the attempts by 1;
-	now the player is in the checkpoint;
-	if the overload armed is true:
-		now the overload remaining is the overload length;
-	otherwise:
-		reset the burn;
-	resume the story;
 	say "[bold type]ATTEMPT [attempts][roman type][line break]";
 	if the attempts is 3:
 		say "You hesitate at the same point each time.[line break]";
 	otherwise if the attempts is at least 4:
 		say "The model's confidence increases with each attempt.[line break]";
 	say "[line break]";
-	try looking.
+	if the location is the checkpoint:
+		try looking;
+	otherwise:
+		now the player is in the checkpoint;
+	if the overload armed is true:
+		now the overload remaining is the overload length;
+	otherwise:
+		reset the burn;
+	resume the story.
 
 Before handling the final question when the story has ended finally:
 	if there is a final response rule of the retry set piece rule in the Table of Final Question Options:
@@ -2066,7 +2076,7 @@ To say evidence summary:
 	if missing is 0:
 		say "Evidence recovered: complete.";
 	otherwise:
-		say "Evidence recovered: partial. [missing in words] data cache[if missing is 1] remains[otherwise]s remain[end if] unaccounted for."
+		say "Evidence recovered: partial. [missing] data cache[if missing is 1] remains[otherwise]s remain[end if] unaccounted for."
 
 To say vale paragraph:
 	if Vale's fate is brought out:
@@ -2212,7 +2222,7 @@ Carry out setting the clock:
 Showing the act is an action out of world applying to nothing. Understand "xact" as showing the act.
 
 Carry out showing the act:
-	say "ACT: [current act]. STATUS: [status reading]."
+	say "ACT: [current act]. STATUS: [hearing status] [status clock]."
 
 Showing the AI state is an action out of world applying to nothing. Understand "xai" as showing the AI state.
 
@@ -2328,8 +2338,6 @@ Carry out removing the test survivor:
 	now the test survivor is nowhere;
 	say "SURVIVOR REMOVED."
 
-Include Basic Screen Effects by Emily Short.
-
 Testing a keypress is an action out of world applying to nothing. Understand "xkey" as testing a keypress.
 
 Carry out testing a keypress:
@@ -2337,4 +2345,6 @@ Carry out testing a keypress:
 	let K be the chosen letter;
 	say "KEY CODE [K]."
 
-Test act1 with "e / e / e / open valve / reset breakers / s / pull lever / report all quiet / n / w / n / x interface".
+Test act1 with "e / e / take cutter / e / open valve / reset breakers / s / pull lever / report all quiet / n / w / n / x interface".
+Test toact3 with "e / e / take cutter / e / open valve / reset breakers / s / pull lever / report all quiet / n / w / n / x interface / s / u / e / n / use terminal / 2 / e / cut feed / w / s / d / read notes / u / w / n / u / e / use console / 2".
+Test toact4 with "e / e / take cutter / e / open valve / reset breakers / s / pull lever / report all quiet / n / w / n / x interface / s / u / e / n / use terminal / 2 / e / cut feed / w / s / d / read notes / u / w / n / u / e / use console / 2 / w / d / s / d / w / n / take suit / wait / wait / wear suit / w / n / take key / clip / wait / n / d / play recorder / take recorder / unseal hatch / se".

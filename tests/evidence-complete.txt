@@ -1,0 +1,85 @@
+# Every evidence-log entry can be found in one run, and the report says so.
+> east
+> examine warning
++ Logged
+> examine rack
++ Logged
+> west
+@ act1
+> examine container
++ Logged
+> south
+> up
+> west
++ Crew Quarters
+> examine datapad
++ Logged
+> read letter
++ Logged
+> east
+> east
+> north
+> west
++ Fore Corridor
+> west
+> enter 1840
+> 4
++ Logged
+> east
+> north
++ Cargo Gantry
+> open drawer
+> examine real manifest
++ Logged
+> south
+> east
+> use terminal
+> 2
+> 3
++ Logged
+> east
+> cut feed
+> west
+> south
+> down
+> read notes
++ Logged
+> up
+> west
+> north
+> up
+> examine console
+> 1
++ Logged
+> east
+> use console
+> 2
++ Logged
+@ act3-to-suit
+> ask vale about the datasets
++ Logged
+> west
+> north
+> take key
+> clip
+> examine crew
++ Logged
+> north
+> down
+> play recorder
++ Logged
+> take recorder
+> up
+> south
+> clip
+> wait
+> wait
+> wait
+> wait
+> wait
+> south
+> east
++ Hold position
+> east
+> confirm
++ Evidence recovered: complete
