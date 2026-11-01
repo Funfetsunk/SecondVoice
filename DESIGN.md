@@ -123,7 +123,9 @@ Sam's handheld Helios device. Always carried.
 - ASK/TELL works: `ask Vale about the cargo`, `tell Grant about the bodies`.
 - `TALK TO <person>` lists the topics Sam currently knows about, with a worked example of `ASK`. The list grows with discoveries.
 - Forgiving input: typing a person's name, `CALL`, `CONTACT`, `USE`, `SAY HELLO TO` and `GRANT, HELLO` all reach the same topic list. `ASK ABOUT <topic>` works without naming anyone. Every listed topic must work exactly as printed.
-- Some topics only appear (or only get honest answers) in quiet rooms.
+- Some topics only appear (or only get honest answers) in quiet rooms. Anywhere else, a quiet-only topic gets that person's deflection (Vale: "Not here.").
+- `TALK` and `ASK ABOUT` with no name go to whoever Sam last addressed if they're still here, then anyone else here, then Grant. Someone unconscious doesn't answer and isn't chosen.
+- One table holds every person's topics, so the same subject can get a different answer from each. Learning a topic applies to everyone with a row for it.
 - Prototype this early so Tom can try it before dialogue is written at scale.
 
 ### 4.4 AI escalation
@@ -407,7 +409,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] Prove the test harness handles single-key input (`tests/harness-keys.txt`).
 - [x] **Tom:** chose layered `HINT` over hint menus (4.5).
 - [x] Terminals: reusable system with typed choices, access rules and remembered state.
-- [ ] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
+- [x] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
 - [ ] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
 - [ ] LISTENING / QUIET status line, unlocked by a flag.
 

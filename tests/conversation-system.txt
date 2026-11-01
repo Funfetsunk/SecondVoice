@@ -1,0 +1,159 @@
+# Conversation: one topic table, whoever is present answers, quiet rooms change what's said.
++ Recovery Shuttle
+
+# Alone in a loud room, everything still reaches Grant.
+> talk
++ You can ask Grant about
+
+> slate
+- TALK TO someone
+
+> xsurvivor
+> slate
++ TALK TO someone
+
+# Someone present takes over TALK and ASK ABOUT. Quiet-only topics stay hidden and deflect.
+> talk
++ You can ask the test survivor about
++ the cargo
++ the weather
++ ASK TEST SURVIVOR ABOUT THE CARGO
++ Not here
+- the secret
+- the ending
+- You can ask Grant
+
+> ask test survivor about the cargo
++ Evasive cargo
+- Honest cargo
+
+> ask about the weather
++ Plain weather
+
+> tell about the weather
++ Plain weather
+
+> talk to survivor about the cargo
++ Evasive cargo
+
+> ask about the secret
++ Not here
+- Quiet secret
+
+> ask about the moon
++ Survivor shrugs
+
+> tell survivor about the moon
++ Survivor nods
+
+# Grant can still be named, with his own rows and his own fallbacks.
+> ask grant about the cargo
++ Sealed Helios property
+- Evasive
+
+> ask grant about the moon
++ Not something I can help with
+
+> grant
++ You can ask Grant about
+- the weather
+
+# Naming Grant doesn't take the conversation away from someone at hand.
+> ask about the cargo
++ Evasive cargo
+
+# A new topic appears for this speaker once learned.
+> xlearn
+> talk
++ the ending
+
+# Orders and greetings reach the same list.
+> survivor
++ You can ask the test survivor about
+
+> survivor, hello
++ You can ask the test survivor about
+
+> survivor, open the door
++ You can ask the test survivor about
+
+# Quiet room: honest replies, quiet-only topics listed, no signal for Grant.
+> east
++ Airlock
+> xsurvivor
+> talk
++ the secret
+- Not here
+
+> ask about the cargo
++ Honest cargo
+- Evasive
+
+> ask about the weather
++ Plain weather
+
+> ask about the secret
++ Quiet secret
+
+> grant
++ NO SIGNAL
+
+> ask about the secret
++ Quiet secret
+
+# Nobody left: straight back to the dead channel.
+> xnosurvivor
+> ask about the ship
++ NO SIGNAL
+- Went silent in transit
+
+> talk
++ NO SIGNAL
+
+> west
++ Recovery Shuttle
+
+# Two people: the one last addressed keeps the conversation until they leave.
+> xsurvivor
+> xwitness
+> ask witness about the cargo
++ Witness cargo
+
+> ask about the cargo
++ Witness cargo
+
+> talk
++ You can ask the test witness about
+
+> xnowitness
+> ask about the cargo
++ Evasive cargo
+
+# Sedated people don't answer and aren't chosen.
+> xsedate
+> talk to survivor
++ You get no answer
+- You can ask
+
+> ask survivor about the cargo
++ You get no answer
+- Evasive
+
+> talk
++ You can ask Grant about
+
+> ask about the ship
++ Went silent in transit
+
+> xwake
+> talk
++ You can ask the test survivor about
+
+# Someone with no rows at all, and no text for it.
+> xnosurvivor
+> xmute
+> talk
++ You get no answer
+
+> ask about the cargo
++ You get no answer

@@ -39,6 +39,7 @@ usage	purpose	needs signal	available
 "EVIDENCE"	"review what you've found"	false	true
 "SCAN something"	"take a reading of anything nearby"	false	true
 "HINT"	"get a nudge, and again for a bigger one"	false	true
+"TALK TO someone"	"or ASK someone ABOUT something, if anyone's here to answer"	false	false
 
 To unlock the slate command (U - a text):
 	choose the row with a usage of U in the Table of Slate Commands;
@@ -355,47 +356,83 @@ Book 4 - Conversation
 
 Grant is a man. Grant is part of the recovery slate. Understand "handler" as Grant. The description of Grant is "A surname and a channel number. You've never seen his face."
 
+To say Grant out of reach:
+	say "NO SIGNAL. Grant can't reach you here, and you can't reach him."
+
 Before doing something to Grant when signal is lost:
 	if we are examining Grant, continue the action;
-	say "NO SIGNAL. Grant can't reach you here, and you can't reach him." instead.
+	say "[Grant out of reach]" instead.
 
 Instead of taking or touching or attacking or kissing or pushing or pulling Grant:
 	say "He's a voice on a channel, nowhere you can reach."
 
-Table of Grant Topics
-topic	label	reply	known
-"the/-- cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	false
-"the/-- ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	true
-"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	false
-"becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	true
-"the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	true
-"the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	false
-"the/-- power/reactor/coolant/breakers"	"power"	"[if the ship has power]'Reactor's up and holding on my board. Stick to the job.'[otherwise]'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'[end if]"	true
+Table of Conversation
+speaker (a person)	topic	label (a text)	reply (a text)	honest reply (a text)	known (a truth state)	quiet only (a truth state)
+Grant	"the/-- cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	--	false	false
+Grant	"the/-- ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	--	true	false
+Grant	"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	--	false	false
+Grant	"becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	--	true	false
+Grant	"the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	--	true	false
+Grant	"the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	--	false	false
+Grant	"the/-- power/reactor/coolant/breakers"	"power"	"[if the ship has power]'Reactor's up and holding on my board. Stick to the job.'[otherwise]'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'[end if]"	--	true	false
 
+[Learning a topic applies to everyone who has a row for it.]
 To learn the topic (L - a text):
-	if there is a label of L in the Table of Grant Topics:
-		choose the row with a label of L in the Table of Grant Topics;
-		now the known entry is true.
+	repeat through the Table of Conversation:
+		if the label entry is L:
+			now the known entry is true.
 
-Instead of asking Grant about a topic listed in the Table of Grant Topics:
-	say "[reply entry][line break]".
+A person can be responsive or unresponsive. A person is usually responsive.
 
-Instead of telling Grant about a topic listed in the Table of Grant Topics:
-	say "[reply entry][line break]".
+A person has a text called the unknown reply. A person has a text called the untold reply. A person has a text called the deflection.
 
-Instead of asking Grant about:
-	say "'Not something I can help with.'"
+The unknown reply of Grant is "'Not something I can help with.'". The untold reply of Grant is "'Log it and move on.'".
 
-Instead of telling Grant about:
-	say "'Log it and move on.'"
+Definition: a person is at hand if it is responsive and it is not the player and it is not Grant and the location encloses it.
+
+The last partner is a person that varies. The last partner is Grant.
+
+[Whoever Sam last addressed if they're still here, then anyone here, then the slate.]
+To decide which person is the conversation partner:
+	if the last partner is at hand, decide on the last partner;
+	if a person is at hand, decide on a random at hand person;
+	decide on Grant.
+
+To say (T - a text) or no answer:
+	if T is "":
+		say "You get no answer.";
+	otherwise:
+		say "[T]".
+
+To have (P - a person) respond or else say (fallback - a text):
+	now the last partner is P;
+	if P is unresponsive:
+		say "You get no answer.[line break]";
+		stop;
+	repeat through the Table of Conversation:
+		if the speaker entry is P and the topic understood matches the topic entry:
+			if the quiet only entry is true and the location is loud:
+				say "[deflection of P or no answer][line break]";
+			otherwise if the location is quiet and there is an honest reply entry:
+				say "[honest reply entry][line break]";
+			otherwise:
+				say "[reply entry][line break]";
+			stop;
+	say "[fallback or no answer][line break]".
+
+Instead of asking someone about:
+	have the noun respond or else say the unknown reply of the noun.
+
+Instead of telling someone about:
+	have the noun respond or else say the untold reply of the noun.
 
 Talking to is an action applying to one visible thing. Understand "talk to [someone]" and "speak to [someone]" and "talk [someone]" and "call [someone]" and "contact [someone]" and "radio [someone]" and "message [someone]" and "reply to [someone]" and "[someone]" as talking to. Understand "talk" and "speak" as talking to.
 
 Rule for supplying a missing noun while talking to:
-	now the noun is Grant.
+	now the noun is the conversation partner.
 
-Instead of answering Grant that, try talking to Grant.
-Instead of asking Grant to try doing something, try talking to Grant.
+Instead of answering someone that, try talking to the noun.
+Instead of asking someone to try doing something, try talking to the person asked.
 
 Asking generally is an action applying to one topic. Understand "ask about [text]" and "tell about [text]" and "talk about [text]" and "speak about [text]" and "discuss [text]" as asking generally.
 
@@ -404,17 +441,34 @@ Understand "talk to [someone] about [text]" and "speak to [someone] about [text]
 Understand "talk with [someone]" and "speak with [someone]" as talking to.
 
 Instead of asking generally:
-	try asking Grant about the topic understood.
+	try asking the conversation partner about the topic understood.
 
+[A bare TALK only gets its noun after the Before rules have run.]
 Check talking to:
-	if the noun is not Grant, say "You get no answer." instead.
+	if the noun is Grant and signal is lost, say "[Grant out of reach]" instead;
+	if the noun is unresponsive, say "You get no answer." instead.
 
 Carry out talking to:
-	say "You can ask Grant about:[line break]";
-	repeat through the Table of Grant Topics:
-		if the known entry is true:
-			say "- [label entry][line break]";
-	say "Type ASK GRANT ABOUT THE SHIP, for example."
+	now the last partner is the noun;
+	let N be 0;
+	let held back be false;
+	let example be "";
+	repeat through the Table of Conversation:
+		if the speaker entry is the noun and the known entry is true:
+			if the quiet only entry is true and the location is loud:
+				now held back is true;
+			otherwise:
+				if N is 0:
+					say "You can ask [the noun] about:[line break]";
+					now example is the label entry;
+				increase N by 1;
+				say "- [label entry][line break]";
+	if N is greater than 0:
+		say "Type ASK [the printed name of the noun in upper case] ABOUT [example in upper case], for example.";
+	if held back is true:
+		say "[if N is greater than 0][line break][end if][deflection of the noun or no answer][line break]";
+	otherwise if N is 0:
+		say "You get no answer."
 
 Book 5 - AI Escalation
 
@@ -732,6 +786,54 @@ Carry out making a room optional:
 	now the noun is optional;
 	say "OPTIONAL."
 
+Table of Conversation (continued)
+speaker	topic	label	reply	honest reply	known	quiet only
+test survivor	"the/-- cargo"	"the cargo"	"'Evasive cargo.'"	"'Honest cargo.'"	true	false
+test survivor	"the/-- weather"	"the weather"	"'Plain weather.'"	--	true	false
+test survivor	"the/-- secret"	"the secret"	"'Quiet secret.'"	--	true	true
+test survivor	"the/-- ending"	"the ending"	"'Late ending.'"	--	false	false
+test witness	"the/-- cargo"	"the cargo"	"'Witness cargo.'"	--	true	false
+
+The unknown reply of the test survivor is "'Survivor shrugs.'". The untold reply of the test survivor is "'Survivor nods.'". The deflection of the test survivor is "'Not here.'".
+
+The test witness is a person. The test mute is a person.
+
+Placing the test witness is an action out of world applying to nothing. Understand "xwitness" as placing the test witness.
+
+Carry out placing the test witness:
+	now the test witness is in the location;
+	say "WITNESS PLACED."
+
+Removing the test witness is an action out of world applying to nothing. Understand "xnowitness" as removing the test witness.
+
+Carry out removing the test witness:
+	now the test witness is nowhere;
+	say "WITNESS REMOVED."
+
+Placing the test mute is an action out of world applying to nothing. Understand "xmute" as placing the test mute.
+
+Carry out placing the test mute:
+	now the test mute is in the location;
+	say "MUTE PLACED."
+
+Sedating the test survivor is an action out of world applying to nothing. Understand "xsedate" as sedating the test survivor.
+
+Carry out sedating the test survivor:
+	now the test survivor is unresponsive;
+	say "SEDATED."
+
+Waking the test survivor is an action out of world applying to nothing. Understand "xwake" as waking the test survivor.
+
+Carry out waking the test survivor:
+	now the test survivor is responsive;
+	say "WOKEN."
+
+Learning the test topic is an action out of world applying to nothing. Understand "xlearn" as learning the test topic.
+
+Carry out learning the test topic:
+	learn the topic "the ending";
+	say "LEARNED."
+
 Table of Terminal Entries (continued)
 owner	label	contents	available	read before	effect
 coded terminal	"Coded entry"	"Coded contents."	true	false	test effect rule
@@ -784,6 +886,7 @@ Placing the test survivor is an action out of world applying to nothing. Underst
 
 Carry out placing the test survivor:
 	now the test survivor is in the location;
+	unlock the slate command "TALK TO someone";
 	say "SURVIVOR PLACED."
 
 Removing the test survivor is an action out of world applying to nothing. Understand "xnosurvivor" as removing the test survivor.
