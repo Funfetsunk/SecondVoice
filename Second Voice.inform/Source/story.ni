@@ -28,7 +28,54 @@ Book 2 - Recovery Slate
 
 Chapter 1 - The Slate
 
-The player carries the recovery slate. Understand "helios" and "handheld" and "device" as the recovery slate. The description of the recovery slate is "Helios hardware, scuffed at the corners.[paragraph break][if signal is available]SIGNAL: CH-4[otherwise]NO SIGNAL[end if] // MESSAGES / EVIDENCE / SCAN / HINT".
+The player carries the recovery slate. Understand "helios" and "handheld" and "device" as the recovery slate. The description of the recovery slate is "Helios hardware, scuffed at the corners.[paragraph break][slate guide]".
+
+Table of Slate Commands
+usage	purpose	needs signal	available
+"TALK TO GRANT"	"see what you can ask him"	true	true
+"ASK GRANT ABOUT something"	"or TELL GRANT ABOUT something"	true	true
+"REPORT"	"say something aloud for Grant, or REPORT followed by your words"	true	false
+"MESSAGES"	"reread what you've received"	false	true
+"EVIDENCE"	"review what you've found"	false	true
+"SCAN something"	"take a reading of anything nearby"	false	true
+"HINT"	"get a nudge, and again for a bigger one"	false	true
+
+To unlock the slate command (U - a text):
+	choose the row with a usage of U in the Table of Slate Commands;
+	now the available entry is true.
+
+To say slate guide:
+	say "[if signal is available]SIGNAL: CH-4[otherwise]NO SIGNAL[end if][line break]";
+	repeat through the Table of Slate Commands:
+		if the available entry is true:
+			say "[usage entry]";
+			if the needs signal entry is true and signal is lost:
+				say " (no signal)";
+			otherwise:
+				say " - [purpose entry]";
+			say "[line break]".
+
+Consulting the slate is an action out of world applying to nothing. Understand "slate" and "help" and "commands" and "about" as consulting the slate.
+
+Carry out consulting the slate:
+	say "[slate guide]".
+
+Understand "check [something]" as examining.
+
+Instead of opening the recovery slate, try examining the recovery slate.
+Instead of switching on the recovery slate, try examining the recovery slate.
+
+Using is an action applying to one thing. Understand "use [something]" as using.
+
+Check using:
+	say "Try saying how you want to use [the noun]." instead.
+
+Instead of using the recovery slate, try examining the recovery slate.
+Instead of using Grant, try talking to Grant.
+Instead of using a ship control, try operating the noun.
+
+Rule for printing a parser error when the latest parser error is the not a verb I recognise error:
+	say "That's not a verb I recognise. Type SLATE to see what the slate can do, or HINT if you're stuck."
 
 To refuse to part with the slate:
 	say "The slate stays with you. It's your only line out."
@@ -87,7 +134,8 @@ Every turn when signal is available:
 	deliver waiting messages.
 
 After printing the banner text:
-	deliver waiting messages.
+	deliver waiting messages;
+	say "(Type SLATE to see what it can do, or TALK TO GRANT to speak to your handler.)[paragraph break]".
 
 Reading messages is an action out of world applying to nothing. Understand "messages" and "message" and "msgs" and "read messages" as reading messages.
 
@@ -161,7 +209,7 @@ To decide which goal is the current goal:
 	if the location is the Recovery Shuttle, decide on boarding;
 	decide on reaching engineering.
 
-Asking for a hint is an action out of world applying to nothing. Understand "hint" and "hints" and "help" as asking for a hint.
+Asking for a hint is an action out of world applying to nothing. Understand "hint" and "hints" as asking for a hint.
 
 Carry out asking for a hint:
 	choose the row with a goal of the current goal in the Table of Hints;
@@ -195,24 +243,24 @@ Book 3 - Terminals
 
 Book 4 - Conversation
 
-Grant is a man. Grant is part of the recovery slate. The description of Grant is "A surname and a channel number. You've never seen his face."
+Grant is a man. Grant is part of the recovery slate. Understand "handler" as Grant. The description of Grant is "A surname and a channel number. You've never seen his face."
 
 Before doing something to Grant when signal is lost:
 	if we are examining Grant, continue the action;
-	say "NO SIGNAL." instead.
+	say "NO SIGNAL. Grant can't reach you here, and you can't reach him." instead.
 
 Instead of taking or touching or attacking or kissing or pushing or pulling Grant:
 	say "He's a voice on a channel, nowhere you can reach."
 
 Table of Grant Topics
 topic	label	reply	known
-"cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	false
-"ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	true
-"crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	false
+"the/-- cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	false
+"the/-- ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	true
+"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	false
 "becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	true
-"helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	true
-"warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	false
-"power/reactor/coolant/breakers"	"power"	"'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'"	true
+"the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	true
+"the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	false
+"the/-- power/reactor/coolant/breakers"	"power"	"'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'"	true
 
 To learn the topic (L - a text):
 	if there is a label of L in the Table of Grant Topics:
@@ -231,16 +279,28 @@ Instead of asking Grant about:
 Instead of telling Grant about:
 	say "'Log it and move on.'"
 
-Talking to is an action applying to one visible thing. Understand "talk to [someone]" and "speak to [someone]" and "talk [someone]" as talking to.
+Talking to is an action applying to one visible thing. Understand "talk to [someone]" and "speak to [someone]" and "talk [someone]" and "call [someone]" and "contact [someone]" and "radio [someone]" and "message [someone]" and "reply to [someone]" and "[someone]" as talking to. Understand "talk" and "speak" as talking to.
+
+Rule for supplying a missing noun while talking to:
+	now the noun is Grant.
+
+Instead of answering Grant that, try talking to Grant.
+Instead of asking Grant to try doing something, try talking to Grant.
+
+Asking generally is an action applying to one topic. Understand "ask about [text]" and "tell about [text]" as asking generally.
+
+Instead of asking generally:
+	try asking Grant about the topic understood.
 
 Check talking to:
 	if the noun is not Grant, say "You get no answer." instead.
 
 Carry out talking to:
-	say "You could ask Grant about:[line break]";
+	say "You can ask Grant about:[line break]";
 	repeat through the Table of Grant Topics:
 		if the known entry is true:
-			say "- [label entry][line break]".
+			say "- [label entry][line break]";
+	say "Type ASK GRANT ABOUT THE SHIP, for example."
 
 Book 5 - AI Escalation
 
@@ -387,6 +447,7 @@ Carry out operating:
 
 After operating the restart lever:
 	now the report requested is true;
+	unlock the slate command "REPORT";
 	send Grant message "'Power's back on our end too. Nice work.'";
 	send Grant message "'Before you go further, give me a status report. Out loud. The slate will pick it up.'".
 

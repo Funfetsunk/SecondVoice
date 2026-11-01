@@ -117,10 +117,12 @@ Sam's handheld Helios device. Always carried.
 - **Evidence log:** shows only what has been found. Never shows blanks or totals during play.
 - Hint source (see 4.5).
 - It is Helios hardware: the AI can hijack it, except in quiet zones (see 4.1).
+- **Self-explaining:** `SLATE` (also `HELP`, `USE SLATE`, `EXAMINE SLATE`) lists what it can do right now, driven by one table. Features add a row, unlocked when they first matter, and signal-only commands show "(no signal)" in quiet zones. The opening tells the player to type `SLATE` or `TALK TO GRANT`.
 
 ### 4.3 Conversation (hybrid)
 - ASK/TELL works: `ask Vale about the cargo`, `tell Grant about the bodies`.
-- `TALK TO <person>` lists the topics Sam currently knows about. The list grows with discoveries.
+- `TALK TO <person>` lists the topics Sam currently knows about, with a worked example of `ASK`. The list grows with discoveries.
+- Forgiving input: typing a person's name, `CALL`, `CONTACT`, `USE`, `SAY HELLO TO` and `GRANT, HELLO` all reach the same topic list. `ASK ABOUT <topic>` works without naming anyone. Every listed topic must work exactly as printed.
 - Some topics only appear (or only get honest answers) in quiet rooms.
 - Prototype this early so Tom can try it before dialogue is written at scale.
 

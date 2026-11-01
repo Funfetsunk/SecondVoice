@@ -1,0 +1,113 @@
+# A new player can find the slate and Grant by whatever words they try.
++ Type SLATE
++ TALK TO GRANT
++ Recovery Shuttle
+
+> slate
++ SIGNAL: CH-4
++ TALK TO GRANT
++ ASK GRANT ABOUT something
++ MESSAGES
++ EVIDENCE
++ SCAN something
++ HINT
+- REPORT
+
+> use slate
++ TALK TO GRANT
+
+> check slate
++ TALK TO GRANT
+
+> open slate
++ TALK TO GRANT
+
+> turn on slate
++ TALK TO GRANT
+
+> help
++ TALK TO GRANT
+
+> commands
++ TALK TO GRANT
+
+# Every way of reaching Grant shows the topics, with an example.
+> grant
++ You can ask Grant about
++ ASK GRANT ABOUT THE SHIP
+
+> talk
++ You can ask Grant about
+
+> talk to handler
++ You can ask Grant about
+
+> call grant
++ You can ask Grant about
+
+> contact grant
++ You can ask Grant about
+
+> use grant
++ You can ask Grant about
+
+> say hello to grant
++ You can ask Grant about
+
+> grant, hello
++ You can ask Grant about
+
+> grant, open the door
++ You can ask Grant about
+
+# Topics work exactly as TALK TO GRANT lists them, and without naming him.
+> ask grant about the ship
++ Went silent in transit
+
+> ask grant about Reed
++ Comms Officer Reed
+
+> ask grant about the contract
++ Standard recovery terms
+
+> ask grant about power
++ Prime coolant
+
+> ask about the ship
++ Went silent in transit
+
+> tell about the ship
++ Went silent in transit
+
+> frobnicate
++ That's not a verb I recognise
++ Type SLATE
+
+> east
+> slate
++ NO SIGNAL
++ TALK TO GRANT (no signal)
++ MESSAGES
+- MESSAGES (no signal)
+
+> grant
++ NO SIGNAL
++ can't reach
+
+> ask about the ship
++ NO SIGNAL
+- Went silent in transit
+
+> east
+> east
+> use valve
++ Coolant knocks through the pipes
+
+> reset breakers
+> south
+> pull lever
+> slate
++ REPORT
+
+> report ok
++ Copy that
