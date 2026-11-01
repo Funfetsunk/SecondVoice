@@ -260,7 +260,7 @@ topic	label	reply	known
 "becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	true
 "the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	true
 "the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	false
-"the/-- power/reactor/coolant/breakers"	"power"	"'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'"	true
+"the/-- power/reactor/coolant/breakers"	"power"	"[if the ship has power]'Reactor's up and holding on my board. Stick to the job.'[otherwise]'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'[end if]"	true
 
 To learn the topic (L - a text):
 	if there is a label of L in the Table of Grant Topics:
@@ -287,7 +287,11 @@ Rule for supplying a missing noun while talking to:
 Instead of answering Grant that, try talking to Grant.
 Instead of asking Grant to try doing something, try talking to Grant.
 
-Asking generally is an action applying to one topic. Understand "ask about [text]" and "tell about [text]" as asking generally.
+Asking generally is an action applying to one topic. Understand "ask about [text]" and "tell about [text]" and "talk about [text]" and "speak about [text]" and "discuss [text]" as asking generally.
+
+Understand "talk to [someone] about [text]" and "speak to [someone] about [text]" and "talk with [someone] about [text]" and "speak with [someone] about [text]" and "ask [someone] [text]" as asking it about.
+
+Understand "talk with [someone]" and "speak with [someone]" as talking to.
 
 Instead of asking generally:
 	try asking Grant about the topic understood.

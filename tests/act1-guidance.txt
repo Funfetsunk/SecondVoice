@@ -79,6 +79,27 @@
 > tell about the ship
 + Went silent in transit
 
+> talk to grant about power
++ Prime coolant
+
+> speak to grant about the ship
++ Went silent in transit
+
+> talk with grant about the ship
++ Went silent in transit
+
+> talk about the ship
++ Went silent in transit
+
+> discuss the ship
++ Went silent in transit
+
+> ask grant the ship
++ Went silent in transit
+
+> talk with grant
++ You can ask Grant about
+
 > frobnicate
 + That's not a verb I recognise
 + Type SLATE
@@ -111,3 +132,7 @@
 
 > report ok
 + Copy that
+
+> talk to grant about power
++ Reactor's up and holding
+- Prime coolant
