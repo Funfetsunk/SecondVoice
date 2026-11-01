@@ -1,0 +1,14 @@
+# Interface with Vale sent to the shuttle. No truth.
+@ act1
+@ act2
+@ act3
+@ fetch-vale
+> use interface
+> 3
++ Type CONNECT
+> connect
++ tell her to run
++ INTEGRATION EVENT
++ decision latency consistent with human cognition
++ recovered alive
++ official account

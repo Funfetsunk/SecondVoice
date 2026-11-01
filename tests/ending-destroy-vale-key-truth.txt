@@ -1,0 +1,41 @@
+# Destroy: Vale turns the key herself, and the truth has been sent. Becky's message is kept from the AI.
+@ act1
+@ act2
+@ act3
+@ truth
+> south
+> down
+> west
+> north
++ EVA Prep
+> east
++ Dr Vale is close behind you
+> up
+> up
+> up
++ Server Core
+> cut link
+> down
+> down
+> down
+> cut isolator
+> west
+> south
+> east
+> east
+> south
++ REFUSED
+> vale, turn key
++ It stopped forecasting me
++ Fourteen minutes
+> north
+> west
+> north
+> west
+> south
+> west
+> undock
++ LOSS OF UNIT
++ listed as lost
++ External enquiries have begun
+- replaying one audio file

@@ -1,0 +1,18 @@
+# From the Fore Corridor at the flood: cut both, ending in EVA Prep with Vale back on the way past.
+> up
+> north
+> cut link
++ You cut the link
+> down
+> down
+> down
++ Cargo Hold
+> cut isolator
++ falls in two
+> west
++ EVA Prep
+> south
+> east
+> east
+> south
++ REFUSED

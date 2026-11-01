@@ -1,0 +1,40 @@
+# Death on the hull: telegraphed, retried from EVA Prep, the AI notices.
+@ act1
+@ act2
+@ act3-to-suit
+> wear suit
+> take off suit
+> west
++ You need the suit on
+> wear suit
+> west
+> north
+> wait
+> wait
++ ATTITUDE BURN IN 1
+> wait
++ You weren't holding on to anything
++ RETRY
+> retry
++ ATTEMPT 2
++ EVA Prep
+> xact
++ act-three
+> west
+> wait
+> wait
+> wait
+> wait
++ You weren't holding on
+> retry
++ ATTEMPT 3
++ You hesitate at the same point each time
+> west
+> north
+> take key
+> clip
+> wait
++ The whole ship swings
+> north
+> down
++ Comms Crawlspace

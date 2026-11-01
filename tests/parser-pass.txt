@@ -1,0 +1,61 @@
+# Everything the early rooms mention can be examined, and the captain's code takes either form.
+> examine collar
++ pressure collar
+> examine flank
++ Grey plate
+> east
+> examine lighting
++ old rust
+> examine eva hatch
++ ACCESS DENIED
+> east
+> examine spares
++ Sealant
+> examine ladder
++ central deck
+> east
+> examine pipes
++ capitals
+> examine grille
++ circle with a line
+> south
+> examine housing
++ Mercer's labels
+> north
+> west
+> north
+> examine gantry
++ steel walkway
+> examine hatch
++ Locked from the far side
+> south
+> east
+> open valve
+> reset breakers
+> south
+> pull lever
+> report quiet
+> north
+> west
+> north
+> read interface
+> south
+> up
+> east
+> north
+> west
++ Fore Corridor
+> west
++ Captain's Cabin
+> examine desk
++ Clean and squared away
+> use terminal
++ LOCKED
+> enter 1234
++ INVALID CODE
+> enter 18:40
++ ACCESS GRANTED
++ Log 4
+> 4
++ my last entry
++ Logged

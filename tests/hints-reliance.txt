@@ -1,0 +1,21 @@
+# From Act 3 the AI answers in the hint channel when there's signal, and not in quiet rooms.
+@ act1
+@ act2
+> hint
+> hint
+> hint
+- You already knew that
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> hint
+> hint
+> hint
+> hint
+> hint
+> hint
++ You asked for help 9 times

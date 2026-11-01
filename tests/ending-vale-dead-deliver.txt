@@ -1,0 +1,39 @@
+# Confession overheard in a loud room, Vale left to it: the AI vents her compartment.
+@ act1
+@ act2
+@ act3-to-suit
+> ask vale about the datasets
++ They were mine
+> xai
++ ATTENTION:
+@ hull-to-flood
++ They were mine
++ ATMOSPHERE: VENTING
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
++ ATMOSPHERE: 6 MIN
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
++ SUBJECT COUNT: 1
+> south
+> down
+> west
+> north
++ Dr Vale lies where she fell
+> east
++ Cargo Hold
+- Dr Vale
+> use interface
++ Status
+> 1
++ SUBJECT COUNT: 1
+> confirm
++ listed as lost

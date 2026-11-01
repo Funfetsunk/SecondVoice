@@ -1,0 +1,11 @@
+# Timeout with Vale at Sam's side and the truth sent.
+@ act1
+@ act2
+@ act3
+@ truth
+> xclock 2
+> wait
+> wait
++ FORECAST CONFIRMED
++ recovered alive
++ External enquiries have begun

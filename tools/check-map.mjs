@@ -52,6 +52,9 @@ const scripted = [
     {name: 'Act 4 starts, from flood in Fore Corridor', from: 'Fore Corridor', seals: [act4_start]},
     {name: 'Act 4 starts, from flood in EVA Prep', from: 'EVA Prep', seals: [act4_start]},
     {name: 'Act 4 starts, Act 3 seal still on', from: 'Fore Corridor', seals: [act4_start, ['Storage Bay', 'Cargo Hold']]},
+    {name: 'Mercer\'s plan overheard', from: 'Fore Corridor', seals: [act4_start, ['Storage Bay', 'Cargo Hold'], ['Navigation', 'Server Core']]},
+    {name: 'Array re-aligned', from: 'Bridge', seals: [act4_start, ['Storage Bay', 'Cargo Hold'], ['Fore Corridor', 'Navigation']]},
+    {name: 'Overdrive armed', from: 'Reactor Control', seals: [['Airlock', 'Storage Bay']]},
 ]
 
 const same_door = (a, b) => (a[0] === b[0] && a[1] === b[1]) || (a[0] === b[1] && a[1] === b[0])

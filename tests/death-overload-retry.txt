@@ -1,0 +1,41 @@
+# Destroy armed and the shuttle missed: RETRY puts Sam back at the console with the time restored.
+@ act1
+@ act2
+@ act3
+@ cut-both
+> play recorder
+> turn key
++ Fourteen minutes
+> eta
++ REACTOR OVERDRIVE: 14 minutes
+> wait
+> wait
+> wait
+> wait
++ 10 MIN
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
++ You weren't off the ship
+> retry
++ ATTEMPT 2
++ Reactor Control
+> eta
++ REACTOR OVERDRIVE: 14 minutes
+> north
+> west
+> north
+> west
+> south
+> west
++ Recovery Shuttle
+> undock
++ LOSS OF UNIT
++ recovered alive

@@ -1,0 +1,19 @@
+# Deliver with Vale left behind and the truth sent.
+@ act1
+@ act2
+@ act3
+@ truth
+> vale, stay
++ I'll be here
+> south
+> down
+> west
+> north
+> east
++ Cargo Hold
+> use interface
++ Connect
+> confirm
++ RECOVERY SUCCESS
++ left aboard
++ External enquiries have begun

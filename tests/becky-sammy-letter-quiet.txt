@@ -1,0 +1,45 @@
+# The letter read in a quiet room: the voice still says Sammy.
+> east
+> east
+> take cutter
+> east
+> open valve
+> reset breakers
+> south
+> pull lever
+> report all quiet
+> north
+> west
+> north
+> examine interface
+> south
+> up
+> west
++ Crew Quarters
+> take letter
+> examine datapad
++ 18:40
+> east
+> east
+> north
+> use terminal
+> 2
+> east
+> cut feed
+> west
+> south
+> down
+> read letter
++ Nobody else ever called you that
+> read notes
+> up
+> west
+> north
+> up
+> east
+> use console
+> 2
+@ act3-to-suit
+> messages
++ Sammy,
+- Sparrow,

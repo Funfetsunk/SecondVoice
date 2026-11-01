@@ -1,0 +1,56 @@
+# Act 2, from the Cargo Hold to the end of the act on the Bridge. Letter read aloud is left to each test.
+> south
+> up
++ Aft Corridor
++ SEALED
+> east
++ Mess
+> north
++ Medbay
+> use medbay terminal
++ Sedation override
+> 1
++ SEDATION ACTIVE
+> 2
++ SEDATION OVERRIDE QUEUED
+> 3
++ Human_Response_Test_A
+> east
++ Isolation Pod
+> cut feed
++ eyes open
++ SEALED
+> ask vale about the crew
++ airlock
+> west
++ Dr Vale is close behind you
+> south
+> down
++ Maintenance Crawlway
+> read notes
++ CIRCLE, LINE
++ LISTENED
+> xact
++ late-act-two
++ QUIET //
+> up
+> west
+> xact
++ LISTENING //
+> north
++ Fore Corridor
+> up
++ Navigation
+> examine nav console
++ INPUT REGISTERED BEFORE CONTACT
+> 1
++ Command execution precedes input buffer
+> east
++ Bridge
+> use bridge console
++ Comms log
+> 2
++ System functioning normally
++ You are looking for her
+> xact
++ act-three

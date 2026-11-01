@@ -1,0 +1,35 @@
+# Sam can leave Becky without hearing her: no flood, no clock, and HINT steers back.
+@ act1
+@ act2
+@ act3-to-suit
+> west
+> north
+> take key
+> clip
+> wait
+> north
+> down
++ Comms Crawlspace
+> take recorder
++ aren't taking it before you've heard it
+> unseal hatch
+> southeast
++ Fore Corridor
+- Hold position
+> xact
++ act-three
+> eta
++ Nothing is counting down
+> hint
++ something here you haven't listened to
+> hint
+> hint
++ PLAY RECORDER
+> northwest
++ Comms Crawlspace
+> play recorder
++ It's me
+> southeast
++ Hold position
+> xact
++ act-four

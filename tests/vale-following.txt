@@ -1,0 +1,44 @@
+# Vale follows unless told to stay, comes again when asked, and the slate says how.
+@ act1
+> south
+> up
+> east
+> north
+> use terminal
+> 2
+> east
+> cut feed
++ eyes open
+> slate
++ VALE, STAY
++ TALK TO someone
+> talk
++ You can ask Dr Vale about
++ ASK DR VALE ABOUT THE CREW
+> ask dr vale about the crew
++ airlock
+> ask about the pod
++ Not here
+> vale, stay
++ I'll be here
+> west
+- close behind
+> east
++ Dr Vale is here, waiting
+> tell vale to come
++ Right behind you
+> west
++ Dr Vale is close behind you
+> south
+> down
+> ask about the pod
++ Subject one
+> ask about the crew
++ still planning when the air ran out
+> ask about reed
++ welded the hatch
+> ask about the container
++ Server Core
+> up
+> ask about the crew
++ all you get in here

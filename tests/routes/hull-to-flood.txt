@@ -1,0 +1,13 @@
+# From EVA Prep in a suit, across the hull to Becky, out to the flood in the Fore Corridor.
+> west
+> north
+> take key
+> clip
+> wait
+> north
+> down
+> play recorder
+> take recorder
+> unseal hatch
+> southeast
++ Hold position

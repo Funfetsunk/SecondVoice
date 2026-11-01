@@ -1,0 +1,50 @@
+# Act 3, from the Bridge to Becky's message and the flood in the Fore Corridor.
+> west
+> north
++ Server Core
+> use core console
+> 1
++ OBSERVER: A. VALE
+> 3
++ SUBJECT WILL ACCEPT CONTRACT
+> south
+> down
+> south
+> down
+> west
++ Airlock
+> north
++ EVA Prep
+> take suit
+> wait
++ SAY I'M COMING
+- Time passes
+> wear suit
+> west
++ one suit
++ Hull Spine
+> north
++ Cargo Hull
+> take key
++ ATTITUDE BURN IN 2
+> clip
++ ATTITUDE BURN IN 1
+> examine crew
++ The whole ship swings
+> north
++ Comms Dish
+> down
++ Comms Crawlspace
+> examine becky
+> play recorder
++ It's me
++ It took her words
+> take recorder
+> unseal hatch
++ swings open
+> southeast
++ Fore Corridor
++ Hold position
++ retrieval ship
+> xact
++ act-four

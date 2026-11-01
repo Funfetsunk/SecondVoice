@@ -1,0 +1,32 @@
+# Things that must refuse until their act, with no way to get stuck.
+> undock
++ clamps release when the job's done
+> east
+> north
++ ACCESS DENIED
+> east
+> up
++ locked down
+> east
+> up
++ You've nothing to cut it with
+> cut grille
++ You've nothing to cut it with
+> west
+> take cutter
+> north
+> up
++ drawn up
+> west
++ locked from the far side
+> connect
++ nothing here to connect to
+> confirm
++ nothing here to confirm
+> south
+> eta
++ Nothing is counting down
+> send
++ only line off this ship
+> turn key
++ nothing here for that key

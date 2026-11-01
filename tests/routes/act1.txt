@@ -1,0 +1,16 @@
+# Act 1, the plain way, with the cutter picked up on the way past.
+> east
+> east
+> take cutter
+> east
+> open valve
+> reset breakers
+> south
+> pull lever
+> report all quiet
+> north
+> west
+> north
+> examine interface
++ SUBJECT COUNT: 2
++ the gantry ladder rattles down

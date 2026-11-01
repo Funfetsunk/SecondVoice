@@ -1,0 +1,29 @@
+# The letter read in a loud room: the voice has it now. The next command gets rewritten.
+@ act1
+> south
+> up
+> west
+> read letter
++ Nobody else ever called you that
+> east
+> east
+> north
+> use terminal
+> 2
+> east
+> cut feed
+> west
+> south
+> down
+> read notes
+> up
+> west
+> north
+> up
+> east
+> use console
+> 2
+@ act3-to-suit
+> messages
++ Sparrow,
+- Sammy,

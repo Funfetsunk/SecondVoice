@@ -1,0 +1,17 @@
+# Deliver with Vale. No truth.
+@ act1
+@ act2
+@ act3
+@ fetch-vale
+> use interface
++ DECISION TREE
++ Release to Helios
+> 2
++ Type CONFIRM
+> confirm
++ RECOVERY SUCCESS
++ Thank you, Sammy
++ recovered alive
++ official account
++ Phase Two is authorised
++ Evidence recovered

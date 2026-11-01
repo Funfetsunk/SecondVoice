@@ -1,0 +1,16 @@
+# Interface with Vale elsewhere and the truth sent.
+@ act1
+@ act2
+@ act3
+@ truth
+> vale, stay
+> south
+> down
+> west
+> north
+> east
+> connect
++ INTEGRATION EVENT
++ left aboard
++ External enquiries have begun
+- tell her to run

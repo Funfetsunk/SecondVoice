@@ -1,0 +1,24 @@
+# Confession in a quiet room: logged, and the AI never uses it.
+@ act1
+@ act2
+> west
+> north
+> use core console
+> 1
+> south
+> down
+> west
+> east
+> south
+> east
+> down
++ Maintenance Crawlway
+> talk to vale
++ the datasets
++ the plan
+> ask vale about the datasets
++ I told myself it was fatigue data
+> evidence
++ Dr Vale's admission
+> xai
++ ATTENTION: 1

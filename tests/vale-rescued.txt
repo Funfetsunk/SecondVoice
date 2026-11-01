@@ -1,0 +1,16 @@
+# Same broadcast, but Sam gets to her before the air's gone.
+@ act1
+@ act2
+@ act3-to-suit
+> ask vale about the datasets
++ They were mine
+@ hull-to-flood
++ They were mine
+> south
+> down
+> west
+> north
++ Dr Vale is here
++ You got to her first
+> east
++ Dr Vale is close behind you

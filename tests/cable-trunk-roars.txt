@@ -1,0 +1,36 @@
+# The trunk is the loudest place: what's heard there counts double.
+@ act1
+> south
+> up
+> west
+> take letter
+> east
+> east
+> north
+> use terminal
+> 2
+> east
+> cut feed
+> west
+> south
+> down
+> read notes
+> up
+> west
+> north
+> up
+> east
+> use console
+> 2
+> xai
++ ATTENTION: 1
+> west
+> north
+> down
++ Cable Trunk
++ isn't a hum any more
+> read letter
+> xai
++ ATTENTION: 3
+> scan cable
++ your own voice

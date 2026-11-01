@@ -1,0 +1,9 @@
+# From the Fore Corridor at the flood, back to Vale in EVA Prep, ending in the Cargo Hold.
+> south
+> down
+> west
+> north
++ Dr Vale is here
+> east
++ Cargo Hold
++ Dr Vale is close behind you

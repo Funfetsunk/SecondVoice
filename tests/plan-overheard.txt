@@ -1,0 +1,44 @@
+# Mercer's plan read in a loud room: the AI pre-empts the Server Core door, and the trunk still gets there.
+@ act1
+> south
+> up
+> east
+> north
+> use terminal
+> 2
+> east
+> cut feed
+> west
+> south
+> down
+> take notes
+> up
+> read notes
++ BOTH OR NOTHING
+> xact
++ late-act-two
+> west
+> north
+> up
+> east
+> use console
+> 2
+@ act3-to-suit
+@ hull-to-flood
++ BOTH OR NOTHING
+> up
+> north
++ sealed
+> down
+> south
+> down
+> west
+> north
+> east
++ Cargo Hold
+> up
+> up
+> up
++ Server Core
+> cut link
++ You cut the link

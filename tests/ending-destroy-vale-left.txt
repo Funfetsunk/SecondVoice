@@ -1,0 +1,27 @@
+# Destroy: Vale told to stay, Sam leaves her. Reported as lost.
+@ act1
+@ act2
+@ act3
+@ cut-both
+> play recorder
++ never heard this
+> turn key
++ Fourteen minutes
+> vale, stay
++ I'll be here
+> north
+- Dr Vale
+> west
+> north
++ Cargo Hold
+> west
+> south
+> west
++ Recovery Shuttle
+> undock
++ UNDOCK again
+> undock
++ LOSS OF UNIT
++ listed as lost
++ official account
++ replaying one audio file

@@ -1,0 +1,17 @@
+# Act 3 up to wearing the suit in EVA Prep, with the core console read on the way.
+> west
+> north
+> use core console
+> 1
+> 3
+> south
+> down
+> south
+> down
+> west
+> north
+> take suit
+> wait
++ SAY I'M COMING
+- Time passes
+> wear suit

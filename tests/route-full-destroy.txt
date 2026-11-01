@@ -1,0 +1,48 @@
+# Destroy with Vale aboard, using Becky's message at the console. No truth sent.
+@ act1
+@ act2
+@ act3
+@ fetch-vale
+> up
++ Cargo Gantry
+> up
++ Cable Trunk
+> up
++ Server Core
+> cut link
++ You cut the link
+> down
+> down
+> down
++ Cargo Hold
+> cut isolator
++ falls in two
+> west
+> south
+> east
+> east
+> south
++ REFUSED
+> turn key
++ guard stays
+> hint
++ It answered before you touched the key
+> play recorder
++ never heard this
+> turn key
++ Fourteen minutes
+> north
+> west
+> north
+> west
+> south
+> west
++ Recovery Shuttle
+> undock
++ T-7366D
++ LOSS OF UNIT
++ recovered alive
++ official account
++ parallel units remain active
++ Evidence recovered
+- RETRY

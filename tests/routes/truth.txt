@@ -1,0 +1,28 @@
+# From the Fore Corridor at the flood: re-align on the Bridge, the long way round to the hardline, send.
+> up
+> east
+> use bridge console
++ Re-align array
+> 2
++ ARRAY ALIGNED
+> west
++ SEALED
+> down
++ sealed
+> north
+> down
+> down
+> down
++ Cargo Hold
+> west
++ EVA Prep
+> south
+> east
++ Storage Bay
+> up
+> north
+> northwest
++ Comms Crawlspace
+> send
++ SENT
+> southeast

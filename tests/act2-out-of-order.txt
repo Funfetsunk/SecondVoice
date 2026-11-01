@@ -1,0 +1,30 @@
+# Notes before Vale, grille cut from Engineering: she wakes straight into late Act 2, no seals.
+@ act1
+> south
+> east
+> up
++ cutter would
+> cut grille
++ bolts go one after another
+> up
++ Maintenance Crawlway
+> read notes
++ CIRCLE, LINE
+> xact
++ act-two
+> up
++ Mess
+> north
+> east
+> cut feed
+- eyes open
+> west
+> use terminal
+> 2
++ SEDATION OVERRIDE QUEUED
++ comes through the hatch
++ doors let go
+> xact
++ late-act-two
+> west
++ Fore Corridor

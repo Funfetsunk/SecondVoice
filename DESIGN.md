@@ -415,48 +415,95 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] Terminals: reusable system with typed choices, access rules and remembered state.
 - [x] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
 - [x] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
-- [ ] LISTENING / QUIET status line, unlocked by a flag.
+- [x] LISTENING / QUIET status line, unlocked by a flag.
 
 ### Phase 3 — Act 2 (Investigation)
-- [ ] **Tom:** confirm the DRAFT puzzles: Voss's code from her routine, and sedation override plus cutting the pod feed. Decide whether "Sparrow" stays.
-- [ ] Central deck, Cargo Gantry, Maintenance Crawlway and the cutter; remove their closed exits.
-- [ ] Crew Quarters, Voss's datapad, Becky's bunk and the "Sparrow" item (**Tom:** prose).
-- [ ] Captain's Cabin terminal and logs (**Tom:** captain's logs), Kest's manifest.
-- [ ] Medbay, Isolation Pod and waking Vale.
-- [ ] Sealing beats: early Act 2 detour, then the forced route into the Crawlway.
-- [ ] Mercer's notes, the quiet rule explained, Vale's first honest talk.
-- [ ] Navigation and Bridge, AI nudges (lights, course corrections).
-- [ ] Act 2 ending: the AI's first plain sentence, Grant's channel drops. Replace the end of the Act 1 slice so play carries straight through.
+- [ ] **Tom:** confirm the DRAFT puzzles as built (section 13): Voss's code from her routine, and sedation override plus cutting the pod feed. Decide whether "Sparrow" stays.
+- [x] Central deck, Cargo Gantry, Maintenance Crawlway and the cutter; remove their closed exits.
+- [x] Crew Quarters, Voss's datapad, Becky's bunk and the "Sparrow" item (**Tom:** prose).
+- [x] Captain's Cabin terminal and logs (**Tom:** captain's logs), Kest's manifest.
+- [x] Medbay, Isolation Pod and waking Vale.
+- [x] Sealing beats: early Act 2 detour, then the forced route into the Crawlway.
+- [x] Mercer's notes, the quiet rule explained, Vale's first honest talk.
+- [x] Navigation and Bridge, AI nudges (lights, course corrections).
+- [x] Act 2 ending: the AI's first plain sentence, Grant's channel drops. Replace the end of the Act 1 slice so play carries straight through.
 
 ### Phase 4 — Act 3 (Escalation)
-- [ ] Death, checkpoints and RETRY, with the AI noticing repeat attempts.
-- [ ] Parser interference toolkit, with its first sparing use.
-- [ ] Forged Grant messages in the story, and the AI slipping into the hint channel.
-- [ ] Becky's voice: the midpoint message, "Sparrow" or "Sammy" depending on what was overheard.
-- [ ] Vale's secret: evidence and confrontation, quiet and overheard versions.
-- [ ] EVA Prep and the spacewalk set piece: exterior rooms, tethered crew, Voss's command key.
-- [ ] Comms Crawlspace: recorder, Becky's real message (**Tom:** prose), undoing her seal, steering Sam back if they leave without hearing it.
-- [ ] Server Core and Cable Trunk as the loudest place.
-- [ ] The flood: queued messages, the forged message, Act 4 clock start.
+- [x] Death, checkpoints and RETRY, with the AI noticing repeat attempts.
+- [x] Parser interference toolkit, with its first sparing use.
+- [x] Forged Grant messages in the story, and the AI slipping into the hint channel.
+- [x] Becky's voice: the midpoint message, "Sparrow" or "Sammy" depending on what was overheard.
+- [x] Vale's secret: evidence and confrontation, quiet and overheard versions.
+- [x] EVA Prep and the spacewalk set piece: exterior rooms, tethered crew, Voss's command key.
+- [x] Comms Crawlspace: recorder, Becky's real message (**Tom:** prose), undoing her seal, steering Sam back if they leave without hearing it.
+- [x] Server Core and Cable Trunk as the loudest place.
+- [x] The flood: queued messages, the forged message, Act 4 clock start.
 
 ### Phase 5 — Act 4 (The Choice)
-- [ ] **Tom:** design the "outsmart the model" puzzle (open question). Must be settled before the Act 4 paths are built.
-- [ ] Act 4 clock and the opening seal on Cargo Gantry–Fore Corridor.
-- [ ] Destroy path, including the shuttle escape with or without Vale.
-- [ ] Deliver and Interface paths (**Tom:** what happens to Sam in Interface).
-- [ ] Timeout path: the AI acts on its prediction.
-- [ ] Truth transmission: Bridge re-alignment, Crawlspace hardline.
-- [ ] AI pre-emption using the seal system, and the climactic parser interference.
+- [ ] **Tom:** confirm or replace the "outsmart the model" puzzle as built (section 13).
+- [x] Act 4 clock and the opening seal on Cargo Gantry–Fore Corridor.
+- [x] Destroy path, including the shuttle escape with or without Vale.
+- [x] Deliver and Interface paths. **Tom:** confirm what happens to Sam in Interface (section 13).
+- [x] Timeout path: the AI acts on its prediction.
+- [x] Truth transmission: Bridge re-alignment, Crawlspace hardline.
+- [x] AI pre-emption using the seal system, and the climactic parser interference.
 
 ### Phase 6 — Endings
-- [ ] Four main endings as final scene plus Helios report (**Tom:** reports).
-- [ ] Report modifiers: Vale alive, left or dead; truth sent or not. Evidence summary. Resolve "you both" in the forged message.
-- [ ] A walkthrough for every ending and modifier combination.
+- [x] Four main endings as final scene plus Helios report. **Tom:** rewrite the reports.
+- [x] Report modifiers: Vale alive, left or dead; truth sent or not. Evidence summary. Resolve "you both" in the forged message.
+- [x] A walkthrough for every ending and modifier combination.
 
 ### Phase 7 — Polish and release
-- [ ] Parser pass: synonyms and responses for everything mentioned in room descriptions.
-- [ ] Full HINT coverage for every puzzle.
-- [ ] Out-of-order and softlock pass across the whole game.
+- [x] Parser pass: synonyms and responses for everything mentioned in room descriptions. Human playtests will find more.
+- [x] Full HINT coverage for every puzzle.
+- [x] Out-of-order and softlock pass across the whole game. See `TESTING-GUIDE.md` for what a person still needs to try.
 - [ ] **Tom:** settle remaining open questions (AI designation, clock length) and rewrite any remaining drafts; clock tuned in playtesting.
 - [ ] Human playtests: timing against the 1.5–2 hour target, then fixes.
 - [ ] Release build: cover art, website, web interpreter, tested in the browser.
+
+---
+
+## 13. Decisions made to finish the first full build (DRAFT, all Tom's to change)
+
+Tom asked for the whole game to be finished before testing, so open questions were answered with working proposals. Prose marked `DRAFT — Tom to rewrite` in the source is placeholder, written to be replaced.
+
+**Act 2**
+- Voss's code is **1840**, her Bridge handover in the datapad's routine. `ENTER 1840` and `ENTER 18:40` both work. The Captain's Cabin is optional.
+- The cutter hangs in the Storage Bay. Waking Vale needs the medbay **Sedation override** and **CUT FEED** in the pod, in either order.
+- Act 2 ends on reading the bridge console's comms log. It tells Sam the hatch is welded and how to get in.
+
+**Vale**
+- She follows Sam once awake, unless told `VALE, STAY`. `VALE, COME` undoes it. She won't go outside, and waits at EVA Prep.
+- **Dead:** a confession heard in a loud room makes the AI vent whichever loud room she's in during Act 4, 12 turns, if she isn't with Sam. Also dead if she stays aboard for Destroy, or turns the key herself.
+- **Left behind:** not with Sam at Deliver, Interface or Timeout.
+- "You both" in the forged flood message always holds: she can't die before Act 4.
+
+**The spacewalk**
+- The suit warns of an attitude burn two turns ahead, on a 5-turn cycle. `CLIP` to the rail, or be thrown off. RETRY returns to the lock Sam came through.
+
+**Becky**
+- The recorder can't be taken before it's heard. Afterwards it can only be played in quiet rooms, or at the console in the puzzle below, so its one use can't be wasted.
+- "Sparrow" reaches the AI if the letter is read, or discussed, anywhere that isn't quiet. Reading it at the bunk counts. Taking it to a quiet room doesn't.
+
+**Outsmarting the model (Act 4)**
+- Destroy: **CUT LINK** at the Server Core, **CUT ISOLATOR** in the Cargo Hold, **TURN KEY** in Reactor Control.
+- The console refuses the key before Sam types it: `> TURN KEY / REFUSED`. Trying again changes nothing. Two ways through, both things it didn't forecast:
+  1. **PLAY RECORDER** at the console. It stops to listen to what it never heard, and misses Sam's hands. The cost is that it now has her message, and the report says so.
+  2. **VALE, TURN KEY.** It stopped forecasting her when it finished with her. The cost is that she stays and dies, but Becky's message stays private.
+- Planning quietly helps: reading Mercer's plan in a loud room makes it seal the Server Core door at the start of Act 4, and cutting anything or re-aligning the dish brings further seals. All go through the 4.10 check, which now only counts a route outside if Sam can reach a suit.
+
+**The Act 4 clock**
+- 60 turns, and it stops once the overdrive is armed, which has its own 14 turns. It's a guess until playtested. `ETA` shows it.
+- From Act 4 the status line clock runs **one minute ahead**, so forged stamps match it and real ones look late. The AI hides its own tell. Never pointed out.
+
+**Endings**
+- **Interface:** Sam is found with a hand on the plate, alive, breathing, unresponsive. The report suggests Sam is still in there.
+- **Timeout:** the AI authorises its own release using Sam's decision history. The report's forecast accuracy depends on how much it overheard.
+- The evidence summary counts all evidence-log rows: partial, with the number missing, or complete.
+
+**Parser interference, all four moments**
+1. Navigation console: `INPUT REGISTERED BEFORE CONTACT` before the screen.
+2. After Becky's voice arrives: the next command is replaced by `SAY I'M COMING`.
+3. First use of the interface in Act 4: the fake decision tree, listing options by probability.
+4. Reactor Control: `> TURN KEY / REFUSED`.
+Status line drift in Act 4 and "ATTEMPT 2" on RETRY support these. Noticing UNDO isn't built, because UNDO erases the game's memory of having happened.
