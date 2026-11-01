@@ -14,10 +14,9 @@ Inform 7 interactive fiction by Thomas Evans (Tom). Full rewrite of the earlier 
 
 - Inform for Windows **10.1.2** (installed at `C:\Program Files\Inform`). Story format: **Glulx**.
 - The project is created by Tom in the Inform IDE as `Second Voice.inform` (with its `Second Voice.materials` folder) in the repo root. Don't hand-create `uuid.txt`/IFID or IDE settings files.
-- **First task:** establish a command-line build-and-test loop and document the exact commands here:
-  1. Locate the command-line compilers in the Inform install (inform7 and inform6 executables) and the internal resources they need.
-  2. Get a command-line Glulx interpreter that can run scripted input (e.g. glulxe built with CheapGlk/RemGlk, or via WSL).
-  3. A script (e.g. `tools/build` + `tools/test`) that compiles the project and runs every walkthrough in `tests/`, diffing against expected output or checking key lines.
+- **Build (Git Bash):** `tools/build` compiles to `Second Voice.inform/Build/output.ulx`; `tools/build --release` drops debug verbs and Volume 4. It calls `Compilers/inform7.exe` (with `-internal "C:\Program Files\Inform\Internal"`, `-external "%USERPROFILE%\Documents\Inform"`, `-project`, `-format=Inform6/32d`), then `Compilers/inform6.exe -E2SDwG auto.inf output.ulx` from `Build/`. Set `INFORM_HOME` if Inform is installed elsewhere.
+- **Test (Git Bash):** `tools/test` builds, then plays every `tests/*.txt` walkthrough and checks key lines; `tools/test --no-build` skips the build. Failures exit non-zero; transcripts go to `Second Voice.inform/Build/tests/`. Walkthrough format is described at the top of `tools/run-tests.mjs`.
+- **Interpreter:** `emglken` (Glulxe in WebAssembly, pinned in `tools/package.json`), run under Node. After a fresh clone: `npm install --prefix tools`. The bundled `Interpreters/glulxe.exe` exits 1 with no output when run outside the IDE, so it can't be used. emglken can't read stdin to EOF, so `tools/run-tests.mjs` feeds one command each time output goes idle.
 
 ## Repo layout (target)
 

@@ -2,4 +2,10 @@
 *.inform/Build/
 *.inform/Index/
 *.inform/Settings.plist.bak
+*.inform/Metadata.iFiction
+*.inform/Release.blurb
+*.inform/manifest.plist
 *.materials/Release/
+
+# Test interpreter (npm install --prefix tools)
+tools/node_modules/

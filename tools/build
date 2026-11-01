@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Compile Second Voice from the command line (Git Bash on Windows).
+# Output: Second Voice.inform/Build/output.ulx
+# Usage: tools/build [--release]   (--release drops debug verbs and Volume 4)
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+project="$root/Second Voice.inform"
+inform="${INFORM_HOME:-/c/Program Files/Inform}"
+
+i7_flags=(-format=Inform6/32d)
+i6_flags=-E2SDwG
+if [[ "${1:-}" == "--release" ]]; then
+  i7_flags=(-release -format=Inform6/32)
+  i6_flags=-E2w~S~DG
+fi
+
+# Stop Git Bash rewriting the Windows paths and switches passed below.
+export MSYS2_ARG_CONV_EXCL='*'
+
+if ! "$inform/Compilers/inform7.exe" \
+    -internal "$(cygpath -w "$inform/Internal")" \
+    -external "$(cygpath -w "$HOME/Documents/Inform")" \
+    -project "$(cygpath -w "$project")" \
+    "${i7_flags[@]}" > "$project/Build/inform7.log" 2>&1; then
+  grep -E '^ *>-->|Problem' "$project/Build/inform7.log" || cat "$project/Build/inform7.log"
+  echo "tools/build: inform7 failed. Full report: Second Voice.inform/Build/Problems.html" >&2
+  exit 1
+fi
+
+cd "$project/Build"
+if ! "$inform/Compilers/inform6.exe" "$i6_flags" auto.inf output.ulx > inform6.log 2>&1; then
+  cat inform6.log
+  echo "tools/build: inform6 failed." >&2
+  exit 1
+fi
+
+echo "tools/build: ok ($(wc -c < output.ulx) bytes) Second Voice.inform/Build/output.ulx"

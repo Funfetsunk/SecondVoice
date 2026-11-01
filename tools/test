@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Build Second Voice, then run every walkthrough in tests/.
+# Usage: tools/test [--no-build]
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+if [[ "${1:-}" != "--no-build" ]]; then
+  "$root/tools/build"
+fi
+
+node "$root/tools/run-tests.mjs"

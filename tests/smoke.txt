@@ -1,0 +1,12 @@
+# The game boots, starts in the shuttle and accepts commands.
++ Second Voice
++ by Thomas Evans
++ Recovery Shuttle
+
+> look
++ Recovery Shuttle
+- That's not a verb
+
+> quit
++ Are you sure you want to quit
+> y
