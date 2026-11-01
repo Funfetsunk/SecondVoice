@@ -265,7 +265,6 @@ These are the best uses of a human tester, because the walkthroughs only try wha
 2. **What happens to Sam in Interface.**
 3. **How Vale can die.**
 4. **The Act 4 status line drift.**
-5. **Whether "Sparrow" stays.**
-6. **The AI's Helios designation.** It's still open: the reports just say "the unit".
+5. **The AI's Helios designation.** It's still open: the reports just say "the unit".
 
-**Cover art.** The release uses Inform's default cover. Add yours as `Second Voice.materials/Cover.jpg` (or `.png`).
+**Cover art.** Generated with PixelLab and in `Second Voice.materials/`. Replace `Cover.png` and `Small Cover.png` if you want something else.

@@ -58,7 +58,7 @@ Build each system once and drive it from data (kinds, properties, tables). Avoid
 ## Non-negotiables
 
 - **Sam is never gendered.** No he/she/brother/sister/Samuel/Samantha. Always "Sam". Becky is Sam's sister ("she").
-- Aboard ship Becky is "Reed"; only Sam calls her "Becky". Sam's nickname "Sparrow" lives in one place (it may change). The fake message says "Sammy".
+- Aboard ship Becky is "Reed"; only Sam calls her "Becky". Sam's nickname "Sparrow" lives in one place. The fake message says "Sammy".
 - **Grant's message format:** `HELIOS OPS // GRANT // CH-4 // HH:MM`. AI forgeries are identical except the timestamp is **one minute ahead** of the ship clock. Never point this out to the player.
 - The AI has no name and never names itself.
 - **No softlocks.** Death only inside checkpointed set pieces, with RETRY.

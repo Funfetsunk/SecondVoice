@@ -41,7 +41,7 @@ The cargo is an adaptive observation AI that Helios shipped on purpose. It has b
 ### Sam Reed — the player
 - **Gender-neutral. Never gendered** in any text: never "brother"/"sister", "he"/"she", "Samuel"/"Samantha". Always "Sam".
 - Younger sibling. Half-raised by Becky.
-- Becky's nickname for Sam: **"Sparrow"** (provisional — Tom may change it; keep it in one variable/constant).
+- Becky's nickname for Sam: **"Sparrow"**. Keep it in one variable/constant.
 - Sam hated being called "Sammy". Becky never used it.
 - Took the Helios job because the message felt wrong.
 
@@ -374,7 +374,6 @@ Changes from the original: the crew didn't *all* go outside (three suits missing
 - The AI's Helios designation.
 - Act 4 "outsmart the model" puzzle specifics.
 - Act 4 clock length.
-- Whether "Sparrow" stays.
 - The interface ending: what exactly happens to Sam.
 
 ---
@@ -418,7 +417,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] LISTENING / QUIET status line, unlocked by a flag.
 
 ### Phase 3 — Act 2 (Investigation)
-- [ ] **Tom:** confirm the DRAFT puzzles as built (section 13): Voss's code from her routine, and sedation override plus cutting the pod feed. Decide whether "Sparrow" stays.
+- [ ] **Tom:** confirm the DRAFT puzzles as built (section 13): Voss's code from her routine, and sedation override plus cutting the pod feed. **Tom:** "Sparrow" stays.
 - [x] Central deck, Cargo Gantry, Maintenance Crawlway and the cutter; remove their closed exits.
 - [x] Crew Quarters, Voss's datapad, Becky's bunk and the "Sparrow" item (**Tom:** prose).
 - [x] Captain's Cabin terminal and logs (**Tom:** captain's logs), Kest's manifest.
@@ -460,7 +459,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [ ] **Tom:** settle remaining open questions (AI designation, clock length) and rewrite any remaining drafts; clock tuned in playtesting.
 - [ ] Human playtests: timing against the 1.5–2 hour target, then fixes.
 - [x] Release build: website and web interpreter (`tools/release`), played through in a browser to the Deliver ending, with RETRY tried.
-- [ ] **Tom:** cover art (`Second Voice.materials/Cover.jpg` or `.png`).
+- [x] Cover art: generated with PixelLab, in `Second Voice.materials/`. **Tom:** replace it if you want something else.
 
 ---
 

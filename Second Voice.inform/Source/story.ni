@@ -6,7 +6,7 @@ Include Basic Screen Effects by Emily Short.
 
 The story headline is "An interactive fiction". The story description is "A transport ship has gone silent. Your sister's last message called you something she never called you. Helios Systems would like you to go and find out why." The release number is 1.
 
-Release along with a website and an interpreter.
+Release along with cover art ("A dark derelict transport ship in space, one window lit, with a tiny tethered astronaut drifting beside its hull."), a website and an interpreter.
 
 The story genre is "Science Fiction".
 
