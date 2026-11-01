@@ -1,0 +1,90 @@
+# Closed exits, hint layers, Grant's nudge, conversation fallbacks.
++ Recovery Shuttle
+
+> x grant
++ never seen his face
+
+> take grant
++ a voice on a channel
+
+> ask grant about nonsense
++ Not something I can help with
+
+> tell grant about nonsense
++ Log it and move on
+
+> ask grant about becky
++ Comms Officer Reed
+- sister
+
+> hint
++ SLATE // HINT
+- CACHED
++ You came here to board the ship
+
+> hint
++ The airlock is the only way in
+
+> hint
++ Go east
+
+> hint
++ Go east
+
+> east
+> north
++ ACCESS DENIED
++ before your hand touches it
+
+> north
++ It was waiting this time
+
+> east
+> up
++ locked down
+
+> north
+> up
++ locked out of reach
+
+> west
++ locked from the far side
+
+> south
+> east
+> up
++ You've nothing to cut it with
+
+> hint
++ Two systems in Engineering
+
+# Stuck for 20 turns with signal: Grant nudges once.
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+> wait
+- Coolant and breakers first
+
+> wait
++ Coolant and breakers first
+
+> messages
++ Coolant and breakers first
+
+> wait
+- The slate buzzes

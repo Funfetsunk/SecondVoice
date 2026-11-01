@@ -7,6 +7,9 @@
 + Recovery Shuttle
 - That's not a verb
 
+> examine me
++ Sam Reed
+
 > quit
 + Are you sure you want to quit
 > y

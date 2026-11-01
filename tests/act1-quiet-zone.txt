@@ -1,0 +1,55 @@
+# NO SIGNAL blocks Grant and the AI. Local slate functions keep working.
++ Recovery Shuttle
+
+> east
++ Airlock
+
+> examine slate
++ NO SIGNAL
+- SIGNAL: CH-4
+
+> ask grant about cargo
++ NO SIGNAL.
+- Sealed Helios property
+
+> talk to grant
++ NO SIGNAL.
+
+> hint
++ NO SIGNAL // CACHED
++ Find out why
+
+> evidence
++ Nothing logged
+
+> scan suit rack
++ Three EVA suits absent
++ Logged to slate
+
+# A message sent during NO SIGNAL waits, then arrives with its original stamp.
+> xsend
+> xforge
+> look
+- Test message
+- Forged test message
+
+> east
++ The slate buzzes
+# Sent at 14:05 and kept. Forged stamp: delivered at 14:06, shown one minute ahead.
++ CH-4 // 14:05 "Test message."
++ CH-4 // 14:07 "Forged test message."
+
+> messages
++ Test message
++ Forged test message
+
+> ask grant about cargo
++ Sealed Helios property
+
+> talk to grant
++ the ship
++ Reed
++ the crew
+
+> drop slate
++ The slate stays with you

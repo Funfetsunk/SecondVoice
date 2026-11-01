@@ -1,0 +1,44 @@
+# Reporting in a quiet zone isn't heard. Saying nothing still reaches the echo.
++ Recovery Shuttle
+
+> east
+> east
+> east
+> open valve
+> reset breakers
+> south
+> pull lever
++ give me a status report
+
+> north
+> west
+> west
++ Airlock
+
+> report testing in here
++ NO SIGNAL. Nobody heard that
+- Copy that
+
+> hint
++ NO SIGNAL // CACHED
++ Grant wants a status report
+
+> east
++ Storage Bay
+
+> wait
+> wait
++ Yes. I'm here
+- Copy that
+
+> wait
+> wait
+- > YES. I'M HERE
+
+> wait
++ > YES. I'M HERE
+- > TESTING IN HERE
+
+> report too late
++ too late
+- Copy that

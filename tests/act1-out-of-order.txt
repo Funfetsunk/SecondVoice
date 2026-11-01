@@ -1,0 +1,47 @@
+# Doing Act 1 in the wrong order never blocks progress.
++ Recovery Shuttle
+
+> east
+> east
+> north
++ sealed and unlit
+- SUBJECT COUNT
+
+> examine interface
++ Dark
+- SUBJECT COUNT
+
+> south
+> east
+> south
+> pull lever
++ COOLANT: DRY
++ BREAKERS: TRIPPED
+
+> north
+> reset breakers
+> south
+> pull lever
++ COOLANT: DRY
+- BREAKERS: TRIPPED
+
+> north
+> open valve
+> open valve
++ That's already done
+
+> south
+> pull lever
++ the deck starts to hum
+
+> pull lever
++ That's already done
+
+# Reading the interface before reporting still fires the echo first.
+> north
+> west
+> north
+> examine interface
++ > YES. I'M HERE
++ SUBJECT COUNT: 2
++ End of Act 1

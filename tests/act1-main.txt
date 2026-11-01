@@ -1,0 +1,70 @@
+# Act 1 by the intended route, ending on the subject count hook.
++ Sammy,
++ HELIOS OPS // GRANT // CH-4 // 14:0
++ This is Grant, Helios ops
++ Recovery Shuttle
+
+> east
++ The ship's hum drops away behind you
++ Airlock
+- The slate buzzes
+
+> examine scratched warning
++ DON'T LET IT HEAR YOU
++ Logged to slate
+
+> examine suit rack
++ VOSS, MERCER and KEST
++ Logged to slate
+
+> evidence
++ DON'T LET IT HEAR YOU
++ three EVA suits missing
+- Cargo container drawing
+
+> east
++ The hum closes back in around you
++ Storage Bay
+
+> east
++ Engineering
+
+> open valve
++ Coolant knocks through the pipes
+
+> reset breakers
++ throw the breakers back
+
+> south
++ Reactor Control
+
+> pull lever
++ the deck starts to hum
++ Power's back on our end too
++ give me a status report
+
+> report all quiet down here
++ all quiet down here
++ Copy that
+
+> north
++ Engineering
+- ALL QUIET DOWN HERE
+
+> west
++ Storage Bay
++ > ALL QUIET DOWN HERE
+
+> north
++ The shipping container sits at its centre with its interface lit
+
+> scan container
++ Drawing far more power
++ Logged to slate
+
+> examine interface
++ STATUS: ACTIVE
++ OBSERVATION: IN PROGRESS
++ SUBJECT COUNT: 2
++ You boarded alone
++ End of Act 1
