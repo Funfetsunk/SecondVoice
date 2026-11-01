@@ -1,0 +1,3 @@
+# Bash scripts break with CRLF line endings on Windows checkouts
+tools/build text eol=lf
+tools/test text eol=lf
