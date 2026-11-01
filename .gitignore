@@ -1,5 +1,5 @@
-Build/
-Index/
-*.z8
-*.ulx
-*.blorb
+# Inform build output
+*.inform/Build/
+*.inform/Index/
+*.inform/Settings.plist.bak
+*.materials/Release/
