@@ -152,7 +152,9 @@ Three or four key moments only, building toward the climax. Toolkit:
 - Standard SAVE/RESTORE/UNDO always available.
 
 ### 4.8 Terminals
-One reusable terminal system (menus, access rules, power requirement, keycard/code gating, read state). Replaces the original's per-option duplication. **Terminals remember their state** when the player leaves.
+One reusable terminal system (listed entries, access rules, power requirement, keycard/code gating, read state), driven by one table. Replaces the original's per-option duplication. **Terminals remember their state** when the player leaves.
+
+Terminals are **never modal**: the screen lists entries and the player types a number as an ordinary turn. The parser stays live, each choice costs a turn on the Act 4 clock, and the AI can interrupt or pre-empt at a terminal like anywhere else. One terminal per room.
 
 ### 4.9 Act 4 clock
 - Turn-based countdown (not real time). Starts at the beginning of Act 4 only; Acts 1–3 have no time pressure.
@@ -404,7 +406,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] Door sealing: one seal system with the 4.10 check (Shuttle route, needed items wherever dropped, Vale's room, required rooms). Build first: it carries the no-softlock guarantee. Doors are added to its table as their rooms are built; Vale is protected by marking her "needed".
 - [x] Prove the test harness handles single-key input (`tests/harness-keys.txt`).
 - [x] **Tom:** chose layered `HINT` over hint menus (4.5).
-- [ ] Terminals: reusable system with access rules and remembered state.
+- [x] Terminals: reusable system with typed choices, access rules and remembered state.
 - [ ] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
 - [ ] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
 - [ ] LISTENING / QUIET status line, unlocked by a flag.

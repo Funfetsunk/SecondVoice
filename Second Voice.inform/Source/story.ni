@@ -241,6 +241,116 @@ Every turn:
 
 Book 3 - Terminals
 
+[One system for every terminal, and never modal: the screen lists entries, the player types a number as an ordinary turn, so the parser, the clock and the AI all stay live. One terminal per room.]
+
+A terminal is a kind of thing. A terminal is usually fixed in place. Understand "terminal" and "screen" and "computer" as a terminal.
+
+A terminal can be mains-powered or battery-backed. A terminal is usually mains-powered.
+A terminal can be secured or cleared. A terminal is usually cleared.
+A terminal has a number called the access code.
+A terminal has an object called the required keycard.
+A terminal has a text called the heading.
+
+Table of Terminal Entries
+owner (a terminal)	label (a text)	contents (a text)	available (a truth state)	read before (a truth state)	effect (a rule)
+stores terminal	"Stores inventory"	"Spares, filters, sealant, ration packs. All counts within tolerance. One crate of filters signed out to the hold, with no reason given."	true	false	--
+stores terminal	"Last stores note"	"KEST: 'Count's wrong again. Not ours to query, apparently.'"	true	false	--
+
+To reveal terminal entry (L - a text):
+	choose the row with a label of L in the Table of Terminal Entries;
+	now the available entry is true.
+
+To decide whether (T - a terminal) refuses access:
+	if T is mains-powered and the ship does not have power:
+		say "The screen is dark. No power.";
+		decide yes;
+	if T is secured:
+		if the required keycard of T is not nothing:
+			if the player does not carry the required keycard of T:
+				say "[heading of T][line break]KEYCARD REQUIRED.";
+				decide yes;
+			now T is cleared;
+			say "KEYCARD ACCEPTED.[paragraph break]";
+			decide no;
+		say "[heading of T][line break]LOCKED. ENTER a code to continue.";
+		decide yes;
+	decide no.
+
+To show the screen of (T - a terminal):
+	if T refuses access, stop;
+	say "[heading of T][line break]";
+	let N be 0;
+	repeat through the Table of Terminal Entries:
+		if the owner entry is T and the available entry is true:
+			increase N by 1;
+			say "[N]. [label entry][if the read before entry is true] (read)[end if][line break]";
+	if N is 0:
+		say "No entries.";
+	otherwise:
+		say "Type a number to choose."
+
+Instead of examining a terminal, show the screen of the noun.
+Instead of using a terminal, show the screen of the noun.
+Instead of opening a terminal, show the screen of the noun.
+Instead of switching on a terminal, show the screen of the noun.
+
+Logging in is an action applying to nothing. Understand "login" and "log in" as logging in.
+
+Check logging in:
+	if no terminal is in the location, say "There's no terminal here." instead.
+
+Carry out logging in:
+	show the screen of a random terminal in the location.
+
+Choosing is an action applying to one number. Understand "[number]" and "read [number]" and "read log [number]" and "open [number]" and "select [number]" and "choose [number]" and "pick [number]" as choosing.
+
+Check choosing:
+	if no terminal is in the location, say "There's no terminal here." instead.
+
+Carry out choosing:
+	let T be a random terminal in the location;
+	if T is secured and the required keycard of T is nothing and the access code of T is not 0:
+		if T is mains-powered and the ship does not have power:
+			say "The screen is dark. No power.";
+			stop;
+		try entering the code the number understood;
+		stop;
+	if T refuses access, stop;
+	let N be 0;
+	repeat through the Table of Terminal Entries:
+		if the owner entry is T and the available entry is true:
+			increase N by 1;
+			if N is the number understood:
+				say "[label entry][paragraph break][contents entry][line break]";
+				if the read before entry is false:
+					now the read before entry is true;
+					if there is an effect entry, follow the effect entry;
+				stop;
+	say "No such entry."
+
+Entering the code is an action applying to one number. Understand "enter [number]" and "type [number]" and "code [number]" as entering the code.
+
+Check entering the code:
+	if no terminal is in the location, say "There's no terminal here." instead.
+
+Carry out entering the code:
+	let T be a random terminal in the location;
+	if T is mains-powered and the ship does not have power:
+		say "The screen is dark. No power.";
+		stop;
+	if T is cleared:
+		say "No code is needed.";
+		stop;
+	if the required keycard of T is not nothing:
+		say "[heading of T][line break]KEYCARD REQUIRED.";
+		stop;
+	if the number understood is the access code of T:
+		now T is cleared;
+		say "ACCESS GRANTED.[paragraph break]";
+		show the screen of T;
+	otherwise:
+		say "INVALID CODE."
+
 Book 4 - Conversation
 
 Grant is a man. Grant is part of the recovery slate. Understand "handler" as Grant. The description of Grant is "A surname and a channel number. You've never seen his face."
@@ -499,7 +609,9 @@ The scratched warning is scenery in the Airlock. Understand "scratches" and "wri
 
 The small symbol is scenery in the Airlock. Understand "mark" and "smaller mark" as the small symbol. The description of the small symbol is "A circle with a line through it, scratched by a different, steadier hand. It means nothing to you yet."
 
-The Storage Bay is east of the Airlock. "Racks of crated spares, webbing pulled tight. A status panel glows on the bulkhead. The Airlock is west, Engineering east, and the Cargo Hold north. A ladder climbs to a hatch overhead."
+The Storage Bay is east of the Airlock. "Racks of crated spares, webbing pulled tight. A status panel glows on the bulkhead, beside a stores terminal. The Airlock is west, Engineering east, and the Cargo Hold north. A ladder climbs to a hatch overhead."
+
+The stores terminal is a terminal in the Storage Bay. It is scenery. The heading of the stores terminal is "STORES // SECOND VOICE". The scan reading of the stores terminal is "Local stores system. Last login: KEST."
 
 Engineering is east of the Storage Bay. "Pipework and cable trays. The coolant valve and the breaker panel are the only things here that look recently touched. Reactor Control lies south, the Storage Bay west. A maintenance grille is set high in the wall above you."
 
@@ -528,6 +640,10 @@ The restart lever is a ship control in Reactor Control. Understand "reactor" and
 To decide whether the ship has power:
 	if the restart lever is engaged, decide yes;
 	decide no.
+
+To decide whether the ship does not have power:
+	if the restart lever is engaged, decide no;
+	decide yes.
 
 Operating is an action applying to one thing. Understand "prime [something]" and "reset [something]" and "restart [something]" and "operate [something]" as operating.
 
@@ -615,6 +731,45 @@ Making a room optional is an action out of world applying to one visible thing. 
 Carry out making a room optional:
 	now the noun is optional;
 	say "OPTIONAL."
+
+Table of Terminal Entries (continued)
+owner	label	contents	available	read before	effect
+coded terminal	"Coded entry"	"Coded contents."	true	false	test effect rule
+coded terminal	"Revealed entry"	"Revealed contents."	false	false	--
+carded terminal	"Carded entry"	"Carded contents."	true	false	--
+
+This is the test effect rule:
+	say "EFFECT RAN."
+
+The coded terminal is a terminal. It is scenery. It is secured. The access code of the coded terminal is 4471. The heading of the coded terminal is "CODED".
+
+The carded terminal is a terminal. It is scenery. It is secured. The required keycard of the carded terminal is the test beacon. The heading of the carded terminal is "CARDED".
+
+Placing the coded terminal is an action out of world applying to nothing. Understand "xcoded" as placing the coded terminal.
+
+Carry out placing the coded terminal:
+	now the stores terminal is nowhere;
+	now the coded terminal is in the location;
+	say "TEST CODED."
+
+Removing the coded terminal is an action out of world applying to nothing. Understand "xnocoded" as removing the coded terminal.
+
+Carry out removing the coded terminal:
+	now the coded terminal is nowhere;
+	say "REMOVED."
+
+Placing the carded terminal is an action out of world applying to nothing. Understand "xcarded" as placing the carded terminal.
+
+Carry out placing the carded terminal:
+	now the stores terminal is nowhere;
+	now the carded terminal is in the location;
+	say "TEST CARDED."
+
+Revealing the test entry is an action out of world applying to nothing. Understand "xreveal" as revealing the test entry.
+
+Carry out revealing the test entry:
+	reveal terminal entry "Revealed entry";
+	say "REVEALED."
 
 The test beacon is a thing. The test beacon is needed.
 The test survivor is a person. The test survivor is needed.

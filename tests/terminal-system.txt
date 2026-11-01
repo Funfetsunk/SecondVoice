@@ -1,0 +1,122 @@
+# Terminals: typed choices, access rules, remembered state, parser stays live.
++ Recovery Shuttle
+
+> read 1
++ There's no terminal here
+
+> enter 1234
++ There's no terminal here
+
+> east
+> east
++ stores terminal
+
+# No power yet.
+> use stores terminal
++ dark
+- Stores inventory
+
+> 1
++ dark
+
+> east
+> open valve
+> reset breakers
+> south
+> pull lever
+> north
+> west
+
+> examine stores terminal
++ STORES
++ 1. Stores inventory
++ 2. Last stores note
++ Type a number to choose
+- (read)
+
+> 2
++ Count's wrong again
+
+> use stores terminal
++ 2. Last stores note (read)
+- 1. Stores inventory (read)
+
+# Out of range, and the parser stays live between choices.
+> 3
++ No such entry
+
+> read 1
++ Stores inventory
+
+> scan stores terminal
++ SCAN
+
+> hint
++ SLATE // HINT
+
+> north
++ Cargo Hold
+
+# State is remembered after leaving.
+> south
+> login
++ 1. Stores inventory (read)
++ 2. Last stores note (read)
+
+# Code-locked test terminal: stays locked until the right code, then stays open.
+> xcoded
++ TEST CODED
+
+> use coded terminal
++ ENTER a code
+- Coded entry
+
+> 2
++ INVALID CODE
+
+> enter 999
++ INVALID CODE
+
+> 4471
++ ACCESS GRANTED
++ 1. Coded entry
+
+> enter 4471
++ No code is needed
+
+> read 1
++ Coded contents
++ EFFECT RAN
+
+> read 1
++ Coded contents
+- EFFECT RAN
+
+# Entries can appear later, and numbering follows what's shown.
+> xreveal
+> use coded terminal
++ 2. Revealed entry
+
+> 2
++ Revealed contents
+
+> xnocoded
+
+# Keycard-locked test terminal.
+> xcarded
+> use carded terminal
++ KEYCARD REQUIRED
+- Carded entry
+
+> enter 1
++ KEYCARD REQUIRED
+
+> xfetch
+> use carded terminal
++ KEYCARD ACCEPTED
++ 1. Carded entry
+
+> drop beacon
+> use carded terminal
++ 1. Carded entry
+- KEYCARD REQUIRED
