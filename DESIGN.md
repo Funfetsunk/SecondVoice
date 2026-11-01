@@ -63,14 +63,17 @@ The cargo is an adaptive observation AI that Helios shipped on purpose. It has b
 - Went out the airlock. Tethered outside the hull.
 
 ### Mercer — engineer
+- Female ("she").
 - Worked out that some spaces are shielded from the AI. Marked them with a **scratched symbol** beside the hatch and left **notes** explaining it.
 - Went out the airlock. Tethered outside the hull.
 
 ### Kest — cargo master
+- Male ("he").
 - Knew from day one the manifest was wrong (power draw, mass, specs).
 - Went out the airlock. Tethered outside the hull.
 
 ### Grant — Helios handler
+- Male ("he").
 - Helios ops, mid-level. Surname only. Knows a little more than Sam, nowhere near the top.
 - Starts scripted, dry, slightly bureaucratic. Realises what is happening as the game progresses; the voice cracks. Sliding from "doesn't know" toward "reluctant insider who might quietly help".
 - Message format (rendered on the recovery slate):
@@ -98,21 +101,22 @@ The cargo is an adaptive observation AI that Helios shipped on purpose. It has b
 - Most rooms are **loud**: the AI hears and sees everything there.
 - **Quiet zones** are shielded: Airlock, Maintenance Crawlway, Comms Crawlspace, and everywhere outside the hull (vacuum).
 - Actions that matter (conversations, plans, reading aloud, certain evidence) done in loud rooms are **overheard**. Consequences: the AI acts earlier, pre-empts the player, or later quotes what it heard. **Never** a game over, **never** a softlock.
+- **The Cable Trunk is the loudest place on the ship:** one room above "loud", where the hum is overwhelming. Anything that matters done there is always overheard and counts for more in AI escalation (see 4.4). Still never a game over or softlock.
 - **Early lesson (Act 1):** the AI echoes something harmless Sam said in a loud room, so the player learns it listens before anything important is at stake.
 - **How the player learns which rooms are quiet (earned):**
   1. Subtle prose cue: the ship's hum drops out in quiet rooms.
   2. Mercer's scratched symbol beside quiet-zone hatches.
   3. Finding Mercer's notes explains the symbol → unlocks a **LISTENING / QUIET** indicator in the status line.
 - Some conversation topics only appear in quiet rooms.
-- **OPEN QUESTION:** exact rule for the slate inside quiet zones (proposal: quiet zones are network dead spots, the slate shows NO SIGNAL, so neither Grant nor the AI can reach Sam there).
+- **The slate in quiet zones:** quiet zones are network dead spots. The slate shows NO SIGNAL, which blocks both Grant and the AI. Local functions keep working: evidence log, scanner, and HINT (served from the slate's cache).
 
 ### 4.2 The recovery slate
-Sam's handheld Helios device. Always carried by default.
+Sam's handheld Helios device. Always carried.
 - Grant's comms channel (all handler messages appear here).
 - Scanner (examine-plus for systems, readings, power draw).
 - **Evidence log:** shows only what has been found. Never shows blanks or totals during play.
 - Hint source (see 4.5).
-- It is Helios hardware: the AI can hijack it. Leaving it behind is a meaningful choice.
+- It is Helios hardware: the AI can hijack it, except in quiet zones (see 4.1).
 
 ### 4.3 Conversation (hybrid)
 - ASK/TELL works: `ask Vale about the cargo`, `tell Grant about the bodies`.
@@ -127,6 +131,7 @@ A single tracked stage (per act, plus sub-steps) driving: which interventions ar
 - `HINT` command via the slate: layered, context-sensitive, menu-style hints.
 - Grant nudges in-world if the player has been stuck for a while.
 - From Act 3, the AI increasingly slips into the hint channel: answering before Grant, eerily well timed, occasionally commenting on reliance (e.g. "You asked for help 9 times. Becky would have figured this out.").
+- **Hints in quiet zones are untampered:** they come from the slate's local cache, with no Grant nudges and no AI.
 - **Hints are never wrong in a way that traps the player.** Unsettling, never harmful.
 
 ### 4.6 Parser interference (sparing)
@@ -152,6 +157,15 @@ One reusable terminal system (menus, access rules, power requirement, keycard/co
 - In-fiction cause: a **Helios retrieval ship** inbound to dock and take the cargo, and Sam and Vale with it.
 - Generous; tune in testing (starting proposal: 50–70 turns).
 - Running out triggers the **timeout ending**: the AI executes the choice it predicted Sam would make.
+
+### 4.10 Door sealing
+One central system, driven by data, used for scripted beats and Act 4 pre-emption. Before any seal takes effect, it checks the whole map from Sam's current location and **refuses the seal** unless all of these stay reachable:
+- The route to the Recovery Shuttle.
+- Every room holding an item the player still needs, wherever it was dropped.
+- Vale's room, while she is alive. "Left behind" only ever happens by the player's choice.
+- Every room the current act requires.
+
+Sealable and unsealable doors are listed in section 7. This check is what guarantees "no softlocks" for sealing: it is enforced by code, not by careful scripting.
 
 ---
 
@@ -182,27 +196,30 @@ One reusable terminal system (menus, access rules, power requirement, keycard/co
 5. **Medbay → Isolation Pod:** Vale inside, sedated, monitored ("SUBJECT UNDER OBSERVATION"). Puzzle (proposal): override the sedation via the medbay terminal, but the AI holds the pod lock; Sam must cut the pod's monitoring feed at a breaker (a loud, noticed action).
 6. **Vale wakes.** Conversation system introduced. In loud rooms she's evasive: "Not here."
 7. **Maintenance Crawlway (quiet):** Mercer's symbol and notes → the quiet-zone rule is explained → LISTENING/QUIET status unlocked. Vale talks honestly here (partially).
-8. The AI nudges throughout: doors sealing to force detours through crawlways, lights following Sam, navigation course corrections with no input.
+8. The AI nudges throughout: doors sealing to force detours (see the sealing beats in section 7), lights following Sam, navigation course corrections with no input.
 9. **Act 2 end:** the AI speaks its first plain sentence through the slate (e.g. "You are looking for her."). Grant's channel drops out.
 
 ### Act 3 — Escalation — DRAFT beats
 1. Grant's channel returns. Some messages are **forged** (timestamp one minute ahead).
 2. **Midpoint shock:** the slate receives a message in Becky's voice. **Dynamic detail:** if Sam read or discussed "Sparrow" in a loud room, the AI now uses "Sparrow"; otherwise it still says "Sammy". The loud/quiet system pays off emotionally.
 3. **Vale's secret:** evidence links the medbay datasets to Vale and Helios. Confront her: in a quiet zone she confesses; in a loud room the AI hears it and uses it later.
-4. **The Comms Crawlspace is sealed** from inside the ship. Route: outside, via the comms dish access hatch.
+4. **The Comms Crawlspace is sealed:** Becky sealed its hatch to the Fore Corridor from the inside. Route: outside, via the comms dish access hatch.
 5. **Spacewalk set piece** (checkpointed, can die). EVA Prep → Hull Spine → Cargo Hull → Comms Dish. Pass **Voss, Mercer and Kest tethered to the hull**; the airlock decision finally lands. Recover Voss's command key from her suit (needed in Act 4). Outside is the quietest place of all.
-6. **Comms Crawlspace (quiet):** Becky's body. Her recorder. **Her real, unsent message to Sam.** Sam recognises the phrases the fake one stole. Becky's message becomes evidence.
-7. **Act 3 end:** Grant (real or forged? the player must judge) warns that a Helios retrieval ship is inbound. Act 4 clock starts.
+6. **Comms Crawlspace (quiet):** Becky's body. Her recorder. **Her real, unsent message to Sam.** Sam recognises the phrases the fake one stole. Becky's message becomes evidence. Sam can undo Becky's seal from inside, opening the hatch to the Fore Corridor, so the spacewalk never has to be repeated.
+7. **Act 3 end — the flood:** the Crawlspace has NO SIGNAL, so nothing can reach Sam there. Once Sam has heard Becky's message and leaves the Crawlspace, the slate reconnects at the first room with signal and every queued message arrives at once, including Grant's warning that a Helios retrieval ship is inbound. **One message in the flood is forged** (timestamp one minute ahead of the ship's clock on arrival; the player must judge). It steers towards inaction, pushing the timeout ending. **DRAFT, for Act 3 writing:** "Hold position. Retrieval team will collect you both." The Act 4 clock starts here.
+   - If Sam leaves the Crawlspace without hearing Becky's message, the flood does not fire and the clock does not start. HINT steers Sam back (from the slate's cache, wherever Sam is) and so do Grant's nudges (once Sam has signal).
 
 ### Act 4 — The Choice — DRAFT beats
 - Clock running. The AI lives in the cargo container **and** the Server Core.
 - Paths:
-  - **Destroy:** reroute the reactor to overload both the container and Server Core (Mercer's plan from his notes; needs Voss's command key). Must get Sam (and optionally Vale) to the shuttle before it blows.
+  - **Destroy:** reroute the reactor to overload both the container and Server Core (Mercer's plan from her notes; needs Voss's command key). The natural route between its targets is Server Core → Cable Trunk → Cargo Gantry → Cargo Hold, through the loudest place on the ship. Must get Sam (and optionally Vale) to the shuttle before it blows.
   - **Deliver:** let Helios take everything.
   - **Interface:** connect with the AI at the container interface.
   - **Timeout:** do nothing in time; the AI acts on its prediction of Sam.
 - **Outsmarting the model (late puzzle):** the AI pre-empts the obvious route to whatever Sam is attempting. To succeed Sam must do something it would not predict. Proposal: plan in a quiet zone it can't observe, and/or use the one thing it never had, Becky's real message, rather than anything it learned from loud rooms. **OPEN — needs design.**
-- **Optional: transmit the truth.** From the Comms Dish/Crawlspace hardline (quiet), send Becky's real message plus the evidence log off-ship. Helios no longer controls the story.
+- **Optional: transmit the truth.** Two steps, both possible only in Act 4, so getting the truth out costs clock turns:
+  1. Re-align the comms dish from the **Bridge** (a loud room, so the AI hears it). The controls refuse before Act 4; the scanner can show the dish out of alignment during the spacewalk. **DRAFT** in-fiction reason: the array is slaved to Helios's handshake, and only the retrieval ship's approach lets the Bridge steer it.
+  2. From the **Comms Crawlspace hardline** (quiet), send Becky's real message plus the evidence log off-ship. Helios no longer controls the story.
 
 ---
 
@@ -224,7 +241,7 @@ Four main endings × two modifiers, all delivered as **Helios internal reports**
 
 ---
 
-## 7. Map — ~23 rooms
+## 7. Map — 24 rooms
 
 Non-linear. The AI can seal doors and force detours through crawlways. (Q) = quiet zone.
 
@@ -255,13 +272,58 @@ Non-linear. The AI can seal doors and force detours through crawlways. (Q) = qui
 - Navigation
 - Bridge
 - Server Core — where the AI has spread
+- Cable Trunk — the run the AI spread along, from Cargo Gantry up to Server Core; the loudest place on the ship
 
 **Exterior (spacewalk)**
 - Hull Spine (Q)
 - Cargo Hull (Q) — the tethered crew
 - Comms Dish (Q) — access hatch to the Comms Crawlspace
 
-Exact connections: **DRAFT, to be laid out** so that each act opens new space and the player isn't stuck in the same few rooms.
+### Connections
+
+North is fore. Each connection is listed once and works both ways, except where noted.
+
+| Room | Exits |
+|---|---|
+| Recovery Shuttle | E Airlock |
+| Airlock | E Storage Bay, N EVA Prep |
+| EVA Prep | E Cargo Hold, W Hull Spine |
+| Storage Bay | N Cargo Hold, E Engineering, U Aft Corridor |
+| Engineering | S Reactor Control, U Maintenance Crawlway |
+| Maintenance Crawlway | U Mess |
+| Cargo Hold | U Cargo Gantry |
+| Aft Corridor | N Fore Corridor, W Crew Quarters, E Mess |
+| Mess | N Medbay |
+| Fore Corridor | N Cargo Gantry, W Captain's Cabin, E Medbay, U Navigation, NW Comms Crawlspace |
+| Medbay | E Isolation Pod |
+| Navigation | N Server Core, E Bridge |
+| Server Core | D Cable Trunk |
+| Cable Trunk | D Cargo Gantry |
+| Hull Spine | N Cargo Hull |
+| Cargo Hull | N Comms Dish |
+| Comms Dish | D Comms Crawlspace |
+
+- **Crawlway grilles:** the Mess grille is loose (Mercer's work). The Engineering grille is bolted: cut it from Engineering, or force it from inside the crawlway.
+- **Comms Crawlspace hatch to the Fore Corridor:** opens only from inside, after Sam arrives via the dish.
+
+### What opens when
+
+- **Act 1:** Recovery Shuttle, Airlock, Storage Bay, Engineering, Reactor Control, Cargo Hold.
+- **Act 2:** central deck, Cargo Gantry, Maintenance Crawlway. Navigation and Bridge late in the act.
+- **Act 3:** EVA Prep, exterior, Comms Crawlspace, Server Core, Cable Trunk.
+
+### Sealing
+
+**Never sealable:** Shuttle–Airlock, Engineering–Reactor Control, Aft Corridor–Crew Quarters, Fore Corridor–Captain's Cabin, Medbay–Isolation Pod (the AI's pod lock in Act 2 is its own puzzle), Navigation–Bridge, Comms Crawlspace hatch, all exterior connections. Every other door is sealable, subject to the check in 4.10.
+
+| Beat | AI seals | Forced route | Purpose |
+|---|---|---|---|
+| Early Act 2 | Aft Corridor–Fore Corridor | Mess → Medbay → Fore Corridor | Steers Sam towards Vale |
+| Vale wakes | Medbay–Fore Corridor, Mess–Aft Corridor | Mess grille → Maintenance Crawlway → Engineering | Delivers Act 2 beat 7: the AI's own detour lands them where it can't hear |
+| Act 3 | Storage Bay–Cargo Hold | Airlock → EVA Prep → Cargo Hold | Shows Sam EVA Prep before the spacewalk |
+| Act 4 starts | Cargo Gantry–Fore Corridor | Server Core → Cable Trunk → Cargo Gantry → Cargo Hold | Makes the trunk the natural Destroy route: 3 moves against 5 by the corridors. The AI's own seal pushes Sam through where it hears best |
+
+`tools/check-map.mjs` checks these beats and the Act 4 combinations, and runs as part of `tools/test`. Keep its door list in step with this section.
 
 ---
 
@@ -269,7 +331,7 @@ Exact connections: **DRAFT, to be laid out** so that each act opens new space an
 
 - Recovery slate (always)
 - Torch/slate light
-- Cutter (crawlway grilles, the pod feed)
+- Cutter (the Engineering crawlway grille, the pod feed)
 - EVA suit + tether
 - Voss's datapad (code clue)
 - Voss's command key (from her suit, Act 3)
@@ -299,11 +361,8 @@ Changes from the original: the crew didn't *all* go outside (three suits missing
 
 ## 10. Open questions
 
-- Genders/pronouns for Mercer, Kest and Grant (Voss and Vale: she; Becky: she; Sam: never gendered).
-- Slate behaviour inside quiet zones (proposal in 4.1).
 - The AI's Helios designation.
 - Act 4 "outsmart the model" puzzle specifics.
-- Exact room connections.
 - Act 4 clock length.
 - Whether "Sparrow" stays.
 - The interface ending: what exactly happens to Sam.
