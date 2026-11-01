@@ -5,6 +5,7 @@
 *.inform/Metadata.iFiction
 *.inform/Release.blurb
 *.inform/manifest.plist
+*.inform/Skein.skein
 *.materials/Release/
 
 # Test interpreter (npm install --prefix tools)
