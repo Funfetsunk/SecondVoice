@@ -5,6 +5,7 @@
 //   + text     output so far must contain text (before the first command: the opening)
 //   - text     same output must not contain text
 //   > command  type command; later + and - lines check its output
+//              (also answers single-key prompts; a bare > presses Enter)
 //
 // Matching ignores case and collapses whitespace, so line wrapping doesn't matter.
 // Transcripts are written to Second Voice.inform/Build/tests/.

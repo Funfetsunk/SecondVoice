@@ -1,0 +1,24 @@
+# The harness can answer single-key prompts, and line input carries on afterwards.
++ Recovery Shuttle
+
+> xkey
++ PRESS A KEY
+- KEY CODE
+
+> a
++ KEY CODE 97
+- I beg your pardon
+
+> look
++ Recovery Shuttle
+
+# A bare ">" presses Enter.
+> xkey
++ PRESS A KEY
+
+>
++ KEY CODE 10
+- I beg your pardon
+
+> look
++ Recovery Shuttle

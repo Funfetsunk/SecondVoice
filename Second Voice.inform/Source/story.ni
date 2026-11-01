@@ -633,4 +633,13 @@ Carry out removing the test survivor:
 	now the test survivor is nowhere;
 	say "SURVIVOR REMOVED."
 
+Include Basic Screen Effects by Emily Short.
+
+Testing a keypress is an action out of world applying to nothing. Understand "xkey" as testing a keypress.
+
+Carry out testing a keypress:
+	say "PRESS A KEY.";
+	let K be the chosen letter;
+	say "KEY CODE [K]."
+
 Test act1 with "e / e / e / open valve / reset breakers / s / pull lever / report all quiet / n / w / n / x interface".
