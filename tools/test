@@ -9,4 +9,5 @@ if [[ "${1:-}" != "--no-build" ]]; then
   "$root/tools/build"
 fi
 
+node "$root/tools/check-map.mjs"
 node "$root/tools/run-tests.mjs"
