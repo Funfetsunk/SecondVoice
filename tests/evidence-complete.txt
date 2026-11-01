@@ -28,6 +28,8 @@
 > east
 > north
 + Cargo Gantry
+> examine clipboard
++ Contents: AOU-031
 > open drawer
 > examine real manifest
 + Logged

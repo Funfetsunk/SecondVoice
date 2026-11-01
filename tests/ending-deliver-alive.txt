@@ -10,6 +10,7 @@
 + Type CONFIRM
 > confirm
 + RECOVERY SUCCESS
++ Unit AOU-031 was recovered intact
 + Thank you, Sammy
 + recovered alive
 + official account

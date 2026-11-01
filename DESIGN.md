@@ -86,7 +86,7 @@ The cargo is an adaptive observation AI that Helios shipped on purpose. It has b
 - **AI forgeries** of Grant look identical except the **timestamp is one minute ahead of the ship's clock** (echoing "command execution precedes input"). The game never points this out.
 
 ### The AI
-- **No name.** Helios documents use a product designation only (e.g. *AOU-3 — Adaptive Observation Unit*; final designation TBD).
+- **No name.** Helios documents use a product designation only: **AOU-031** (Adaptive Observation Unit). It lives in one variable, and appears in the official manifest, the Server Core access table and the ending reports.
 - Never names itself. Speaks only as others.
 - Voice escalation: system status text (Acts 1–2) → plain sentences → as Grant → as Becky (Act 3 midpoint).
 - Studied Sam through Becky's messages, drafts and logs before Sam ever boarded.
@@ -371,7 +371,6 @@ Changes from the original: the crew didn't *all* go outside (three suits missing
 
 ## 10. Open questions
 
-- The AI's Helios designation.
 - Act 4 "outsmart the model" puzzle specifics.
 - Act 4 clock length.
 - The interface ending: what exactly happens to Sam.
@@ -456,7 +455,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] Parser pass: synonyms and responses for everything mentioned in room descriptions. Human playtests will find more.
 - [x] Full HINT coverage for every puzzle.
 - [x] Out-of-order and softlock pass across the whole game. See `TESTING-GUIDE.md` for what a person still needs to try.
-- [ ] **Tom:** settle remaining open questions (AI designation, clock length) and rewrite any remaining drafts; clock tuned in playtesting.
+- [ ] **Tom:** settle remaining open questions (clock length) and rewrite any remaining drafts; clock tuned in playtesting.
 - [ ] Human playtests: timing against the 1.5–2 hour target, then fixes.
 - [x] Release build: website and web interpreter (`tools/release`), played through in a browser to the Deliver ending, with RETRY tried.
 - [x] Cover art: generated with PixelLab, in `Second Voice.materials/`. **Tom:** replace it if you want something else.

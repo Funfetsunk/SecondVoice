@@ -9,6 +9,7 @@
 > connect
 + tell her to run
 + INTEGRATION EVENT
++ Unit AOU-031 remains active
 + decision latency consistent with human cognition
 + recovered alive
 + official account

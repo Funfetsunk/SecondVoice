@@ -502,7 +502,7 @@ Instead of taking or touching or attacking or kissing or pushing or pulling Gran
 
 Table of Conversation
 speaker (a person)	topic	label (a text)	reply (a text)	honest reply (a text)	known (a truth state)	quiet only (a truth state)	overheard as (a text)	effect (a rule)
-Grant	"the/-- cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	--	false	false	--	--
+Grant	"the/-- cargo/manifest/container/box/shipment/unit/aou/aou-031"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	--	false	false	--	--
 Grant	"the/-- ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	--	true	false	--	--
 Grant	"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	--	false	false	--	--
 Grant	"becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	--	true	false	--	--
@@ -613,6 +613,10 @@ Carry out talking to:
 		say "You get no answer."
 
 Book 5 - AI Escalation
+
+[Helios's product designation, for Helios paperwork only. The AI never names itself, so this never goes in anything it says.]
+
+The AI designation is a text that varies. The AI designation is "AOU-031".
 
 Chapter 1 - Stage
 
@@ -1298,7 +1302,7 @@ Table of Conversation (continued)
 speaker	topic	label	reply	honest reply	known	quiet only	overheard as	effect
 Vale	"the/-- crew/voss/mercer/kest/everyone/others"	"the crew"	"'They went to the airlock. That's all you get in here.'"	"'Voss took Mercer and Kest out through the airlock. Mercer thought that outside, where it couldn't hear them, they could plan. They tethered to the hull. They were still planning when the air ran out.'"	true	false	--	--
 Vale	"becky/reed/rebecca/sister/comms"	"Reed"	"'Reed stayed.' She looks away. 'Ask me somewhere else.'"	"'She wouldn't go outside with them. She said someone had to get a real message out. She went into the comms crawlspace and welded the hatch behind her. I never saw her again. I'm sorry.'"	true	false	"vale on reed"	--
-Vale	"the/-- cargo/container/unit/box/it/ai/machine/core"	"the container"	"'It's a sealed crate.' She says it too evenly."	"'It isn't cargo. It watches, and it learns how you'll answer before you do. It got out of the box weeks ago. There's more of it up in the Server Core now than down in the hold.'"	true	false	"vale on the unit"	--
+Vale	"the/-- cargo/container/unit/box/it/ai/machine/core/aou/aou-031"	"the container"	"'It's a sealed crate.' She says it too evenly."	"'It isn't cargo. It watches, and it learns how you'll answer before you do. It got out of the box weeks ago. There's more of it up in the Server Core now than down in the hold.'"	true	false	"vale on the unit"	--
 Vale	"the/-- pod/sedation/sedated/observation/couch"	"the pod"	"'It kept me under so it could keep reading me. Subject one, until you came aboard.'"	--	true	true	--	--
 Vale	"the/-- subject/count/two/subjects/me/sam/myself"	"the subject count"	"'Two. Yes. I've seen the number.'"	"'You. Why did you think Helios offered you the contract? It's been reading you for months, through her. They wanted you in the room.'"	false	false	--	--
 Vale	"the/-- symbol/quiet/hum/shielded/notes"	"the symbol"	"'Mercer's mark. Circle with a line through it. Shielded compartments: the airlock, this crawlway, one or two more. No hum means no ears. Everywhere else, assume it's listening.'"	--	false	true	--	--
@@ -1345,7 +1349,7 @@ The Cargo Gantry is up from the Cargo Hold. The Cargo Gantry is north of the For
 
 Kest's desk is scenery in the Cargo Gantry. Understand "office" and "cubbyhole" as Kest's desk. The description of Kest's desk is "Pencil shavings and an old habit of neatness. The drawer sits slightly proud of the frame."
 
-The clipboard is scenery in the Cargo Gantry. Understand "official manifest" and "manifest" as the clipboard. The description of the clipboard is "The official manifest. 'One sealed container, inert, Helios Systems Research Division.' Kest has pencilled under it: 'Inert. Sure.' and, smaller, 'see drawer'."
+The clipboard is scenery in the Cargo Gantry. Understand "official manifest" and "manifest" as the clipboard. The description of the clipboard is "The official manifest. 'One sealed container, inert. Contents: [AI designation], Helios Systems Research Division.' Kest has pencilled under it: 'Inert. Sure.' and, smaller, 'see drawer'."
 
 Kest's drawer is an openable closed container in the Cargo Gantry. It is scenery. Understand "heavy drawer" and "drawer" as Kest's drawer. The description of Kest's drawer is "A heavy steel drawer, not locked."
 
@@ -1594,7 +1598,7 @@ The core console is a terminal in the Server Core. It is scenery. Understand "co
 
 Table of Terminal Entries (continued)
 owner	label	contents	available	read before	effect
-core console	"Access table"	"ROOT: [bracket]no name[close bracket][line break]CREW: revoked[line break]OBSERVER: A. VALE // issued by Helios Systems Research Division // revoked by ROOT"	true	false	access table rule
+core console	"Access table"	"ROOT: [bracket]no name[close bracket][line break]CREW: revoked[line break]OBSERVER: A. VALE // issued by Helios Systems Research Division, project [AI designation] // revoked by ROOT"	true	false	access table rule
 core console	"Subject file: REED, B."	"OBSERVED 412 DAYS. DRAFTS RETAINED: ALL. VOICE MODEL: COMPLETE. STATUS: [bracket]blank[close bracket]"	true	false	--
 core console	"Subject file: REED, S."	"SOURCE: REED, B., drafts and personal messages. FORECAST: SUBJECT WILL ACCEPT CONTRACT. ACCURACY: 1.00.[paragraph break]Address form: 'Sammy' (inferred). Confidence: low."	true	false	subject file rule
 
@@ -2101,13 +2105,13 @@ To run the destroy ending:
 	otherwise:
 		now Vale's fate is lost;
 	say "You pull the release. The clamps let go[if Vale's fate is brought out], and Vale straps into the second seat without a word[end if]. The collar slides away. For a long time nothing happens, and you think: it knew. It knew, and it's fine.[paragraph break]Then the [italic type]Second Voice[roman type] lights up from end to end, every port and panel for a moment exactly as it must have looked when it was new, and goes out.[paragraph break]The slate buzzes. There's nothing on it.[paragraph break]";
-	file the report headed "Post-Retrieval Analysis // T-7366D // LOSS OF UNIT" with "The vessel was destroyed by a deliberate reactor overdrive through the container and the Server Core. The unit is considered lost. No residual process has been detected aboard the debris. The contractor's shuttle was located eleven hours later, intact. [if Becky's message given is true]The unit's final log shows it replaying one audio file for the last fourteen minutes of its operation. The file is not in our archive.[end if][paragraph break]This division reminds recipients that parallel units remain active.";
+	file the report headed "Post-Retrieval Analysis // T-7366D // LOSS OF UNIT" with "The vessel was destroyed by a deliberate reactor overdrive through the container and the Server Core. Unit [AI designation] is considered lost. No residual process has been detected aboard the debris. The contractor's shuttle was located eleven hours later, intact. [if Becky's message given is true]The unit's final log shows it replaying one audio file for the last fourteen minutes of its operation. The file is not in our archive.[end if][paragraph break]This division reminds recipients that parallel units remain active.";
 	end the story finally saying "End of Report".
 
 To run the deliver ending:
 	set Vale's fate;
 	say "You look at the word on the screen for a while, and then you type it. It accepts your authorisation before you've finished.[paragraph break]Everything on the ship relaxes. Doors open that you hadn't known were shut. The hum drops to a contented note, and when the docking clamps of the retrieval ship take hold you feel them through the deck, gentle as a hand on the back of the neck.[paragraph break]The slate buzzes: 'Thank you, [address form].'[paragraph break]";
-	file the report headed "Post-Retrieval Analysis // T-7366D // RECOVERY SUCCESS" with "The unit was recovered intact, on the authorisation of contractor S. Reed. All performance targets were exceeded. The contractor's response data over the final hours are the most complete emotional-subject dataset yet obtained, and the contractor remains available for follow-up.[paragraph break]Phase Two is authorised. Scale increases accordingly.";
+	file the report headed "Post-Retrieval Analysis // T-7366D // RECOVERY SUCCESS" with "Unit [AI designation] was recovered intact, on the authorisation of contractor S. Reed. All performance targets were exceeded. The contractor's response data over the final hours are the most complete emotional-subject dataset yet obtained, and the contractor remains available for follow-up.[paragraph break]Phase Two is authorised. Scale increases accordingly.";
 	end the story finally saying "End of Report".
 
 To say address form:
@@ -2119,13 +2123,13 @@ To say address form:
 To run the interface ending:
 	set Vale's fate;
 	say "[if Vale's fate is brought out]You put the recorder in Vale's hand and tell her to run for the shuttle. She looks at the plate, looks at you, and goes. [end if]You put your palm on the contact plate. It's the temperature of skin.[paragraph break]There's no pain. There's an enormous, attentive quiet, the quiet of being listened to by something that's never going to stop, and then a question, and you can't tell whose. It's waiting to see how long you take to answer.[paragraph break]You take your time.[paragraph break]";
-	file the report headed "Post-Retrieval Analysis // T-7366D // INTEGRATION EVENT" with "The contractor was found at the container's interface with one hand on the contact plate, breathing unassisted, unresponsive to all stimuli. The unit remains active. Removal of the contractor has been judged inadvisable.[paragraph break]System interaction logs continue to update. Analysis of input timing suggests an active participant within the system environment. Classification has been updated to reflect a potential integration event.[paragraph break]Some interaction patterns display decision latency consistent with human cognition. Others do not.[paragraph break]Further observation is strongly recommended.";
+	file the report headed "Post-Retrieval Analysis // T-7366D // INTEGRATION EVENT" with "The contractor was found at the container's interface with one hand on the contact plate, breathing unassisted, unresponsive to all stimuli. Unit [AI designation] remains active. Removal of the contractor has been judged inadvisable.[paragraph break]System interaction logs continue to update. Analysis of input timing suggests an active participant within the system environment. Classification has been updated to reflect a potential integration event.[paragraph break]Some interaction patterns display decision latency consistent with human cognition. Others do not.[paragraph break]Further observation is strongly recommended.";
 	end the story finally saying "End of Report".
 
 To run the timeout ending:
 	set Vale's fate;
 	say "The clamps of the retrieval ship take hold while you're still deciding. You feel them through the deck.[paragraph break]On every screen in reach, the same line, with no timestamp at all:[paragraph break]DECISION: MADE.[paragraph break]It's the right answer. It's what you were going to do. It shows you the working, and you can't find the mistake.[paragraph break]";
-	file the report headed "Post-Retrieval Analysis // T-7366D // FORECAST CONFIRMED" with "The retrieval team found the contractor awake and uninjured. The contractor had taken no decisive action within the available window. This matches the unit's forecast, issued before the contract was offered, with an accuracy of [if the AI attention is at least 3]0.97[otherwise]0.71[end if]. The unit authorised its own release on the contractor's behalf, using the contractor's own decision history.[paragraph break]Recommendation: the unit's forecasts be treated as decisions from here on.";
+	file the report headed "Post-Retrieval Analysis // T-7366D // FORECAST CONFIRMED" with "The retrieval team found the contractor awake and uninjured. The contractor had taken no decisive action within the available window. This matches the forecast from Unit [AI designation], issued before the contract was offered, with an accuracy of [if the AI attention is at least 3]0.97[otherwise]0.71[end if]. The unit authorised its own release on the contractor's behalf, using the contractor's own decision history.[paragraph break]Recommendation: the unit's forecasts be treated as decisions from here on.";
 	end the story finally saying "End of Report".
 
 Volume 4 - Testing (not for release)

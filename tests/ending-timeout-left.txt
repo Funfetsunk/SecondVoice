@@ -20,5 +20,6 @@
 > wait
 + DECISION: MADE
 + FORECAST CONFIRMED
++ forecast from Unit AOU-031
 + left aboard
 + official account

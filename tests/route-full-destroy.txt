@@ -41,6 +41,7 @@
 > undock
 + T-7366D
 + LOSS OF UNIT
++ Unit AOU-031 is considered lost
 + recovered alive
 + official account
 + parallel units remain active

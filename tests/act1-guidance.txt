@@ -64,6 +64,9 @@
 > ask grant about the ship
 + Went silent in transit
 
+> ask grant about aou-031
++ Sealed Helios property
+
 > ask grant about Reed
 + Comms Officer Reed
 
