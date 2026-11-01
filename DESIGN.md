@@ -130,7 +130,7 @@ Sam's handheld Helios device. Always carried.
 A single tracked stage (per act, plus sub-steps) driving: which interventions are possible, how the AI speaks, how bold it is. Overheard actions can advance it or unlock specific pre-emptions. Implement as a central system, not scattered flags.
 
 ### 4.5 Hints
-- `HINT` command via the slate: layered, context-sensitive, menu-style hints.
+- `HINT` command via the slate: layered and context-sensitive. The game picks the current goal; typing `HINT` again gives a stronger nudge. Plain text, no menus.
 - Grant nudges in-world if the player has been stuck for a while.
 - From Act 3, the AI increasingly slips into the hint channel: answering before Grant, eerily well timed, occasionally commenting on reliance (e.g. "You asked for help 9 times. Becky would have figured this out.").
 - **Hints in quiet zones are untampered:** they come from the slate's local cache, with no Grant nudges and no AI.
@@ -140,7 +140,7 @@ A single tracked stage (per act, plus sub-steps) driving: which interventions ar
 Three or four key moments only, building toward the climax. Toolkit:
 - Rewriting/replacing the player's command after it is typed ("after reading a command").
 - Responding before the normal output; refusing a command the player never gave.
-- Status line drift or lies; fake system messages; menus listing options not yet discovered.
+- Status line drift or lies; fake system messages; one staged fake menu listing options not yet discovered (the hint system itself has no menus, see 4.5).
 - Noticing UNDO / RETRY.
 - Pre-filling the input line: only if it works reliably in the target interpreters, with a fallback.
 
@@ -403,7 +403,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 ### Phase 2 — Shared systems for Act 2
 - [x] Door sealing: one seal system with the 4.10 check (Shuttle route, needed items wherever dropped, Vale's room, required rooms). Build first: it carries the no-softlock guarantee. Doors are added to its table as their rooms are built; Vale is protected by marking her "needed".
 - [x] Prove the test harness handles single-key input (`tests/harness-keys.txt`).
-- [ ] **Tom:** choose hint menus (as in 4.5) or keep the current layered `HINT`.
+- [x] **Tom:** chose layered `HINT` over hint menus (4.5).
 - [ ] Terminals: reusable system with access rules and remembered state.
 - [ ] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
 - [ ] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
