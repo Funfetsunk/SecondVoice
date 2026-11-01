@@ -4,6 +4,8 @@ Inform 7 interactive fiction by Thomas Evans (Tom). Full rewrite of the earlier 
 
 **Read `DESIGN.md` before doing anything.** It is the source of truth for story, characters, systems, structure and endings. Settled decisions there are Tom's; don't change them without asking. Sections marked DRAFT or listed under "Open questions" are proposals — raise them with Tom rather than silently deciding.
 
+**The build order is `DESIGN.md` section 12.** Work from it, tick steps as they land, and keep it current when the plan changes.
+
 ## Working with Tom
 
 - Tom wants to be told when an idea of his is weaker, with a better alternative suggested. The final call is always his.

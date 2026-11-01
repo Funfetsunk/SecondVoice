@@ -3,7 +3,7 @@
 *An Inform 7 interactive fiction by Thomas Evans.*
 *Rewrite of "Silent Cargo" (v0.5, archived on branch `archive/silent-cargo-v0.5`).*
 
-Status: **design agreed, implementation not started.** Sections marked **DRAFT** are proposals for Tom to tear apart; everything else was decided in the design sessions and should be treated as settled unless Tom changes it.
+Status: **design agreed, implementation in progress; see the build order in section 12.** Sections marked **DRAFT** are proposals for Tom to tear apart; everything else was decided in the design sessions and should be treated as settled unless Tom changes it.
 
 ---
 
@@ -379,3 +379,75 @@ Changes from the original: the crew didn't *all* go outside (three suits missing
 - Full HINT coverage for every puzzle.
 - First-play target 1.5–2 hours; playtest timings.
 - Release build: website + web interpreter, cover art, tested in the browser.
+
+---
+
+## 12. Build order
+
+The working plan for reaching a finished game. Tick steps as they land and update this list whenever the plan changes. A step is complete only when it compiles, its walkthroughs pass under `tools/test`, and it is pushed. **Tom:** marks a decision or prose that is Tom's.
+
+### Phase 0 — Foundations
+- [x] Clone the repo and create the Inform project in the repo root.
+- [x] Command-line build (`tools/build`) and walkthrough test loop (`tools/test`, emglken).
+- [x] Agree the full 24-room map, sealing beats and Act 4 transmission rules.
+- [x] Map softlock check for scripted seal combinations (`tools/check-map.mjs`).
+
+### Phase 1 — Act 1 slice
+- [x] Quiet zones: hum cue, NO SIGNAL rules.
+- [x] Recovery slate: ship clock, messages with queueing and forged stamps, evidence log, scanner, layered hints with cache and Grant nudges.
+- [x] Conversation prototype with Grant.
+- [x] Act 1 rooms, power puzzle, the echo, the container and the subject count hook.
+- [x] Discoverability: `SLATE` guide, opening tip, forgiving commands.
+- [ ] **Tom:** rewrite the fake message (`DRAFT — Tom to rewrite` in the source) and review Act 1 prose. Can happen at any point.
+
+### Phase 2 — Shared systems for Act 2
+- [ ] Door sealing: one seal system with the 4.10 check (Shuttle route, needed items wherever dropped, Vale's room, required rooms). Build first: it carries the no-softlock guarantee.
+- [ ] Prove the test harness handles single-key input, then **Tom:** choose hint menus (as in 4.5) or keep the current layered `HINT`.
+- [ ] Terminals: reusable system with access rules and remembered state.
+- [ ] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
+- [ ] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
+- [ ] LISTENING / QUIET status line, unlocked by a flag.
+
+### Phase 3 — Act 2 (Investigation)
+- [ ] **Tom:** confirm the DRAFT puzzles: Voss's code from her routine, and sedation override plus cutting the pod feed. Decide whether "Sparrow" stays.
+- [ ] Central deck, Cargo Gantry, Maintenance Crawlway and the cutter; remove their closed exits.
+- [ ] Crew Quarters, Voss's datapad, Becky's bunk and the "Sparrow" item (**Tom:** prose).
+- [ ] Captain's Cabin terminal and logs (**Tom:** captain's logs), Kest's manifest.
+- [ ] Medbay, Isolation Pod and waking Vale.
+- [ ] Sealing beats: early Act 2 detour, then the forced route into the Crawlway.
+- [ ] Mercer's notes, the quiet rule explained, Vale's first honest talk.
+- [ ] Navigation and Bridge, AI nudges (lights, course corrections).
+- [ ] Act 2 ending: the AI's first plain sentence, Grant's channel drops. Replace the end of the Act 1 slice so play carries straight through.
+
+### Phase 4 — Act 3 (Escalation)
+- [ ] Death, checkpoints and RETRY, with the AI noticing repeat attempts.
+- [ ] Parser interference toolkit, with its first sparing use.
+- [ ] Forged Grant messages in the story, and the AI slipping into the hint channel.
+- [ ] Becky's voice: the midpoint message, "Sparrow" or "Sammy" depending on what was overheard.
+- [ ] Vale's secret: evidence and confrontation, quiet and overheard versions.
+- [ ] EVA Prep and the spacewalk set piece: exterior rooms, tethered crew, Voss's command key.
+- [ ] Comms Crawlspace: recorder, Becky's real message (**Tom:** prose), undoing her seal, steering Sam back if they leave without hearing it.
+- [ ] Server Core and Cable Trunk as the loudest place.
+- [ ] The flood: queued messages, the forged message, Act 4 clock start.
+
+### Phase 5 — Act 4 (The Choice)
+- [ ] **Tom:** design the "outsmart the model" puzzle (open question). Must be settled before the Act 4 paths are built.
+- [ ] Act 4 clock and the opening seal on Cargo Gantry–Fore Corridor.
+- [ ] Destroy path, including the shuttle escape with or without Vale.
+- [ ] Deliver and Interface paths (**Tom:** what happens to Sam in Interface).
+- [ ] Timeout path: the AI acts on its prediction.
+- [ ] Truth transmission: Bridge re-alignment, Crawlspace hardline.
+- [ ] AI pre-emption using the seal system, and the climactic parser interference.
+
+### Phase 6 — Endings
+- [ ] Four main endings as final scene plus Helios report (**Tom:** reports).
+- [ ] Report modifiers: Vale alive, left or dead; truth sent or not. Evidence summary. Resolve "you both" in the forged message.
+- [ ] A walkthrough for every ending and modifier combination.
+
+### Phase 7 — Polish and release
+- [ ] Parser pass: synonyms and responses for everything mentioned in room descriptions.
+- [ ] Full HINT coverage for every puzzle.
+- [ ] Out-of-order and softlock pass across the whole game.
+- [ ] **Tom:** settle remaining open questions (AI designation, clock length) and rewrite any remaining drafts; clock tuned in playtesting.
+- [ ] Human playtests: timing against the 1.5–2 hour target, then fixes.
+- [ ] Release build: cover art, website, web interpreter, tested in the browser.
