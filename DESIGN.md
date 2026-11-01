@@ -130,6 +130,10 @@ Sam's handheld Helios device. Always carried.
 
 ### 4.4 AI escalation
 A single tracked stage (per act, plus sub-steps) driving: which interventions are possible, how the AI speaks, how bold it is. Overheard actions can advance it or unlock specific pre-emptions. Implement as a central system, not scattered flags.
+- **Stage:** dormant → eavesdropping (the echo) → nudging (Act 2) → speaking (Act 2 end) → forging (Act 3) → pre-empting (Act 4). The story raises it at each beat. It never falls.
+- **Overheard matters:** one table of things that matter if heard. A conversation row, terminal effect or story beat names its matter. A quiet room hears nothing; a deflected question gives nothing away. The first hearing adds that matter's weight to the AI's **attention**, doubled in the Cable Trunk (the one "roaring" room). The AI keeps the words, so it can quote them later.
+- **Interventions:** one table, each row run once, when its earliest stage, overheard matter, wait and attention are all met and its rule agrees it's a good moment. At most one a turn. The echo is the first row.
+- **Attention never ends the game or blocks anything.** It only unlocks interventions. **DRAFT:** weights and thresholds get set when Acts 2 and 3 add real matters.
 
 ### 4.5 Hints
 - `HINT` command via the slate: layered and context-sensitive. The game picks the current goal; typing `HINT` again gives a stronger nudge. Plain text, no menus.
@@ -410,7 +414,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] **Tom:** chose layered `HINT` over hint menus (4.5).
 - [x] Terminals: reusable system with typed choices, access rules and remembered state.
 - [x] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.
-- [ ] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
+- [x] AI escalation and overheard actions: one central stage, replacing the echo's own flags.
 - [ ] LISTENING / QUIET status line, unlocked by a flag.
 
 ### Phase 3 — Act 2 (Investigation)

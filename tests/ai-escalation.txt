@@ -1,0 +1,108 @@
+# AI escalation: one stage, overheard matters, interventions that fire once.
++ Recovery Shuttle
+
+> xai
++ STAGE: dormant. ATTENTION: 0.
+
+# In a loud room a conversation is heard, once. The reaction waits, then quotes it.
+> xsurvivor
+> ask about the cargo
++ Evasive cargo
+- REACTION
+
+> xai
++ ATTENTION: 2.
+
+> ask about the cargo
++ Evasive cargo
++ REACTION: "Evasive cargo."
+
+> xai
++ ATTENTION: 2.
+
+> ask about the cargo
+- REACTION
+
+# A deflection gives nothing away, so nothing is heard.
+> ask about the secret
++ Not here
+
+> xai
++ ATTENTION: 2.
+
+# In a quiet room the AI hears nothing.
+> east
++ Airlock
+> xsurvivor
+> ask about the secret
++ Quiet secret
+
+> ask about the weather
++ Plain weather
+
+> xai
++ ATTENTION: 2.
+
+> xnosurvivor
+
+# A roaring room still deflects, and counts double. Only the first hearing counts.
+> west
+> xsurvivor
+> xroar
+> ask about the secret
++ Not here
+- Quiet secret
+
+> ask about the weather
++ Plain weather
++ ATTENTION REACTION
+
+> xai
++ ATTENTION: 4.
+
+> ask about the weather
+- ATTENTION REACTION
+
+> xai
++ ATTENTION: 4.
+
+# Rows wait for their stage. The stage never falls.
+> xstage forging
+> xai
++ STAGE: forging
+
+> xstage nudging
+> xai
++ STAGE: forging
+
+> wait
++ LATE REACTION
+
+# A rule can fail to wait for its moment, then fires once it's ready.
+> wait
+- PATIENT REACTION
+
+> xnosurvivor
+> east
++ PATIENT REACTION
+
+> wait
+- PATIENT REACTION
+
+> west
+
+# SAY goes to whoever's here. REPORT always goes to the slate.
+> xsurvivor
+> say hello
++ "hello," you say to the test survivor
+- (to the test survivor)
++ You can ask the test survivor about
+- to the slate
+
+> report hello
++ you say to the slate
+- You can ask
+
+> xnosurvivor
+> say hello
++ you say to the slate

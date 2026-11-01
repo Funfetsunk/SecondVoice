@@ -1,0 +1,31 @@
+# SAY works as a report, in plain words, without Inform's guessed "(to Grant)".
++ Recovery Shuttle
+
+> east
+> east
+> east
+> open valve
+> reset breakers
+> south
+> pull lever
+
+# "To" in the words themselves doesn't make it an address to someone.
+> say going to the hold
++ "going to the hold," you say to the slate
++ Copy that
+- (to Grant)
+
+> north
+> west
++ > GOING TO THE HOLD
+
+> say hello to grant
++ You can ask Grant about
+
+> SAY all quiet
++ "all quiet," you say to the slate
+- Copy that
+
+# Only the first word is the verb.
+> report what they say
++ "what they say," you say to the slate

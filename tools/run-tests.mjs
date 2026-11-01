@@ -102,6 +102,9 @@ function check(steps, outputs) {
     const failures = []
     steps.forEach((step, index) => {
         const output = normalise(outputs[index])
+        if (output.includes('run-time problem')) {
+            failures.push(`> ${step.command}: Inform run-time problem`)
+        }
         for (const {kind, text, line} of step.checks) {
             if (output.includes(normalise(text)) !== (kind === '+')) {
                 const where = step.command === null ? 'opening' : `> ${step.command}`

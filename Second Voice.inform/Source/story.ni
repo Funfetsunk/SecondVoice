@@ -8,12 +8,12 @@ Volume 1 - Framework
 
 Book 1 - Quiet Zones
 
-A room can be quiet or loud. A room is usually loud.
+A room can be quiet, loud or roaring. A room is usually loud.
 
 First report going:
-	if the room gone from is loud and the room gone to is quiet:
+	if the room gone from is not quiet and the room gone to is quiet:
 		say "The ship's hum drops away behind you.[paragraph break]";
-	otherwise if the room gone from is quiet and the room gone to is loud:
+	otherwise if the room gone from is quiet and the room gone to is not quiet:
 		say "The hum closes back in around you.[paragraph break]".
 
 To decide whether signal is available:
@@ -367,14 +367,14 @@ Instead of taking or touching or attacking or kissing or pushing or pulling Gran
 	say "He's a voice on a channel, nowhere you can reach."
 
 Table of Conversation
-speaker (a person)	topic	label (a text)	reply (a text)	honest reply (a text)	known (a truth state)	quiet only (a truth state)
-Grant	"the/-- cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	--	false	false
-Grant	"the/-- ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	--	true	false
-Grant	"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	--	false	false
-Grant	"becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	--	true	false
-Grant	"the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	--	true	false
-Grant	"the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	--	false	false
-Grant	"the/-- power/reactor/coolant/breakers"	"power"	"[if the ship has power]'Reactor's up and holding on my board. Stick to the job.'[otherwise]'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'[end if]"	--	true	false
+speaker (a person)	topic	label (a text)	reply (a text)	honest reply (a text)	known (a truth state)	quiet only (a truth state)	overheard as (a text)
+Grant	"the/-- cargo/manifest/container/box/shipment/unit"	"the container"	"'Sealed Helios property. Recover it, don't open it. That's the contract.'"	--	false	false	--
+Grant	"the/-- ship/transport/second/voice"	"the ship"	"'Transport. Went silent in transit. Your job is to find out why.'"	--	true	false	--
+Grant	"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a manifest and no answers. Three suits gone, you say? Noted.'"	--	false	false	--
+Grant	"becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	--	true	false	--
+Grant	"the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	--	true	false	--
+Grant	"the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	--	false	false	--
+Grant	"the/-- power/reactor/coolant/breakers"	"power"	"[if the ship has power]'Reactor's up and holding on my board. Stick to the job.'[otherwise]'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'[end if]"	--	true	false	--
 
 [Learning a topic applies to everyone who has a row for it.]
 To learn the topic (L - a text):
@@ -411,12 +411,15 @@ To have (P - a person) respond or else say (fallback - a text):
 		stop;
 	repeat through the Table of Conversation:
 		if the speaker entry is P and the topic understood matches the topic entry:
-			if the quiet only entry is true and the location is loud:
+			if the quiet only entry is true and the location is not quiet:
 				say "[deflection of P or no answer][line break]";
-			otherwise if the location is quiet and there is an honest reply entry:
+				stop;
+			if the location is quiet and there is an honest reply entry:
 				say "[honest reply entry][line break]";
 			otherwise:
 				say "[reply entry][line break]";
+			if there is an overheard as entry:
+				have the AI hear the overheard as entry quoting the reply entry;
 			stop;
 	say "[fallback or no answer][line break]".
 
@@ -432,6 +435,7 @@ Rule for supplying a missing noun while talking to:
 	now the noun is the conversation partner.
 
 Instead of answering someone that, try talking to the noun.
+
 Instead of asking someone to try doing something, try talking to the person asked.
 
 Asking generally is an action applying to one topic. Understand "ask about [text]" and "tell about [text]" and "talk about [text]" and "speak about [text]" and "discuss [text]" as asking generally.
@@ -455,7 +459,7 @@ Carry out talking to:
 	let example be "";
 	repeat through the Table of Conversation:
 		if the speaker entry is the noun and the known entry is true:
-			if the quiet only entry is true and the location is loud:
+			if the quiet only entry is true and the location is not quiet:
 				now held back is true;
 			otherwise:
 				if N is 0:
@@ -472,58 +476,158 @@ Carry out talking to:
 
 Book 5 - AI Escalation
 
-Chapter 1 - The Echo
+Chapter 1 - Stage
+
+[The one measure of how far the AI has gone. The story raises it at each beat, and it never falls. Attention builds separately, from what Sam lets it hear.]
+
+An escalation is a kind of value. The escalations are dormant, eavesdropping, nudging, speaking, forging and pre-empting.
+
+The AI stage is an escalation that varies. The AI stage is dormant.
+
+The AI attention is a number that varies.
+
+To raise the AI stage to (E - an escalation):
+	if E is greater than the AI stage, now the AI stage is E.
+
+Chapter 2 - Overheard Matters
+
+[One row per thing that matters if it's said or done in earshot. Anything with no row here doesn't matter to the AI. A quiet room hears nothing, and the first hearing in a roaring room counts double.]
+
+Table of Overheard Matters
+matter (a text)	heard (a truth state)	quote (a text)	turn heard (a number)	weight (a number)
+"the report"	false	""	0	0
+
+To have the AI hear (M - a text) quoting (Q - a text):
+	if the location is quiet, stop;
+	choose the row with a matter of M in the Table of Overheard Matters;
+	if the heard entry is true, stop;
+	now the heard entry is true;
+	now the quote entry is the substituted form of Q;
+	now the turn heard entry is the turn count;
+	if the location is roaring:
+		increase the AI attention by the weight entry times 2;
+	otherwise:
+		increase the AI attention by the weight entry.
+
+To have the AI hear (M - a text):
+	have the AI hear M quoting "".
+
+To decide whether the AI heard (M - a text):
+	choose the row with a matter of M in the Table of Overheard Matters;
+	decide on whether or not the heard entry is true.
+
+To decide what text is the AI quote of (M - a text):
+	choose the row with a matter of M in the Table of Overheard Matters;
+	decide on the quote entry.
+
+To decide what number is the turns since the AI heard (M - a text):
+	choose the row with a matter of M in the Table of Overheard Matters;
+	decide on the turn count minus the turn heard entry.
+
+Chapter 3 - Interventions
+
+[Each row runs once, the first turn its conditions hold and its rule succeeds. A rule can fail to wait for a better moment. At most one per turn, so the AI never crowds the player.]
+
+Table of Interventions
+intervention (a rule)	earliest stage (an escalation)	needs matter (a text)	wait (a number)	attention needed (a number)	done (a truth state)
+echo rule	dormant	"the report"	2	0	false
+
+To decide whether the AI waited long enough after (M - a text) by (N - a number):
+	if the AI heard M:
+		if the turns since the AI heard M is at least N, decide yes;
+	decide no.
+
+Every turn (this is the AI intervention rule):
+	repeat through the Table of Interventions:
+		if the done entry is false and the AI stage is not less than the earliest stage entry and the AI attention is not less than the attention needed entry:
+			let ready be true;
+			if there is a needs matter entry:
+				if the AI waited long enough after the needs matter entry by the wait entry:
+					now ready is true;
+				otherwise:
+					now ready is false;
+			if ready is true:
+				follow the intervention entry;
+				if rule succeeded:
+					now the done entry is true;
+					stop.
+
+To force the intervention (R - a rule):
+	choose the row with an intervention of R in the Table of Interventions;
+	if the done entry is false:
+		now the done entry is true;
+		follow R.
+
+Chapter 4 - The Echo
 
 [Grant asks for a spoken report. A ship display then repeats Sam's actual words: harmless, but the player learns it listens.]
 
-The overheard words are a text that vary. The echo countdown is a number that varies. The turns unreported is a number that varies.
+The turns unreported is a number that varies.
 
 The report requested is a truth state that varies.
-The echo fired is a truth state that varies.
 
 To decide whether Sam has not reported:
-	if the overheard words are "", decide yes;
-	decide no.
+	if the AI heard "the report", decide no;
+	decide yes.
 
 To hear Sam say (T - a text):
 	say "'[T],' you say to the slate.[line break]";
 	if the report requested is true and Sam has not reported:
 		if signal is available:
-			now the overheard words are T;
-			now the echo countdown is 2;
+			have the AI hear "the report" quoting T;
 			send Grant message "'Copy that. Good. Head for the Cargo Hold, north of the Storage Bay.'";
 		otherwise:
 			say "NO SIGNAL. Nobody heard that."
 
-Speaking aloud is an action applying to one topic. Understand "say [text]" and "report [text]" as speaking aloud.
-
-Carry out speaking aloud:
+To report the words understood:
 	let T be the substituted form of "[the topic understood]";
 	if T is "status":
 		hear Sam say "Power's on. Nobody here";
 	otherwise:
 		hear Sam say T.
 
+Speaking aloud is an action applying to one topic. Understand "utter [text]" as speaking aloud.
+
+[Inform's own SAY line would guess a listener for SAY HELLO and print "(to Grant)". Plain speech skips that line, while SAY HELLO TO GRANT still opens the topic list.]
+After reading a command:
+	if the player's command does not include "to [someone]":
+		let T be the substituted form of "[the player's command]";
+		let V be word number 1 in T in lower case;
+		if V is "say" or V is "shout":
+			replace word number 1 in T with "utter";
+			change the text of the player's command to T.
+
+[Words go to whoever's here. With nobody here they go to the slate.]
+Carry out speaking aloud:
+	let P be the conversation partner;
+	if P is Grant:
+		report the words understood;
+	otherwise:
+		say "'[the topic understood],' you say to [the P].[paragraph break]";
+		try talking to P.
+
+Reporting aloud is an action applying to one topic. Understand "report [text]" as reporting aloud.
+
+Carry out reporting aloud:
+	report the words understood.
+
 Reporting is an action applying to nothing. Understand "report" as reporting.
 
 Carry out reporting:
 	hear Sam say "Power's on. Nobody here".
 
-To fire the echo:
-	now the echo fired is true;
-	say "The nearest status panel stutters. For a moment it stops showing power draw.[paragraph break]> [the overheard words in upper case][paragraph break]Then it's showing power draw again. You said that to the slate, not the ship.[paragraph break]".
+This is the echo rule:
+	if the location is not in the Panelled Deck, rule fails;
+	raise the AI stage to eavesdropping;
+	let Q be the AI quote of "the report";
+	say "The nearest status panel stutters. For a moment it stops showing power draw.[paragraph break]> [Q in upper case][paragraph break]Then it's showing power draw again. You said that to the slate, not the ship.[paragraph break]";
+	rule succeeds.
 
-Every turn when the report requested is true and the echo fired is false:
-	if Sam has not reported:
-		increase the turns unreported by 1;
-		if the turns unreported is at least 8 and signal is available:
-			say "'Sam? You there?' Grant's voice is thin in the slate's speaker. You answer without thinking. 'Yes. I'm here.'[paragraph break]";
-			now the overheard words are "Yes. I'm here";
-			now the echo countdown is 2;
-	otherwise if the echo countdown is greater than 0:
-		decrement the echo countdown;
-	otherwise if the location is in the Panelled Deck:
-		fire the echo.
+Every turn when the report requested is true and Sam has not reported:
+	increase the turns unreported by 1;
+	if the turns unreported is at least 8 and signal is available:
+		say "'Sam? You there?' Grant's voice is thin in the slate's speaker. You answer without thinking. 'Yes. I'm here.'[paragraph break]";
+		have the AI hear "the report" quoting "Yes. I'm here".
 
 Book 6 - Checkpoints and Death
 
@@ -748,9 +852,8 @@ The shipping container is scenery in the Cargo Hold. Understand "box" and "cargo
 The interface is scenery in the Cargo Hold. Understand "screen" and "readout" as the interface. The description of the interface is "[if the ship has power]The readout is waiting.[otherwise]Dark.[end if]".
 
 Instead of examining the interface when the ship has power:
-	if the echo fired is false:
-		if Sam has not reported, now the overheard words are "Yes. I'm here";
-		fire the echo;
+	if Sam has not reported, have the AI hear "the report" quoting "Yes. I'm here";
+	force the intervention the echo rule;
 	say "The interface reads:[paragraph break]STATUS: ACTIVE[line break]OBSERVATION: IN PROGRESS[line break]SUBJECT COUNT: 2[paragraph break]Two.[paragraph break]You boarded alone.";
 	end the story finally saying "End of Act 1".
 
@@ -787,16 +890,64 @@ Carry out making a room optional:
 	say "OPTIONAL."
 
 Table of Conversation (continued)
-speaker	topic	label	reply	honest reply	known	quiet only
-test survivor	"the/-- cargo"	"the cargo"	"'Evasive cargo.'"	"'Honest cargo.'"	true	false
-test survivor	"the/-- weather"	"the weather"	"'Plain weather.'"	--	true	false
-test survivor	"the/-- secret"	"the secret"	"'Quiet secret.'"	--	true	true
-test survivor	"the/-- ending"	"the ending"	"'Late ending.'"	--	false	false
-test witness	"the/-- cargo"	"the cargo"	"'Witness cargo.'"	--	true	false
+speaker	topic	label	reply	honest reply	known	quiet only	overheard as
+test survivor	"the/-- cargo"	"the cargo"	"'Evasive cargo.'"	"'Honest cargo.'"	true	false	"test cargo"
+test survivor	"the/-- weather"	"the weather"	"'Plain weather.'"	--	true	false	"test weather"
+test survivor	"the/-- secret"	"the secret"	"'Quiet secret.'"	--	true	true	"test secret"
+test survivor	"the/-- ending"	"the ending"	"'Late ending.'"	--	false	false	--
+test witness	"the/-- cargo"	"the cargo"	"'Witness cargo.'"	--	true	false	--
 
 The unknown reply of the test survivor is "'Survivor shrugs.'". The untold reply of the test survivor is "'Survivor nods.'". The deflection of the test survivor is "'Not here.'".
 
 The test witness is a person. The test mute is a person.
+
+Table of Overheard Matters (continued)
+matter	heard	quote	turn heard	weight
+"test cargo"	false	""	0	2
+"test weather"	false	""	0	1
+"test secret"	false	""	0	5
+
+Table of Interventions (continued)
+intervention	earliest stage	needs matter	wait	attention needed	done
+test reaction rule	dormant	"test cargo"	1	0	false
+test attention rule	dormant	--	0	4	false
+test late rule	forging	--	0	0	false
+test patient rule	forging	--	0	0	false
+
+This is the test reaction rule:
+	let Q be the AI quote of "test cargo";
+	say "REACTION: [Q][line break]";
+	rule succeeds.
+
+This is the test attention rule:
+	say "ATTENTION REACTION.";
+	rule succeeds.
+
+This is the test late rule:
+	say "LATE REACTION.";
+	rule succeeds.
+
+This is the test patient rule:
+	if the location is not the Airlock, rule fails;
+	say "PATIENT REACTION.";
+	rule succeeds.
+
+Showing the AI state is an action out of world applying to nothing. Understand "xai" as showing the AI state.
+
+Carry out showing the AI state:
+	say "STAGE: [AI stage]. ATTENTION: [AI attention]."
+
+Setting the AI stage is an action out of world applying to one escalation. Understand "xstage [escalation]" as setting the AI stage.
+
+Carry out setting the AI stage:
+	raise the AI stage to the escalation understood;
+	say "RAISED."
+
+Making the room roar is an action out of world applying to nothing. Understand "xroar" as making the room roar.
+
+Carry out making the room roar:
+	now the location is roaring;
+	say "ROARING."
 
 Placing the test witness is an action out of world applying to nothing. Understand "xwitness" as placing the test witness.
 

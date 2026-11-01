@@ -32,7 +32,6 @@
 - Copy that
 
 > wait
-> wait
 - > YES. I'M HERE
 
 > wait
