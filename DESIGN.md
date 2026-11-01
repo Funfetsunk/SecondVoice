@@ -401,7 +401,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [ ] **Tom:** rewrite the fake message (`DRAFT — Tom to rewrite` in the source) and review Act 1 prose. Can happen at any point.
 
 ### Phase 2 — Shared systems for Act 2
-- [ ] Door sealing: one seal system with the 4.10 check (Shuttle route, needed items wherever dropped, Vale's room, required rooms). Build first: it carries the no-softlock guarantee.
+- [x] Door sealing: one seal system with the 4.10 check (Shuttle route, needed items wherever dropped, Vale's room, required rooms). Build first: it carries the no-softlock guarantee. Doors are added to its table as their rooms are built; Vale is protected by marking her "needed".
 - [ ] Prove the test harness handles single-key input, then **Tom:** choose hint menus (as in 4.5) or keep the current layered `HINT`.
 - [ ] Terminals: reusable system with access rules and remembered state.
 - [ ] Conversation for several people: quiet-only topics, honest answers in quiet rooms, `TALK` and `ASK ABOUT` picking whoever is present.

@@ -1,0 +1,87 @@
+# The seal system refuses anything that could make the game unwinnable.
++ Recovery Shuttle
+
+> east
+> east
++ Storage Bay
+
+# Not a sealable door, or not adjacent rooms.
+> xseal engineering to reactor control
++ SEAL REFUSED: that door can't be sealed
+
+> xseal recovery shuttle to airlock
++ SEAL REFUSED: that door can't be sealed
+
+# Required room, in either direction of naming.
+> xseal storage bay to cargo hold
++ SEAL REFUSED: cuts off a required room
+
+> xseal cargo hold to storage bay
++ SEAL REFUSED: cuts off a required room
+
+# Route back to the Shuttle.
+> xseal airlock to storage bay
++ SEAL REFUSED: cuts Sam off from the Shuttle
+
+# Once the room is optional the seal holds, both ways round, and shows in the room.
+> xoptional cargo hold
+> xseal storage bay to cargo hold
++ SEAL OK
+
+> xseal storage bay to cargo hold
++ SEAL REFUSED: already sealed
+
+> north
++ The door is sealed
+- Cargo Hold
+
+> look
++ The door north is sealed
+
+> east
++ Engineering
+
+> west
++ Storage Bay
+
+> xrelease cargo hold to storage bay
++ RELEASED
+
+> north
++ Cargo Hold
+
+# From inside the sealed-off side, Sam would lose the Shuttle.
+> xseal storage bay to cargo hold
++ SEAL REFUSED: cuts Sam off from the Shuttle
+
+# A needed item dropped anywhere protects the room it lies in.
+> xfetch
+> drop beacon
++ Dropped
+
+> south
+> xseal storage bay to cargo hold
++ SEAL REFUSED: cuts off something Sam still needs
+
+> north
+> take beacon
+> south
+
+# Carried with Sam, it no longer pins the door.
+> xseal storage bay to cargo hold
++ SEAL OK
+
+> xrelease storage bay to cargo hold
+> north
+
+# A protected person works the same way, until she is gone.
+> xsurvivor
+> south
+> xseal storage bay to cargo hold
++ SEAL REFUSED: cuts off something Sam still needs
+
+> north
+> xnosurvivor
+> south
+> xseal storage bay to cargo hold
++ SEAL OK

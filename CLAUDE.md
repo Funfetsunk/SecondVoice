@@ -45,6 +45,7 @@ Volume 1 - Framework
   Book 6 - Checkpoints and Death
   Book 7 - Act 4 Clock
   Book 8 - Parser Interference
+  Book 9 - Door Sealing
 Volume 2 - World
   Book 1 - Docking / Book 2 - Lower Deck / ... / Book 5 - Exterior
 Volume 3 - Story (acts, scenes, endings)

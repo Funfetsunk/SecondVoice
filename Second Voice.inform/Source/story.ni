@@ -363,6 +363,93 @@ Book 7 - Act 4 Clock
 
 Book 8 - Parser Interference
 
+Book 9 - Door Sealing
+
+[One system for scripted beats and Act 4 pre-emption. A seal only takes effect if the ship stays winnable from where Sam is: see DESIGN.md 4.10. Add a row here when a sealable door's rooms are built, and keep tools/check-map.mjs in step.]
+
+Table of Sealable Doors
+near	way	sealed
+Airlock	east	false
+Storage Bay	north	false
+Storage Bay	east	false
+
+A thing can be needed or unneeded. A thing is usually unneeded.
+
+A room can be required or optional. A room is usually optional.
+
+A room can be charted or uncharted.
+
+The seal refusal is a text that varies.
+
+To decide whether exit (D - a direction) of (R - a room) is closed:
+	repeat through the Table of Closed Exits:
+		if the place entry is R and the way entry is D, decide yes;
+	decide no.
+
+To decide whether exit (D - a direction) of (R - a room) is sealed:
+	repeat through the Table of Sealable Doors:
+		if the sealed entry is true:
+			if the near entry is R and the way entry is D, decide yes;
+			if the way entry is the opposite of D and the room the way entry from the near entry is R and the room D from R is the near entry, decide yes;
+	decide no.
+
+To chart the ship from (start - a room):
+	now every room is uncharted;
+	now start is charted;
+	let growing be true;
+	while growing is true:
+		now growing is false;
+		repeat with R running through charted rooms:
+			repeat with D running through directions:
+				let N be the room D from R;
+				if N is not nothing and N is uncharted:
+					if exit D of R is closed, next;
+					if exit D of R is sealed, next;
+					now N is charted;
+					now growing is true.
+
+To decide whether the ship stays winnable:
+	chart the ship from the location;
+	if the Recovery Shuttle is uncharted:
+		now the seal refusal is "cuts Sam off from the Shuttle";
+		decide no;
+	repeat with R running through required rooms:
+		if R is uncharted:
+			now the seal refusal is "cuts off a required room";
+			decide no;
+	repeat with T running through needed things:
+		let P be the location of T;
+		if P is not nothing and P is uncharted:
+			now the seal refusal is "cuts off something Sam still needs";
+			decide no;
+	decide yes.
+
+To decide whether seal (A - a room) to (B - a room) takes effect:
+	now the seal refusal is "that door can't be sealed";
+	repeat through the Table of Sealable Doors:
+		let far be the room the way entry from the near entry;
+		if (the near entry is A and far is B) or (the near entry is B and far is A):
+			if the sealed entry is true:
+				now the seal refusal is "already sealed";
+				decide no;
+			now the sealed entry is true;
+			if the ship stays winnable, decide yes;
+			now the sealed entry is false;
+			decide no;
+	decide no.
+
+To release seal (A - a room) to (B - a room):
+	repeat through the Table of Sealable Doors:
+		let far be the room the way entry from the near entry;
+		if (the near entry is A and far is B) or (the near entry is B and far is A):
+			now the sealed entry is false.
+
+After looking:
+	repeat with D running through directions:
+		if exit D of the location is sealed:
+			say "The door [D] is sealed.[line break]";
+	continue the action.
+
 Volume 2 - World
 
 Book 1 - Docking
@@ -389,9 +476,14 @@ Before going:
 	if the location is a place listed in the Table of Closed Exits:
 		repeat through the Table of Closed Exits:
 			if the place entry is the location and the way entry is the noun:
-				say "[refusal entry][line break]" instead.
+				say "[refusal entry][line break]" instead;
+	repeat with D running through directions:
+		if D is the noun and exit D of the location is sealed:
+			say "The door is sealed. Its panel reads SEALED, and it doesn't move." instead.
 
 Chapter 2 - Rooms
+
+The Recovery Shuttle is required.
 
 The Airlock is east of the Recovery Shuttle. The Airlock is quiet. "Emergency lighting, the colour of old rust. No hum in here at all, only your own breathing. A suit rack runs along one wall. The shuttle is west, the Storage Bay east, and a hatch to EVA Prep lies north."
 
@@ -408,6 +500,8 @@ The Storage Bay is east of the Airlock. "Racks of crated spares, webbing pulled 
 Engineering is east of the Storage Bay. "Pipework and cable trays. The coolant valve and the breaker panel are the only things here that look recently touched. Reactor Control lies south, the Storage Bay west. A maintenance grille is set high in the wall above you."
 
 The maintenance grille is scenery in Engineering. The description of the maintenance grille is "Bolted from this side. Beside it, scratched into the paint, is a circle with a line through it."
+
+Engineering and Reactor Control and the Cargo Hold are required.
 
 Reactor Control is south of Engineering. "A narrow room built around one heavy restart lever. Engineering is north."
 
@@ -497,5 +591,46 @@ Queueing a test forgery is an action out of world applying to nothing. Understan
 
 Carry out queueing a test forgery:
 	send forged Grant message "'Forged test message.'"
+
+Testing a seal is an action out of world applying to two visible things. Understand "xseal [any room] to [any room]" as testing a seal.
+
+Carry out testing a seal:
+	if seal the noun to the second noun takes effect:
+		say "SEAL OK.";
+	otherwise:
+		say "SEAL REFUSED: [the seal refusal]."
+
+Testing a release is an action out of world applying to two visible things. Understand "xrelease [any room] to [any room]" as testing a release.
+
+Carry out testing a release:
+	release seal the noun to the second noun;
+	say "RELEASED."
+
+Making a room optional is an action out of world applying to one visible thing. Understand "xoptional [any room]" as making a room optional.
+
+Carry out making a room optional:
+	now the noun is optional;
+	say "OPTIONAL."
+
+The test beacon is a thing. The test beacon is needed.
+The test survivor is a person. The test survivor is needed.
+
+Fetching the test items is an action out of world applying to nothing. Understand "xfetch" as fetching the test items.
+
+Carry out fetching the test items:
+	now the player carries the test beacon;
+	say "BEACON HELD."
+
+Placing the test survivor is an action out of world applying to nothing. Understand "xsurvivor" as placing the test survivor.
+
+Carry out placing the test survivor:
+	now the test survivor is in the location;
+	say "SURVIVOR PLACED."
+
+Removing the test survivor is an action out of world applying to nothing. Understand "xnosurvivor" as removing the test survivor.
+
+Carry out removing the test survivor:
+	now the test survivor is nowhere;
+	say "SURVIVOR REMOVED."
 
 Test act1 with "e / e / e / open valve / reset breakers / s / pull lever / report all quiet / n / w / n / x interface".
