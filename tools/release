@@ -18,4 +18,11 @@ export MSYS2_ARG_CONV_EXCL='*'
   exit 1
 }
 tail -3 "$project/Build/inblorb.log"
+
+# inblorb leaves these two to the IDE: the download its page links to, and the
+# small cover, which it otherwise fills with the full-size image.
+release="$root/Second Voice.materials/Release"
+cp "$project/Build/output.gblorb" "$release/Second Voice.gblorb"
+cp "$root/Second Voice.materials/Small Cover.png" "$release/Small Cover.png"
+
 echo "tools/release: ok. Second Voice.materials/Release/"

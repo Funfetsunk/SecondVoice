@@ -2,3 +2,4 @@
 tools/build text eol=lf
 tools/test text eol=lf
 tools/release text eol=lf
+tools/publish text eol=lf

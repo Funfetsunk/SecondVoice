@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Publish the game to GitHub Pages: https://funfetsunk.github.io/SecondVoice/
+# Runs the tests and the release build, then replaces the gh-pages branch with
+# the finished website. Only a clean, committed tree can be published.
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$root"
+
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "tools/publish: commit your changes first." >&2
+  exit 1
+fi
+
+tools/test
+tools/release
+
+source_commit="$(git rev-parse --short HEAD)"
+remote="$(git remote get-url origin)"
+site="$(mktemp -d)"
+trap 'rm -rf "$site"' EXIT
+
+cp -R "Second Voice.materials/Release/." "$site/"
+touch "$site/.nojekyll"
+
+cd "$site"
+git init -q -b gh-pages
+git -c core.autocrlf=false add -A
+git -c core.autocrlf=false commit -q -m "Publish Second Voice from $source_commit"
+git push -q --force "$remote" gh-pages:gh-pages
+
+echo "tools/publish: ok. https://funfetsunk.github.io/SecondVoice/"

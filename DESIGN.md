@@ -462,7 +462,7 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [x] Release build: website and web interpreter (`tools/release`), played through in a browser to the Deliver ending, with RETRY tried.
 - [x] Cover art: generated with PixelLab, in `Second Voice.materials/`. **Tom:** replace it if you want something else.
 - [x] Sweep from Tom's first playtest: `CLIMB` on every ladder, an own description for each object, every listed topic working as printed, Sam and Becky's history, what costs time on the clock, and sealed doors explaining themselves.
-- [ ] Host the released game on GitHub Pages, once Tom has finished testing.
+- [x] Host the released game on GitHub Pages: `tools/publish`, https://funfetsunk.github.io/SecondVoice/
 
 ---
 
