@@ -1,0 +1,13 @@
+# A sealed door says there's another way, and HINT lists what's still open.
+@ act1
+> south
+> up
+> look
++ to the Fore Corridor, is sealed
+> north
++ always leaves another way round
+> hint
++ A sealed door never traps you
++ - east, to the Mess
++ - west, to Crew Quarters
+- - north

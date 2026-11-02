@@ -48,6 +48,7 @@ usage	purpose	needs signal	available
 "ASK GRANT ABOUT something"	"or TELL GRANT ABOUT something"	true	true
 "REPORT"	"say something aloud for Grant, or REPORT followed by your words"	true	false
 "MESSAGES"	"reread what you've received"	false	true
+"OLD MESSAGES"	"the ones from Becky you kept"	false	true
 "EVIDENCE"	"review what you've found"	false	true
 "SCAN something"	"take a reading of anything nearby"	false	true
 "HINT"	"get a nudge, and again for a bigger one"	false	true
@@ -192,6 +193,15 @@ Carry out reading messages:
 				say "[message stamped the stamp entry reading the body entry][paragraph break]";
 	if shown is false, say "No messages."
 
+Chapter 3a - Becky's Old Messages
+
+[DRAFT — Tom to rewrite: Sam's saved messages. They use no name, because she only ever said it aloud. The fake message in the opening is cut from these phrases.]
+
+Reading old messages is an action out of world applying to nothing. Understand "old messages" and "old message" and "saved messages" and "her messages" and "becky's messages" and "kept messages" as reading old messages.
+
+Carry out reading old messages:
+	say "You kept three. You don't know why these three.[paragraph break]FROM: R. REED // PERSONAL[line break]'Landed. Station food is a war crime. Did you eat? Don't say yes, I can hear you lying from here. Eat something.'[paragraph break]FROM: R. REED // PERSONAL[line break]'Comms get patchy past the relay, so if I go quiet for a week it isn't you, it's physics. Get some sleep. That is an order from your legal guardian (expired).'[paragraph break]FROM: R. REED // PERSONAL[line break]'Five months left. I'll call as soon as we're back in range and you'll pretend you didn't wait up. Take care of yourself. I mean it. I always mean it. B.'"
+
 Chapter 4 - Evidence Log
 
 Table of Evidence
@@ -334,12 +344,28 @@ Carry out asking for a hint:
 		say "[second hint entry][line break]";
 	otherwise:
 		say "[third hint entry][line break]";
+	say "[sealed door advice]";
 	if signal is available and the AI stage is at least forging:
 		if the hints asked is 3 or the hints asked is 6:
 			say "[line break]The next line arrives before you've finished reading that one.[line break]You already knew that.[line break]";
 		otherwise if the hints asked is at least 9 and the reliance comment made is false:
 			now the reliance comment made is true;
 			say "[line break]You asked for help [hints asked] times. Becky would have figured this out.[line break]".
+
+To say sealed door advice:
+	let any sealed be false;
+	repeat with D running through directions:
+		if exit D of the location is sealed, now any sealed is true;
+	if any sealed is true:
+		say "A sealed door never traps you: everything you still need can be reached another way. From here, you can still go:[line break]";
+		repeat with D running through directions:
+			let N be the room D from the location;
+			if N is a room and exit D of the location is not closed and exit D of the location is not sealed:
+				say "- [D], to [the N][line break]".
+
+To decide whether exit (D - a direction) of (R - a room) is not sealed:
+	if exit D of R is sealed, decide no;
+	decide yes.
 
 The hints asked is a number that varies. The reliance comment made is a truth state that varies.
 
@@ -508,9 +534,9 @@ Grant	"the/-- crew/voss/mercer/kest/vale/suits/suit"	"the crew"	"'I've got a man
 Grant	"becky/reed/rebecca/sister"	"Reed"	"'Comms Officer Reed is on the manifest. Status unknown, same as the rest.'"	--	true	false	--	--
 Grant	"the/-- helios/contract/job/company"	"the contract"	"'Standard recovery terms. Above my pay grade, most of it.'"	--	true	false	--	--
 Grant	"the/-- warning/scratches/scratch/hatch/hear/symbol"	"the warning"	"'Scratched by who? Log it. Probably nothing.' He doesn't sound sure."	--	false	false	--	--
-Grant	"the/-- subject/count/two/subjects/survivor"	"the subject count"	"[if Vale is responsive]'A survivor nobody's told me about. I've asked. I've been told to stop asking.'[otherwise]'Two. Could be a fault. Find out.'[end if]"	--	false	false	--	--
+Grant	"the/-- subject/count/two/subjects/survivor count/--"	"the subject count"	"[if Vale is responsive]'A survivor nobody's told me about. I've asked. I've been told to stop asking.'[otherwise]'Two. Could be a fault. Find out.'[end if]"	--	false	false	--	--
 Grant	"the/-- letter/sparrow/nickname"	"the letter"	"'Sorry, what? Say that again?' A pause. 'Doesn't matter. Keep it for your report.'"	--	false	false	"the nickname"	--
-Grant	"the/-- retrieval/team/eta/inbound/docking"	"the retrieval ship"	"'Helios hull, inbound, no callsign I'm cleared for. It docks, it takes the cargo, it takes you. I've read the order twice. Type ETA for what my board says. And Sam? If anything I send you starts telling you to sit tight, it isn't me.'"	--	false	false	--	--
+Grant	"the/-- retrieval/team/eta/inbound/docking ship/team/--"	"the retrieval ship"	"'Helios hull, inbound, no callsign I'm cleared for. It docks, it takes the cargo, it takes you. I've read the order twice. Type ETA for what my board says. And Sam? If anything I send you starts telling you to sit tight, it isn't me.'"	--	false	false	--	--
 Grant	"the/-- power/reactor/coolant/breakers"	"power"	"[if the ship has power]'Reactor's up and holding on my board. Stick to the job.'[otherwise]'Prime coolant, reset breakers, then a manual restart. I'll talk you through it.'[end if]"	--	true	false	--	--
 
 [Learning a topic applies to everyone who has a row for it.]
@@ -543,6 +569,7 @@ To say (T - a text) or no answer:
 
 To have (P - a person) respond or else say (fallback - a text):
 	now the last partner is P;
+	charge a minute;
 	if P is unresponsive:
 		say "You get no answer.[line break]";
 		stop;
@@ -814,16 +841,49 @@ Before handling the final question when the story has ended finally:
 
 Book 7 - Act 4 Clock
 
-[Counts turns, never real time, and only runs in Act 4. DRAFT: length to be tuned in playtesting.]
+[Counts minutes of Sam's time, never real time, and only runs in Act 4. DRAFT: length to be tuned in playtesting.]
+
+Chapter 1 - What Costs Time
+
+[Refused commands and just looking cost nothing. A command that reaches its carry out stage costs a minute unless it's a free kind. Instead rules skip that stage, so any that spend time charge for it themselves.]
+
+The minutes charged is a number that varies.
+
+To charge a minute:
+	if the minutes charged is less than 1, now the minutes charged is 1.
+
+This is the time charge rule:
+	if the actor is the player:
+		if we are examining or we are looking or we are taking inventory, make no decision;
+		charge a minute.
+
+The time charge rule is listed after the carry out stage rule in the specific action-processing rules.
+
+This is the charged time rule:
+	increase the turn count by 1;
+	if the minutes charged is greater than 0:
+		repeat with I running from 1 to the minutes charged:
+			now the time of day is 1 minute after the time of day.
+
+The charged time rule is listed instead of the advance time rule in the turn sequence rules.
+
+Before reading a command:
+	now the minutes charged is 0.
+
+Chapter 2 - The Clock
 
 The clock length is a number that varies. The clock length is 60.
 The clock remaining is a number that varies.
 
-Every turn when the current act is act-four and the overload armed is false and the story has not ended:
-	decrease the clock remaining by 1;
-	if the clock remaining is 30:
+The thirty warning given is a truth state that varies. The ten warning given is a truth state that varies.
+
+Every turn when the current act is act-four and the overload armed is false and the story has not ended and the minutes charged is greater than 0:
+	decrease the clock remaining by the minutes charged;
+	if the clock remaining is at most 30 and the thirty warning given is false:
+		now the thirty warning given is true;
 		send Grant message "'Thirty minutes on my board. I can't slow them down. I tried.'";
-	if the clock remaining is 10:
+	if the clock remaining is at most 10 and the ten warning given is false:
+		now the ten warning given is true;
 		send Grant message "'Ten. Sam, if you're going to do something, it has to be now.'";
 	if the clock remaining is less than 1:
 		run the timeout ending.
@@ -957,6 +1017,12 @@ To decide whether seal (A - a room) to (B - a room) takes effect:
 			decide no;
 	decide no.
 
+To say door name for (D - a direction):
+	if D is up or D is down:
+		say "ladder hatch";
+	otherwise:
+		say "door".
+
 To try to seal (A - a room) to (B - a room):
 	if seal A to B takes effect, do nothing.
 
@@ -973,7 +1039,7 @@ To release seal (A - a room) to (B - a room):
 After looking:
 	repeat with D running through directions:
 		if exit D of the location is sealed:
-			say "The door [D] is sealed.[line break]";
+			say "The [door name for D] [D], to [the room D from the location], is sealed. There's another way round.[line break]";
 	continue the action.
 
 Volume 2 - World
@@ -985,6 +1051,52 @@ The Recovery Shuttle is a room. "Your shuttle: two seats, a locker, recycled air
 The player is in the Recovery Shuttle. The description of the player is "Sam Reed, contractor. You took this job because a message felt wrong." Understand "sam" and "reed" as yourself.
 
 Book 2 - Lower Deck
+
+Chapter 0 - Climbing
+
+A thing can be climbable. A thing has a direction called the climb way.
+
+Does the player mean climbing upwards a climbable thing when the climb way of the noun is up: it is likely.
+Does the player mean climbing downwards a climbable thing when the climb way of the noun is down: it is likely.
+
+Instead of climbing a climbable thing, try going the climb way of the noun.
+Instead of using a climbable thing, try going the climb way of the noun.
+Instead of entering a climbable thing, try going the climb way of the noun.
+
+Climbing upwards is an action applying to one thing. Understand "climb up [something]" and "go up [something]" and "scale up [something]" as climbing upwards.
+
+Climbing downwards is an action applying to one thing. Understand "climb down [something]" and "go down [something]" as climbing downwards.
+
+Check climbing upwards:
+	if the noun is not climbable, say "That isn't something you can climb." instead.
+
+Carry out climbing upwards:
+	try going up.
+
+Check climbing downwards:
+	if the noun is not climbable, say "That isn't something you can climb." instead.
+
+Carry out climbing downwards:
+	try going down.
+
+Climbing nowhere up is an action applying to nothing. Understand "climb up" as climbing nowhere up.
+
+Carry out climbing nowhere up:
+	try going up.
+
+Climbing nowhere down is an action applying to nothing. Understand "climb down" as climbing nowhere down.
+
+Carry out climbing nowhere down:
+	try going down.
+
+Climbing whatever's here is an action applying to nothing. Understand "climb" as climbing whatever's here.
+
+Carry out climbing whatever's here:
+	if a climbable thing is in the location:
+		let L be a random climbable thing in the location;
+		try climbing L;
+	otherwise:
+		say "There's nothing here to climb."
 
 Chapter 1 - Exits Not Yet Open
 
@@ -1019,7 +1131,7 @@ Before going:
 			say "[refusal entry][line break]" instead;
 	repeat with D running through directions:
 		if D is the noun and exit D of the location is sealed:
-			say "The door is sealed. Its panel reads SEALED, and it doesn't move." instead.
+			say "The [door name for D] is sealed. Its panel reads SEALED, and it doesn't move. It hasn't shut you in: this ship always leaves another way round." instead.
 
 Chapter 2 - Rooms
 
@@ -1031,7 +1143,7 @@ The suit rack is scenery in the Airlock. Understand "suits" and "tags" and "rack
 
 The outer hatch is scenery in the Airlock. Understand "airlock hatch" and "outer airlock" as the outer hatch. The description of the outer hatch is "The hatch you came through. Something has been scratched into the metal beside it, and lower down, a smaller mark."
 
-The scratched warning is scenery in the Airlock. Understand "scratches" and "writing" and "words" and "don't" as the scratched warning. The description of the scratched warning is "Cut deep, in a hurry, by slate light or less:[paragraph break]DON'T LET IT HEAR YOU[paragraph break]You know that hand. You'd know it anywhere." The scan reading of the scratched warning is "Manual tool marks. Recent."
+The scratched warning is scenery in the Airlock. Understand "scratches" and "writing" and "words" and "don't" as the scratched warning. The description of the scratched warning is "Cut deep, in a hurry, by slate light or less:[paragraph break]DON'T LET IT HEAR YOU[paragraph break]You know that hand. You'd know it anywhere. It left notes on the fridge through every double shift of your childhood: EAT SOMETHING. BACK LATE. DON'T WAIT UP." The scan reading of the scratched warning is "Manual tool marks. Recent."
 
 The small symbol is scenery in the Airlock. Understand "mark" and "smaller mark" as the small symbol. The description of the small symbol is "A circle with a line through it, scratched by a different, steadier hand. It means nothing to you yet."
 
@@ -1123,9 +1235,11 @@ Chapter 2 - Mess
 
 The Mess is east of the Aft Corridor. "Bolted tables, a galley hatch, and six places laid out for a meal nobody came back to. A floor grille sits slightly askew in one corner, a small mark scratched beside it. The Medbay is north, and the Aft Corridor west." The opening act of the Mess is act-two.
 
-The laid tables are scenery in the Mess. Understand "table" and "tables" and "places" and "meal" and "galley" and "hatch" as the laid tables. The description of the laid tables is "Six places. Voss's routine, kept up after there was any reason to."
+The laid tables are scenery in the Mess. Understand "table" and "tables" and "places" and "meal" as the laid tables. The description of the laid tables is "Six places. Voss's routine, kept up after there was any reason to.[paragraph break]Eat something, you think, in her voice. She fed you for years on whatever the late shift let her bring home, and stood over you until it was gone."
 
-The mess grille is scenery in the Mess. Understand "floor grille" and "grille" as the mess grille. The description of the mess grille is "Loose. Somebody has taken the bolts out and left them in a neat row. It would lift easily enough: the way down is open." The scan reading of the mess grille is "Bolts removed by hand. Shielded space beneath."
+The galley hatch is scenery in the Mess. Understand "galley" and "hatch" as the galley hatch. The description of the galley hatch is "Pulled down and latched. The last person through it wiped the counter first."
+
+The mess grille is scenery in the Mess. The mess grille is climbable. The climb way of the mess grille is down. Understand "floor grille" and "grille" as the mess grille. The description of the mess grille is "Loose. Somebody has taken the bolts out and left them in a neat row. It would lift easily enough: the way down is open." The scan reading of the mess grille is "Bolts removed by hand. Shielded space beneath."
 
 The mess mark is scenery in the Mess. Understand "mark" and "symbol" and "circle" as the mess mark. The description of the mess mark is "A circle with a line through it. The same steady hand as the one at the airlock[if the quiet rule is true]. Mercer's mark: shielded below[end if]."
 
@@ -1135,9 +1249,11 @@ Chapter 3 - Crew Quarters
 
 Crew Quarters is west of the Aft Corridor. "Six bunks in two tiers, curtains tied back. Five are made to regulation. The sixth, Reed's, has a photograph taped above it. The corridor is east." The opening act of Crew Quarters is act-two.
 
-Reed's bunk is a supporter in Crew Quarters. It is scenery. Understand "becky's bunk" and "sixth bunk" and "bed" and "bunks" as Reed's bunk. The description of Reed's bunk is "Made properly, because Becky made everything properly. Pushed down by the pillow, you can see where a letter has been kept and unfolded too often."
+Reed's bunk is a supporter in Crew Quarters. It is scenery. Understand "becky's bunk" and "sixth bunk" and "bed" as Reed's bunk. The description of Reed's bunk is "Made properly, because Becky made everything properly. Pushed down by the pillow, you can see where a letter has been kept and unfolded too often."
 
-The photograph is scenery in Crew Quarters. Understand "photo" and "picture" as the photograph. The description of the photograph is "The two of you on a roof somewhere, squinting. She's got you in a headlock. You remember who took it, and not one thing either of you said."
+The photograph is scenery in Crew Quarters. Understand "photo" and "picture" and "roof" as the photograph. The description of the photograph is "The two of you on a roof, squinting. She's got you in a headlock.[paragraph break]You were seven the first time you climbed up there to watch for her bus, small and furious, and you wouldn't come down. She stood in the yard in her work boots looking up at you for a long time. 'All right, sparrow,' she said. 'Stay up there, then.'[paragraph break]She has never once put it in a message. It was only ever for out loud."
+
+The other bunks are scenery in Crew Quarters. Understand "five" and "bunks" and "curtains" as the other bunks. The description of the other bunks is "Five bunks made to regulation, with the blankets squared. Nobody expected an inspection. They did it anyway."
 
 Becky's letter is on Reed's bunk. "A folded letter is tucked by the pillow." Understand "folded" and "reed's letter" and "letter" and "note" as Becky's letter. The printed name of Becky's letter is "folded letter". The description of Becky's letter is "[letter text]". The scan reading of Becky's letter is "Paper. Nothing on it the ship could read unless someone reads it where the ship can hear." Becky's letter is needed.
 
@@ -1159,7 +1275,11 @@ Chapter 4 - Captain's Cabin
 
 The Captain's Cabin is west of the Fore Corridor. "Everything here is at right angles. A narrow bunk, a closed locker, a desk and the captain's terminal. The corridor is east." The opening act of the Captain's Cabin is act-two.
 
-The captain's desk is scenery in the Captain's Cabin. Understand "bunk" and "locker" and "narrow" as the captain's desk. The description of the captain's desk is "Clean and squared away. She knew she wasn't coming back, and she tidied."
+The captain's desk is scenery in the Captain's Cabin. The description of the captain's desk is "Clean and squared away. She knew she wasn't coming back, and she tidied."
+
+The captain's bunk is scenery in the Captain's Cabin. Understand "narrow" as the captain's bunk. The description of the captain's bunk is "Narrow, and made so tight you could bounce a key off it."
+
+The captain's locker is scenery in the Captain's Cabin. Understand "closed" as the captain's locker. The description of the captain's locker is "Shut, with her spare uniform visible through the vent. You leave it alone."
 
 [DRAFT — Tom to rewrite: captain's logs 1 to 4, reworked from Silent Cargo.]
 
@@ -1179,7 +1299,9 @@ Chapter 5 - Medbay and the Pod
 
 The Medbay is north of the Mess. The Medbay is east of the Fore Corridor. "Two treatment couches, a locked drugs cabinet and a medbay terminal. Hatches lead east to the Isolation Pod, west to the corridor and south to the Mess." The opening act of the Medbay is act-two. The Medbay is required.
 
-The treatment couches are scenery in the Medbay. Understand "couch" and "cabinet" and "drugs" as the treatment couches. The description of the treatment couches is "Clean. Nobody has been treated here for a while, or nobody who needed the couch."
+The treatment couches are scenery in the Medbay. Understand "couch" as the treatment couches. The description of the treatment couches is "Clean. Nobody has been treated here for a while, or nobody who needed the couch."
+
+The drugs cabinet is scenery in the Medbay. Understand "locked" and "cabinet" as the drugs cabinet. The description of the drugs cabinet is "Locked, and logged. According to its little display, somebody has been drawing sedative from it on a schedule, with no name on the requests."
 
 The medbay terminal is a terminal in the Medbay. It is scenery. The heading of the medbay terminal is "MEDBAY // DR A. VALE". The scan reading of the medbay terminal is "Medical records system. A second process is reading everything it writes."
 
@@ -1304,7 +1426,7 @@ Vale	"the/-- crew/voss/mercer/kest/everyone/others"	"the crew"	"'They went to th
 Vale	"becky/reed/rebecca/sister/comms"	"Reed"	"'Reed stayed.' She looks away. 'Ask me somewhere else.'"	"'She wouldn't go outside with them. She said someone had to get a real message out. She went into the comms crawlspace and welded the hatch behind her. I never saw her again. I'm sorry.'"	true	false	"vale on reed"	--
 Vale	"the/-- cargo/container/unit/box/it/ai/machine/core/aou/aou-031"	"the container"	"'It's a sealed crate.' She says it too evenly."	"'It isn't cargo. It watches, and it learns how you'll answer before you do. It got out of the box weeks ago. There's more of it up in the Server Core now than down in the hold.'"	true	false	"vale on the unit"	--
 Vale	"the/-- pod/sedation/sedated/observation/couch"	"the pod"	"'It kept me under so it could keep reading me. Subject one, until you came aboard.'"	--	true	true	--	--
-Vale	"the/-- subject/count/two/subjects/me/sam/myself"	"the subject count"	"'Two. Yes. I've seen the number.'"	"'You. Why did you think Helios offered you the contract? It's been reading you for months, through her. They wanted you in the room.'"	false	false	--	--
+Vale	"the/-- subject/count/two/subjects/me/sam/myself count/--"	"the subject count"	"'Two. Yes. I've seen the number.'"	"'You. Why did you think Helios offered you the contract? It's been reading you for months, through her. They wanted you in the room.'"	false	false	--	--
 Vale	"the/-- symbol/quiet/hum/shielded/notes"	"the symbol"	"'Mercer's mark. Circle with a line through it. Shielded compartments: the airlock, this crawlway, one or two more. No hum means no ears. Everywhere else, assume it's listening.'"	--	false	true	--	--
 Vale	"the/-- plan/overload/reactor"	"the plan"	"'Mercer's plan. Surge the reactor through the container and the Server Core at once, so there's nowhere left for it to go. It needs the command key, and Voss took that outside with her. Never say any of this anywhere but a place like this.'"	--	false	true	--	--
 Vale	"the/-- letter/sparrow/nickname"	"the letter"	"She goes very still. 'Don't. Not that word, not in here.'"	"'She talked about you. Only in places like this one. She said the word once and then she made me promise I'd never say it where it could hear.'"	false	false	"the nickname"	--
@@ -1359,9 +1481,15 @@ Book 4 - Lower Deck Hideout
 
 The Maintenance Crawlway is up from Engineering. The Mess is up from the Maintenance Crawlway. The Maintenance Crawlway is quiet. "A crawlspace between decks, cramped and dry, lined with old insulation. It's the first place since the airlock where the hum simply stops. Somebody has been living here: a bedroll, a water bottle, and a circle with a line through it scratched into the frame of the hatch. A grille opens up to the Mess, another lies below towards Engineering." The opening act of the Maintenance Crawlway is act-two.
 
-The crawlway grille is scenery in the Maintenance Crawlway. Understand "grille" and "lower grille" as the crawlway grille. The description of the crawlway grille is "[if the grille forced is true]Hanging by one bolt.[otherwise]Bolted from the Engineering side. From up here, a good boot would do it.[end if]". The scan reading of the crawlway grille is "Light gauge. Bolted from below."
+The crawlway grille is scenery in the Maintenance Crawlway. Understand "lower grille" and "grille" and "bolts" as the crawlway grille. The description of the crawlway grille is "[if the grille forced is true]Hanging by one bolt.[otherwise]Bolted from the Engineering side. From up here, a good boot would do it.[end if]". The scan reading of the crawlway grille is "Light gauge. Bolted from below." The crawlway grille is climbable. The climb way of the crawlway grille is down.
 
-The bedroll is scenery in the Maintenance Crawlway. Understand "water" and "bottle" and "insulation" as the bedroll. The description of the bedroll is "Mercer's, by the tag. She'd been sleeping down here before the end, and working."
+The upper grille is scenery in the Maintenance Crawlway. Understand "mess grille" as the upper grille. The description of the upper grille is "Its bolts are gone. It lifts into the Mess." The upper grille is climbable. The climb way of the upper grille is up.
+
+The bedroll is scenery in the Maintenance Crawlway. Understand "bed" and "roll" as the bedroll. The description of the bedroll is "Mercer's, by the tag. She'd been sleeping down here before the end, and working."
+
+The water bottle is scenery in the Maintenance Crawlway. Understand "water" and "bottle" as the water bottle. The description of the water bottle is "Half full, with a strip of tape on it, and the date of the last refill in square capitals. The date is seven weeks old."
+
+The old insulation is scenery in the Maintenance Crawlway. Understand "lining" as the old insulation. The description of the old insulation is "Grey and fibrous, older than the refit. Mercer's notes would tell you this is what's doing it. It looks like nothing at all."
 
 The crawlway symbol is scenery in the Maintenance Crawlway. Understand "circle" and "line" and "mark" as the crawlway symbol. The description of the crawlway symbol is "A circle with a line through it, cut with the same care as all of Mercer's work[if the quiet rule is true]. Now you know: shielded[end if]."
 
@@ -1393,7 +1521,7 @@ After severing the maintenance grille:
 	open exit up of Engineering;
 	now the grille forced is true.
 
-The maintenance grille is a cut point in Engineering. The description of the maintenance grille is "[if the grille forced is true]Open, now. A way up into the dark.[otherwise]Bolted from this side. Beside it, scratched into the paint, is a circle with a line through it.[end if]". The scan reading of the maintenance grille is "Shielded space beyond." The cut report of the maintenance grille is "The bolts go one after another. The grille swings down on its last hinge, and cool, silent air comes down with it."
+The maintenance grille is a cut point in Engineering. The maintenance grille is climbable. The climb way of the maintenance grille is up. The description of the maintenance grille is "[if the grille forced is true]Open, now. A way up into the dark.[otherwise]Bolted from this side. Beside it, scratched into the paint, is a circle with a line through it.[end if]". The scan reading of the maintenance grille is "Shielded space beyond." The cut report of the maintenance grille is "The bolts go one after another. The grille swings down on its last hinge, and cool, silent air comes down with it."
 
 Every turn when Vale is at hand and the location is the Maintenance Crawlway and the crawlway talk is false:
 	now the crawlway talk is true;
@@ -1408,7 +1536,11 @@ The Cargo Hold is east of EVA Prep. EVA Prep is north of the Airlock. "A narrow 
 
 The EVA suit is a wearable thing in EVA Prep. "One EVA suit is left on the rack." Understand "tether" and "spacesuit" and "suit" and "pressure suit" as the EVA suit. The description of the EVA suit is "Scuffed and serviceable, with a tether reel at the hip. The name tag has been cut away. There's a clip for the hull rail." The scan reading of the EVA suit is "Seals good. Air for several hours." The EVA suit is needed.
 
-The pressure warnings are scenery in EVA Prep. Understand "stencil" and "stencils" and "rack" and "outer lock" and "lock" as the pressure warnings. The description of the pressure warnings is "DO NOT EXIT WITHOUT SUIT AND TETHER. ATTITUDE BURNS MAY OCCUR WITHOUT WARNING. Someone has crossed out WITHOUT WARNING and written, in steady capitals: SUIT WARNS YOU. CLIP ON."
+The pressure warnings are scenery in EVA Prep. Understand "stencil" and "stencils" as the pressure warnings. The description of the pressure warnings is "DO NOT EXIT WITHOUT SUIT AND TETHER. ATTITUDE BURNS MAY OCCUR WITHOUT WARNING. Someone has crossed out WITHOUT WARNING and written, in steady capitals: SUIT WARNS YOU. CLIP ON."
+
+The EVA rack is scenery in EVA Prep. Understand "rack" and "suit rack" as the EVA rack. The description of the EVA rack is "[if the EVA suit is in EVA Prep]Empty clamps, and one suit left on them.[otherwise]Empty clamps.[end if]"
+
+The outer lock is scenery in EVA Prep. Understand "lock" and "heavy lock" as the outer lock. The description of the outer lock is "Heavy, manual and very clear about what's on the other side. It opens west onto the hull."
 
 Before going west in EVA Prep:
 	if the player is not wearing the EVA suit:
@@ -1444,7 +1576,7 @@ The rail is a backdrop. It is in the Hull Spine, the Cargo Hull and the Comms Di
 
 The comms array is scenery in the Comms Dish. Understand "array" and "mount" and "comms dish" and "dish" as the comms array. The description of the comms array is "[if the array is aligned]Pointed outwards now, at something that isn't Helios.[otherwise]The whole array is slaved to something off-ship, and it's pointed wherever that wants it pointed.[end if]". The scan reading of the comms array is "[if the array is aligned]Aligned. Hardline path clear.[otherwise]Out of alignment. Slaved to an outside handshake. Local control only from the Bridge.[end if]".
 
-The access hatch is scenery in the Comms Dish. The description of the access hatch is "A plain hatch with a circle and a line scratched beside it. It isn't locked. Nobody ever thought anyone would come this way."
+The access hatch is scenery in the Comms Dish. The access hatch is climbable. The climb way of the access hatch is down. The description of the access hatch is "A plain hatch with a circle and a line scratched beside it. It isn't locked. Nobody ever thought anyone would come this way."
 
 Instead of opening the access hatch, try going down.
 
@@ -1548,7 +1680,9 @@ Check playing:
 		if the key refused is false:
 			say "You stop with your thumb on the switch. Not here. Not where it can hear." instead.
 
+[You have to sit through it.]
 Carry out playing:
+	now the minutes charged is 3;
 	if the location is Reactor Control:
 		play Becky's message to the model;
 	otherwise if the recorder is unplayed:
@@ -1638,7 +1772,9 @@ To decide whether the array is aligned:
 	if the array aligned is true, decide yes;
 	decide no.
 
-The command chairs are scenery in the Bridge. Understand "chair" and "port" and "window" as the command chairs. The description of the command chairs is "Worn in the shape of the people who sat in them. Through the port there is nothing at all."
+The command chairs are scenery in the Bridge. Understand "chair" as the command chairs. The description of the command chairs is "Worn in the shape of the people who sat in them."
+
+The bridge port is scenery in the Bridge. Understand "port" and "window" and "dark port" as the bridge port. The description of the bridge port is "Long and dark. Through it there is nothing at all."
 
 The bridge console is a terminal in the Bridge. It is scenery. Understand "console" and "comms" as the bridge console. The heading of the bridge console is "BRIDGE // COMMS AND COMMAND". The scan reading of the bridge console is "Comms array: slaved to an outside handshake. Out of alignment."
 
@@ -1713,7 +1849,7 @@ To run the flood:
 	now the carrier lost is false;
 	now the current act is act-four;
 	raise the AI stage to pre-empting;
-	now the clock remaining is the clock length plus 1;
+	now the clock remaining is the clock length;
 	learn the topic "the retrieval ship";
 	reveal terminal entry "Re-align array";
 	reveal terminal entry "Release to Helios";
@@ -1756,7 +1892,7 @@ This is the sabotage seal rule:
 This is the array seal rule:
 	if signal is lost, rule fails;
 	if seal the Fore Corridor to Navigation takes effect:
-		say "Down the ladder, you hear the hatch to the Fore Corridor close. The panel by your hand reads: SEALED. The long way round, then.[paragraph break]";
+		say "Down the ladder, you hear the hatch to the Fore Corridor close. The panel by your hand reads: SEALED. The long way round, then, through the Server Core and the Cable Trunk.[paragraph break]";
 	rule succeeds.
 
 The air remaining is a number that varies.
@@ -1774,15 +1910,19 @@ This is the quoted secret rule:
 	now Vale is following;
 	rule succeeds.
 
+The air warning given is a truth state that varies.
+
 Every turn when the air remaining is greater than 0:
 	if Vale is at hand:
 		now the air remaining is 0;
 		say "Vale's breathing hard, but she's breathing. You got to her first.[paragraph break]";
 	otherwise:
-		decrease the air remaining by 1;
-		if the air remaining is 6:
+		decrease the air remaining by the minutes charged;
+		if the air remaining is at most 6 and the air warning given is false:
+			now the air warning given is true;
 			say "SLATE // [the printed name of the location of Vale in upper case] // ATMOSPHERE: 6 MIN.[paragraph break]";
-		if the air remaining is 0:
+		if the air remaining is less than 1:
+			now the air remaining is 0;
 			now Vale is dead;
 			now Vale is unresponsive;
 			now Vale is unneeded;
@@ -1800,25 +1940,37 @@ The emergency lighting is scenery in the Airlock. Understand "light" and "lights
 
 The EVA hatch is scenery in the Airlock. Understand "north hatch" and "hatch to eva prep" as the EVA hatch. The description of the EVA hatch is "[if the current act is less than act-three]Its panel is dark, and it reads ACCESS DENIED the moment you look at it.[otherwise]Unlocked now. It leads north to EVA Prep.[end if]".
 
-The pipework is scenery in Engineering. Understand "pipes" and "cable trays" and "trays" and "cable" as the pipework. The description of the pipework is "Old, patched, and labelled in steady capitals by somebody who cared."
+The pipework is scenery in Engineering. Understand "pipes" as the pipework. The description of the pipework is "Old, patched, and labelled in steady capitals by somebody who cared."
+
+The cable trays are scenery in Engineering. Understand "tray" and "trays" and "cable" and "cables" as the cable trays. The description of the cable trays is "Bundled and tied at regular intervals. One new, unlabelled run goes off towards the hold, thicker than the rest."
 
 The lever housing is scenery in Reactor Control. Understand "room" and "housing" as the lever housing. The description of the lever housing is "Heavy enough to survive whatever the room is built to survive. Beside it, Mercer's labels: RESTART. And, smaller, a manual console with a key slot."
 
-The hold gantry is scenery in the Cargo Hold. Understand "gantry" and "walkway" and "ladder" as the hold gantry. The description of the hold gantry is "[if the current act is act-one]A steel walkway overhead, its ladder drawn up and locked.[otherwise]The ladder's down. The gantry is straight above you.[end if]".
+The hold gantry is scenery in the Cargo Hold. Understand "gantry" and "walkway" as the hold gantry. The description of the hold gantry is "A steel walkway overhead."
+
+The hold ladder is scenery in the Cargo Hold. The description of the hold ladder is "[if the current act is act-one]Drawn up and locked out of reach.[otherwise]Down now, and leading up to the gantry.[end if]". The hold ladder is climbable. The climb way of the hold ladder is up.
 
 The west hatch is scenery in the Cargo Hold. Understand "hatch" as the west hatch. The description of the west hatch is "[if the current act is less than act-three]Locked from the far side.[otherwise]Unlocked, leading west to EVA Prep.[end if]".
 
-The storage ladder is scenery in the Storage Bay. Understand "ladder" and "hatch" and "overhead" as the storage ladder. The description of the storage ladder is "It climbs to a hatch and the central deck above."
+The storage ladder is scenery in the Storage Bay. Understand "hatch" and "overhead" as the storage ladder. The description of the storage ladder is "It climbs to a hatch and the central deck above." The storage ladder is climbable. The climb way of the storage ladder is up.
 
-The handholds are scenery in the Aft Corridor. Understand "handhold" and "ladder" as the handholds. The description of the handholds is "Worn pale by six people and their routine. The ladder down goes to the Storage Bay."
+The handholds are scenery in the Aft Corridor. Understand "handhold" as the handholds. The description of the handholds is "Worn pale by six people and their routine."
 
-The fore ladder is scenery in the Fore Corridor. Understand "ladder" and "command deck" as the fore ladder. The description of the fore ladder is "Up to Navigation and the command deck[if the current act is act-two], with a lockdown panel across its hatch[end if]."
+The aft ladder is scenery in the Aft Corridor. The description of the aft ladder is "It drops back down to the Storage Bay." The aft ladder is climbable. The climb way of the aft ladder is down.
 
-The nav ladder is scenery in Navigation. Understand "ladder" and "door" and "server core door" as the nav ladder. The description of the nav ladder is "A ladder goes down to the Fore Corridor. The door to the Server Core is north."
+The fore ladder is scenery in the Fore Corridor. Understand "command deck" as the fore ladder. The description of the fore ladder is "Up to Navigation and the command deck[if the current act is act-two], with a lockdown panel across its hatch[end if]." The fore ladder is climbable. The climb way of the fore ladder is up.
 
-The gantry ladder is scenery in the Cargo Gantry. Understand "ladder" and "walkway" and "access panel" and "panel" as the gantry ladder. The description of the gantry ladder is "The ladder drops to the hold. Overhead, the access panel opens into the cable trunk, and you can feel it from here."
+The nav ladder is scenery in Navigation. The description of the nav ladder is "It goes down to the Fore Corridor." The nav ladder is climbable. The climb way of the nav ladder is down.
 
-The crawlspace ladder is scenery in the Comms Crawlspace. Understand "ladder" and "dish" as the crawlspace ladder. The description of the crawlspace ladder is "It goes up to the access hatch at the foot of the dish."
+The core door is scenery in Navigation. Understand "door" and "server core door" as the core door. The description of the core door is "North to the Server Core. It has one status light, and that light is steady."
+
+The gantry ladder is scenery in the Cargo Gantry. The description of the gantry ladder is "It drops to the hold." The gantry ladder is climbable. The climb way of the gantry ladder is down.
+
+The gantry walkway is scenery in the Cargo Gantry. Understand "steel" and "gantry" as the gantry walkway. The description of the gantry walkway is "Steel grating, with the container directly below you. It's easy to imagine it looking back."
+
+The access panel is scenery in the Cargo Gantry. Understand "panel" as the access panel. The description of the access panel is "Overhead. It opens into the cable trunk, and you can feel it from here." The access panel is climbable. The climb way of the access panel is up.
+
+The crawlspace ladder is scenery in the Comms Crawlspace. The description of the crawlspace ladder is "It goes up to the access hatch at the foot of the dish." The crawlspace ladder is climbable. The climb way of the crawlspace ladder is up.
 
 Volume 3 - Story
 
@@ -1827,7 +1979,7 @@ Book 1 - Opening
 [DRAFT — Tom to rewrite: the fake message below.]
 
 When play begins:
-	say "FROM: R. REED // TRANSPORT SECOND VOICE // COMMS[paragraph break]Sammy,[paragraph break]All fine out here. The comms have been patchy but it's nothing to worry about. Eat something. Get some sleep. I'll call as soon as we're back in range.[paragraph break]Take care of yourself.[line break]B.[paragraph break]She never called you that.[paragraph break]Six days later the ship has stopped answering, and Helios Systems has offered you a recovery contract nobody else was asked to bid on.[paragraph break]";
+	say "FROM: R. REED // TRANSPORT SECOND VOICE // COMMS[paragraph break]Sammy,[paragraph break]All fine out here. The comms have been patchy but it's nothing to worry about. Eat something. Get some sleep. I'll call as soon as we're back in range.[paragraph break]Take care of yourself.[line break]B.[paragraph break]She never called you that. Sammy was what caseworkers called you, right before they moved you on. She was eighteen when she signed the forms to keep you, and she never said it once.[paragraph break]Six days later the ship has stopped answering, and Helios Systems has offered you a recovery contract nobody else was asked to bid on.[paragraph break]";
 	send Grant message "'This is Grant, Helios ops. You're docked. The slate in your hand is your scanner, your evidence log and me. Airlock's east. Ship has no power, so that's first.'".
 
 Book 2 - Act 1
@@ -2012,8 +2164,8 @@ Carry out having Vale turn the key:
 	say "You hold out the key. Vale looks at it for a moment, then takes it.[paragraph break]'It stopped forecasting me the day it finished with me,' she says. 'I've checked.' She puts her hand over the guard and it moves, because nothing is expecting her to do anything. 'This one has to be held till it locks. So. Go on. Go and tell somebody what we did.'[paragraph break]";
 	arm the overload.
 
-Every turn when the overload armed is true and the story has not ended:
-	decrease the overload remaining by 1;
+Every turn when the overload armed is true and the story has not ended and the minutes charged is greater than 0:
+	decrease the overload remaining by the minutes charged;
 	if the overload remaining is 10 or the overload remaining is 5 or the overload remaining is 2:
 		say "REACTOR OVERDRIVE: [overload remaining] MIN. The deck is hot through your boots.[paragraph break]";
 	if the overload remaining is less than 1:
@@ -2039,7 +2191,11 @@ Check undocking:
 Carry out undocking:
 	run the destroy ending.
 
-The shuttle seats are scenery in the Recovery Shuttle. Understand "seat" and "locker" and "port" and "forward port" as the shuttle seats. The description of the shuttle seats is "Two seats. You've only ever used one. It's a Helios shuttle: release lever, nothing else worth calling a control. You could UNDOCK when the clamps allow it."
+The shuttle seats are scenery in the Recovery Shuttle. Understand "seat" as the shuttle seats. The description of the shuttle seats is "Two seats. You've only ever used one. It's a Helios shuttle: release lever, nothing else worth calling a control. You could UNDOCK when the clamps allow it."
+
+The shuttle locker is scenery in the Recovery Shuttle. Understand "locker" as the shuttle locker. The description of the shuttle locker is "Ration packs, a first aid kit, and a Helios waiver with your signature already on it."
+
+The forward port is scenery in the Recovery Shuttle. Understand "port" as the forward port. The description of the forward port is "Beyond it is the flank of the [italic type]Second Voice[roman type], and nothing else."
 
 Chapter 3 - Other Answers
 
@@ -2222,6 +2378,13 @@ Setting the clock is an action out of world applying to one number. Understand "
 Carry out setting the clock:
 	now the clock remaining is the number understood;
 	say "CLOCK SET."
+
+Learning every topic is an action out of world applying to nothing. Understand "xlearnall" as learning every topic.
+
+Carry out learning every topic:
+	repeat through the Table of Conversation:
+		now the known entry is true;
+	say "ALL TOPICS KNOWN."
 
 Showing the act is an action out of world applying to nothing. Understand "xact" as showing the act.
 

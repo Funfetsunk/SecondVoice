@@ -1,0 +1,76 @@
+# Every topic, for every speaker, works exactly as TALK prints it.
+@ act1
+> south
+> up
+> east
+> north
+> use terminal
+> 2
+> east
+> cut feed
++ eyes open
+> xlearnall
+> talk to grant
++ the container
++ the ship
++ the crew
++ Reed
++ the contract
++ the warning
++ the subject count
++ the letter
++ the retrieval ship
++ power
+> ask grant about the container
+- Not something
+> ask grant about the ship
+- Not something
+> ask grant about the crew
+- Not something
+> ask grant about Reed
+- Not something
+> ask grant about the contract
+- Not something
+> ask grant about the warning
+- Not something
+> ask grant about the subject count
+- Not something
+> ask grant about the letter
+- Not something
+> ask grant about the retrieval ship
++ Helios hull
+- Not something
+> ask grant about power
+- Not something
+> west
+> south
+> down
+> talk to vale
++ the crew
++ Reed
++ the container
++ the pod
++ the subject count
++ the symbol
++ the plan
++ the letter
++ the datasets
+> ask vale about the crew
+- can't help
+> ask vale about Reed
+- can't help
+> ask vale about the container
+- can't help
+> ask vale about the pod
+- can't help
+> ask vale about the subject count
++ Why did you think
+- can't help
+> ask vale about the symbol
+- can't help
+> ask vale about the plan
+- can't help
+> ask vale about the letter
+- can't help
+> ask vale about the datasets
+- can't help

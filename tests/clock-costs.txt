@@ -1,0 +1,38 @@
+# In Act 4 only spent time moves the clock. Looking and refused commands are free.
+@ act1
+@ act2
+@ act3
+> eta
++ ETA: 60 minutes
+> look
+> examine hatch
+> inventory
+> north
++ sealed
+> up
+> eta
++ ETA: 59 minutes
+> xact
+> examine console
+> use console
+> eta
++ ETA: 59 minutes
+> 1
+> eta
++ ETA: 58 minutes
+> west
++ can't go that way
+> eta
++ ETA: 58 minutes
+> ask grant about the ship
+> eta
++ ETA: 57 minutes
+> down
+> northwest
++ Comms Crawlspace
+> play recorder
+> eta
++ ETA: 52 minutes
+> southeast
+> eta
++ ETA: 51 minutes

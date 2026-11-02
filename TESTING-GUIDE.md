@@ -113,7 +113,7 @@ From `TEST TOACT4`: `S, D, W, N, E, CONNECT`
 
 ### Timeout
 
-Do nothing until the clock runs out. It starts at 60 turns, and `ETA` shows what's left. In the IDE, use `XCLOCK 3` and then `WAIT` three times.
+Do nothing until the clock runs out. It starts at 60 minutes, and `ETA` shows what's left. `WAIT` and other actions cost a minute. `EXAMINE`, `LOOK`, `INVENTORY` and refused commands cost nothing, and Becky's recording costs 3. In the IDE, use `XCLOCK 3` and then `WAIT` three times.
 
 ---
 
@@ -223,6 +223,8 @@ There are 16 pieces. Each report says how many you missed. All 16 together gives
 
 ## Moments to watch for
 
+**Sam and Becky.** Does the bond land now? Check the opening's new line about caseworkers, `OLD MESSAGES` on the slate from the first turn, the warning, the Mess tables, and the photograph in Crew Quarters. The history is my draft, for you to rewrite.
+
 **The AI's interference.** Each happens once, and should feel wrong without feeling broken:
 1. Navigation console: `INPUT REGISTERED BEFORE CONTACT` before the screen.
 2. After Becky's voice message: your next command becomes `SAY I'M COMING`.
@@ -248,7 +250,7 @@ These are the best uses of a human tester, because the walkthroughs only try wha
 - **Vale left somewhere odd:** `VALE, STAY` in far corners, then see what the doors do.
 - **Vocabulary:** try the words you'd naturally use. Every "You can't see any such thing" for something a room mentions is a bug worth reporting.
 - **Timing:** how long does a first run take against the 1.5 to 2 hour target? I'd expect it to be **well short**. Act 2 and Act 3 have much less to find than the target implies.
-- **Clock length:** is 60 turns tense, or too loose? Doing Destroy and the truth together uses about 40.
+- **Clock length:** is 60 minutes tense, or too loose, now that looking around is free? Doing Destroy and the truth together uses about 40.
 
 ---
 
@@ -256,6 +258,7 @@ These are the best uses of a human tester, because the walkthroughs only try wha
 
 **Your prose.** These are all placeholders. Search the source for `DRAFT`:
 - The fake message, the letter, Becky's real message and Becky's voice message
+- Sam and Becky's history: the opening line, `OLD MESSAGES`, and the memories on the warning, Mess tables and photograph
 - Captain's logs 1 to 4
 - All four final scenes and reports, and the modifier paragraphs
 - The forged flood message

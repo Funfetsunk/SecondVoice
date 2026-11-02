@@ -1,0 +1,41 @@
+# Every ladder climbs, in every wording, and refuses the same way UP does.
+> east
+> east
+> climb ladder
++ locked down
+> climb up ladder
++ locked down
+> climb
++ locked down
+> use ladder
++ locked down
+> go up ladder
++ locked down
+> take cutter
+> west
+> west
+> xact
+@ act1
+> climb ladder
++ Cargo Gantry
+> climb down ladder
++ Cargo Hold
+> climb up
++ Cargo Gantry
+> climb down
++ Cargo Hold
+> south
+> climb up ladder
++ Aft Corridor
+> climb down ladder
++ Storage Bay
+> east
+> climb grille
++ cutter would
+> climb up the wall
+- Maintenance Crawlway
+> cut grille
+> climb up grille
++ Maintenance Crawlway
+> climb down grille
++ Engineering

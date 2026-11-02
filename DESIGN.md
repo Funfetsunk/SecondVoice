@@ -44,6 +44,7 @@ The cargo is an adaptive observation AI that Helios shipped on purpose. It has b
 - Becky's nickname for Sam: **"Sparrow"**. Keep it in one variable/constant.
 - Sam hated being called "Sammy". Becky never used it.
 - Took the Helios job because the message felt wrong.
+- **DRAFT history, Tom to rewrite:** care system, parents gone. Becky was eighteen when she signed the forms to keep Sam, who was seven. "Sammy" was what caseworkers said right before moving Sam on. "Sparrow" came from the roof: Sam climbed up to watch for her bus and wouldn't come down. Sparrow was spoken, never put in any message she sent, which is why the AI had to guess at "Sammy".
 
 ### Rebecca "Becky" Reed — comms officer
 - Sam's older sister. Known as **"Reed"** aboard (crew, logs). Only Sam calls her **"Becky"**. She can be referred to as Sam's sister.
@@ -160,12 +161,13 @@ Three or four key moments only, building toward the climax. Toolkit:
 ### 4.8 Terminals
 One reusable terminal system (listed entries, access rules, power requirement, keycard/code gating, read state), driven by one table. Replaces the original's per-option duplication. **Terminals remember their state** when the player leaves.
 
-Terminals are **never modal**: the screen lists entries and the player types a number as an ordinary turn. The parser stays live, each choice costs a turn on the Act 4 clock, and the AI can interrupt or pre-empt at a terminal like anywhere else. One terminal per room.
+Terminals are **never modal**: the screen lists entries and the player types a number as an ordinary turn. The parser stays live, each choice costs a minute on the Act 4 clock (reading the list doesn't), and the AI can interrupt or pre-empt at a terminal like anywhere else. One terminal per room.
 
 ### 4.9 Act 4 clock
 - Turn-based countdown (not real time). Starts at the beginning of Act 4 only; Acts 1–3 have no time pressure.
 - In-fiction cause: a **Helios retrieval ship** inbound to dock and take the cargo, and Sam and Vale with it.
 - Generous; tune in testing (starting proposal: 50–70 turns).
+- **What costs time:** moving, `CUT`, terminal choices, `SCAN`, `TALK`, `ASK` and other actions cost a minute. Playing Becky's recording costs 3. Refused commands, `EXAMINE`, `LOOK` and `INVENTORY` are free, and the ship's clock doesn't move on them. The overdrive and venting countdowns work the same way. The suit's burn warnings still count every command.
 - Running out triggers the **timeout ending**: the AI executes the choice it predicted Sam would make.
 
 ### 4.10 Door sealing
@@ -459,6 +461,8 @@ The working plan for reaching a finished game. Tick steps as they land and updat
 - [ ] Human playtests: timing against the 1.5–2 hour target, then fixes.
 - [x] Release build: website and web interpreter (`tools/release`), played through in a browser to the Deliver ending, with RETRY tried.
 - [x] Cover art: generated with PixelLab, in `Second Voice.materials/`. **Tom:** replace it if you want something else.
+- [x] Sweep from Tom's first playtest: `CLIMB` on every ladder, an own description for each object, every listed topic working as printed, Sam and Becky's history, what costs time on the clock, and sealed doors explaining themselves.
+- [ ] Host the released game on GitHub Pages, once Tom has finished testing.
 
 ---
 
@@ -492,7 +496,7 @@ Tom asked for the whole game to be finished before testing, so open questions we
 - Planning quietly helps: reading Mercer's plan in a loud room makes it seal the Server Core door at the start of Act 4, and cutting anything or re-aligning the dish brings further seals. All go through the 4.10 check, which now only counts a route outside if Sam can reach a suit.
 
 **The Act 4 clock**
-- 60 turns, and it stops once the overdrive is armed, which has its own 14 turns. It's a guess until playtested. `ETA` shows it.
+- 60 minutes of Sam's time, and it stops once the overdrive is armed, which has its own 14. It's a guess until playtested. `ETA` shows it. See 4.9 for what costs time.
 - From Act 4 the status line clock runs **one minute ahead**, so forged stamps match it and real ones look late. The AI hides its own tell. Never pointed out.
 
 **Endings**
