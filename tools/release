@@ -25,4 +25,11 @@ release="$root/Second Voice.materials/Release"
 cp "$project/Build/output.gblorb" "$release/Second Voice.gblorb"
 cp "$root/Second Voice.materials/Small Cover.png" "$release/Small Cover.png"
 
+# Playtesters' feedback link, on a new tab so the game in play isn't lost.
+feedback='<li><a href="https://github.com/Funfetsunk/SecondVoice/issues/new" target="_blank" rel="noopener">Send feedback</a></li>'
+for page in index.html play.html; do
+  sed -i "s|</ul>|$feedback</ul>|" "$release/$page"
+  grep -q 'Send feedback' "$release/$page" || { echo "tools/release: no feedback link in $page." >&2; exit 1; }
+done
+
 echo "tools/release: ok. Second Voice.materials/Release/"
